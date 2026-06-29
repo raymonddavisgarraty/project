@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="{{ page.lang or site.defaultLanguage }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{{ metaTitle }}</title>
+  <meta name="description" content="{{ metaDescription }}">
+  <meta name="robots" content="{{ robots or 'index, follow' }}">
+
+  <link rel="canonical" href="{{ canonical | absoluteUrl(site.url) }}">
+
+  <meta property="og:type" content="{{ ogType or 'website' }}">
+  <meta property="og:title" content="{{ metaTitle }}">
+  <meta property="og:description" content="{{ metaDescription }}">
+  <meta property="og:url" content="{{ canonical | absoluteUrl(site.url) }}">
+  <meta property="og:site_name" content="{{ site.name }}">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ metaTitle }}">
+  <meta name="twitter:description" content="{{ metaDescription }}">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  {% if jsonLd %}
+    <script type="application/ld+json">
+      {{ jsonLd | dump | safe }}
+    </script>
+  {% endif %}
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  {% include "components/site-header/site-header.njk" %}
+
+  <main id="main-content">
+    {{ content | safe }}
+  </main>
+
+  {% include "components/site-footer/site-footer.njk" %}
+</body>
+</html>

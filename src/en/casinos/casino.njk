@@ -1,0 +1,75 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: casinos
+  size: 1
+  alias: casino
+permalink: "/en/casinos/{{ casino.slug }}/index.html"
+eleventyComputed:
+  lang: en
+  metaTitle: "{{ casino.title }} Review"
+  metaDescription: "{{ casino.metaDescription }}"
+  canonical: "/en/casinos/{{ casino.slug }}/"
+  breadcrumbs:
+    - label: Home
+      url: /en/
+    - label: Casinos
+      url: /en/casinos/
+    - label: "{{ casino.title }}"
+---
+
+<section class="detail-hero">
+  <div class="container">
+    {% include "components/breadcrumbs/breadcrumbs.njk" %}
+
+    <div class="detail-hero__grid">
+      <div>
+        <p class="detail-hero__eyebrow">{{ casino.bonus }}</p>
+
+        <h1 class="detail-hero__title">{{ casino.title }} Review</h1>
+
+        <p class="detail-hero__text">{{ casino.description }}</p>
+
+        <p class="detail-hero__rating" aria-label="Rating {{ casino.rating }} out of 5">
+          ★ {{ casino.rating }} / 5
+        </p>
+      </div>
+
+      {% set cover = casino.cover %}
+      {% set title = casino.title %}
+      {% include "components/media-cover/media-cover.njk" %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container detail-layout">
+    <article class="detail-content">
+      <h2>Casino overview</h2>
+
+      <p>
+        {{ casino.title }} is reviewed with a focus on bonus value, game selection, payment options and important player-facing details.
+      </p>
+
+      {% set rows = [
+        { label: "Rating", value: casino.rating + " / 5" },
+        { label: "Welcome bonus", value: casino.bonus },
+        { label: "License", value: casino.license },
+        { label: "Games", value: casino.gamesCount },
+        { label: "Payment methods", value: casino.paymentMethods }
+      ] %}
+
+      {% include "components/info-table/info-table.njk" %}
+    </article>
+
+    <div class="detail-sidebar">
+      {% set affiliateId = casino.affiliateId %}
+      {% set rating = casino.rating %}
+      {% include "components/cta-panel/cta-panel.njk" %}
+
+      {% set pros = casino.pros %}
+      {% set cons = casino.cons %}
+      {% include "components/pros-cons/pros-cons.njk" %}
+    </div>
+  </div>
+</section>

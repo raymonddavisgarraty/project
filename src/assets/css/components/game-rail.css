@@ -1,0 +1,137 @@
+.game-rail {
+    padding-block: 28px 56px;
+}
+
+.game-rail__header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.game-rail__eyebrow {
+    margin-bottom: 6px;
+    color: var(--color-primary);
+    font-weight: 900;
+}
+
+.game-rail__title {
+    margin: 0;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+}
+
+.game-rail__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.game-rail__all,
+.game-rail__arrow {
+    display: inline-grid;
+    min-height: 40px;
+    place-items: center;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.game-rail__all {
+    padding-inline: 16px;
+}
+
+.game-rail__arrow {
+    width: 42px;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.game-rail__arrow:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.game-rail__viewport {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(150px, 180px);
+    gap: 14px;
+    overflow-x: auto;
+    padding: 4px 2px 14px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+}
+
+.game-rail__card {
+    display: grid;
+    gap: 10px;
+    color: var(--color-text);
+    text-decoration: none;
+    scroll-snap-align: start;
+}
+
+.game-rail__media {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    border: 1px solid var(--color-border);
+    border-radius: 18px;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.game-rail__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition:
+        transform 220ms ease,
+        filter 220ms ease;
+}
+
+.game-rail__placeholder {
+    display: grid;
+    height: 100%;
+    place-items: center;
+    gap: 8px;
+    padding: 16px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--color-primary-soft), #ffffff);
+}
+
+.game-rail__info {
+    display: grid;
+    gap: 2px;
+}
+
+.game-rail__name {
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+.game-rail__provider {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.game-rail__card:hover .game-rail__image,
+.game-rail__card:focus-visible .game-rail__image {
+    transform: scale(1.06);
+    filter: brightness(1.05);
+}
+
+@media (min-width: 760px) {
+    .game-rail__header {
+        flex-direction: row;
+        align-items: end;
+        justify-content: space-between;
+    }
+
+    .game-rail__viewport {
+        grid-auto-columns: minmax(170px, 210px);
+    }
+}

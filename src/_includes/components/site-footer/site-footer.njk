@@ -1,0 +1,66 @@
+<footer class="site-footer">
+  <div class="container site-footer__top">
+    <div class="site-footer__brand">
+      <a class="site-footer__logo" href="/en/">
+        <span class="site-footer__logo-mark">R</span>
+        <span>{{ site.name }}</span>
+      </a>
+
+      <p class="site-footer__text">
+        Independent casino, slot, bonus and provider reviews built for clear comparison and responsible decision-making.
+      </p>
+
+      {% if site.social.telegram %}
+        <a class="site-footer__telegram" href="{{ site.social.telegram }}" target="_blank" rel="noopener">
+          Join Telegram
+        </a>
+      {% endif %}
+    </div>
+
+    <nav class="site-footer__nav" aria-label="Footer navigation">
+      <div class="site-footer__column">
+        <h2 class="site-footer__title">Reviews</h2>
+
+        <ul class="site-footer__list">
+          <li><a href="/en/casinos/">Online Casinos</a></li>
+          <li><a href="/en/games/">Slot Games</a></li>
+          <li><a href="/en/providers/">Providers</a></li>
+          <li><a href="/en/bonuses/">Bonuses</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__column">
+        <h2 class="site-footer__title">Games</h2>
+
+        <ul class="site-footer__list">
+          <li><a href="/en/games/">Popular Slots</a></li>
+          <li><a href="/en/games/">High RTP Slots</a></li>
+          <li><a href="/en/games/">Demo Games</a></li>
+          <li><a href="/en/games/">All Games</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__column">
+        <h2 class="site-footer__title">Company</h2>
+
+        <ul class="site-footer__list">
+          <li><a href="/en/articles/">Articles</a></li>
+          <li><a href="/en/authors/">Authors</a></li>
+          <li><a href="/en/about/">About</a></li>
+          <li><a href="/en/contact/">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container site-footer__notice">
+    <p>
+      ReviewHub is an informational website. We do not operate gambling services. Always check local laws before playing.
+    </p>
+  </div>
+
+  <div class="container site-footer__bottom">
+    <p>© {{ site.name }}. All rights reserved.</p>
+    <p>18+ Play responsibly.</p>
+  </div>
+</footer>

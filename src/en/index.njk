@@ -1,0 +1,64 @@
+---
+layout: layouts/base.njk
+lang: en
+permalink: /en/
+
+metaTitle: Best Online Casino Reviews, Slots and Bonuses
+metaDescription: Independent casino reviews, slot guides and bonus comparisons.
+
+canonical: /en/
+
+jsonLd:
+  "@context": "https://schema.org"
+  "@type": "WebSite"
+  name: "ReviewHub"
+  url: "https://example.com/en/"
+  inLanguage: "en"
+---
+
+{% include "components/home-banners/home-banners.njk" %}
+
+{% include "components/game-rail/game-rail.njk" %}
+
+<section class="section">
+  <div class="container">
+
+    <h2>Main sections</h2>
+
+    <div class="grid grid--cards">
+
+      <article class="card">
+        <h3>Casinos</h3>
+        <p>Independent casino reviews.</p>
+
+        <a href="/en/casinos/">
+          View casinos
+        </a>
+      </article>
+
+      <article class="card">
+        <h3>Games</h3>
+        <p>Detailed slot game reviews.</p>
+
+        <a href="/en/games/">
+          View games
+        </a>
+      </article>
+
+      <article class="card">
+        <h3>Bonuses</h3>
+        <p>Best welcome bonuses.</p>
+
+        <a href="/en/bonuses/">
+          View bonuses
+        </a>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<script src="/assets/js/components/home-banners.js" defer></script>
+
+<script src="/assets/js/components/game-rail.js" defer></script>

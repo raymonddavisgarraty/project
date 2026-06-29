@@ -1,0 +1,66 @@
+<header class="site-header" data-site-header>
+  <div class="container site-header__inner">
+    <a class="site-header__logo" href="/en/" aria-label="{{ site.name }} home">
+      <span class="site-header__logo-mark">R</span>
+      <span>{{ site.name }}</span>
+    </a>
+
+    <button
+      class="site-header__toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="site-menu"
+      data-menu-toggle
+    >
+      Menu
+    </button>
+
+    <nav class="site-header__nav" id="site-menu" aria-label="Main navigation" data-site-menu>
+      <ul class="site-header__list">
+        <li><a href="/en/">Home</a></li>
+
+        <li class="site-header__item">
+          <button class="site-header__dropdown-toggle" type="button" aria-expanded="false" data-dropdown-toggle>
+            Games
+          </button>
+
+          <div class="site-header__dropdown">
+            <a href="/en/games/">All games</a>
+            <a href="/en/games/">Popular slots</a>
+            <a href="/en/games/">High RTP slots</a>
+            <a href="/en/games/">Demo games</a>
+          </div>
+        </li>
+
+        <li class="site-header__item">
+          <button class="site-header__dropdown-toggle" type="button" aria-expanded="false" data-dropdown-toggle>
+            Casinos
+          </button>
+
+          <div class="site-header__dropdown">
+            <a href="/en/casinos/">All casinos</a>
+            <a href="/en/casinos/">New casinos</a>
+            <a href="/en/casinos/">Crypto casinos</a>
+            <a href="/en/casinos/">Fast withdrawal</a>
+          </div>
+        </li>
+
+        <li><a href="/en/providers/">Providers</a></li>
+        <li><a href="/en/bonuses/">Bonuses</a></li>
+        <li><a href="/en/articles/">Articles</a></li>
+      </ul>
+
+      <div class="site-header__tools">
+        <a class="site-header__search" href="/en/games/">Search</a>
+        <button class="site-header__language" type="button">EN</button>
+<button class="site-header__theme" type="button" data-theme-toggle aria-label="Toggle dark theme">
+  🌙
+</button>
+        <a class="site-header__cta" href="/en/casinos/">Top casinos</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script src="/assets/js/components/site-header.js" defer></script>
+<script src="/assets/js/components/theme-toggle.js" defer></script>

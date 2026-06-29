@@ -1,0 +1,16 @@
+{% if faq and faq.length %}
+  <section class="faq" aria-labelledby="faq-title">
+    <h2 class="faq__title" id="faq-title">FAQ</h2>
+
+    <div class="faq__list">
+      {% for item in faq %}
+        <details class="faq__item">
+          <summary class="faq__question">{{ item.question }}</summary>
+          <div class="faq__answer">
+            <p>{{ item.answer }}</p>
+          </div>
+        </details>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

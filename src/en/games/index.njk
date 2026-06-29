@@ -1,0 +1,101 @@
+---
+layout: layouts/base.njk
+
+lang: en
+
+permalink: /en/games/
+
+metaTitle: Best Online Slot Games Reviews
+
+metaDescription: Browse slot reviews by title or provider.
+
+canonical: /en/games/
+---
+
+<section class="page-hero">
+
+    <div class="container">
+
+        {% include "components/breadcrumbs/breadcrumbs.njk" %}
+
+        <h1>
+            Slot Games
+        </h1>
+
+        <p>
+            Browse our slot database or search for a specific game.
+        </p>
+
+    </div>
+
+</section>
+
+<section class="games-search" data-games-search>
+
+    <div class="container">
+
+        <div class="games-search__panel">
+
+            <div class="games-search__field">
+
+                <label
+                    class="games-search__label"
+                    for="games-search"
+                >
+                    Search games
+                </label>
+
+                <input
+                    id="games-search"
+                    class="games-search__input"
+                    type="search"
+                    placeholder="Search game or provider..."
+                    data-games-search-input
+                >
+
+            </div>
+
+            <div class="games-search__actions">
+
+                <button
+                    class="games-search__button"
+                    data-random-game
+                    type="button"
+                >
+                    🎲 Random Game
+                </button>
+
+                <p
+                    class="games-search__count"
+                    data-games-count
+                ></p>
+
+            </div>
+
+        </div>
+
+        <p
+            class="games-search__empty"
+            data-games-empty
+        >
+            No games found.
+        </p>
+
+        <div class="games-search__grid">
+
+            {% for game in games %}
+
+                {% include "components/game-grid-card/game-grid-card.njk" %}
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<script
+    src="/assets/js/pages/games-search.js"
+    defer
+></script>

@@ -1,0 +1,21 @@
+<div class="pros-cons">
+  <section class="pros-cons__group" aria-labelledby="pros-title">
+    <h2 class="pros-cons__title" id="pros-title">Pros</h2>
+
+    <ul class="pros-cons__list">
+      {% for item in pros %}
+        <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="pros-cons__group" aria-labelledby="cons-title">
+    <h2 class="pros-cons__title" id="cons-title">Cons</h2>
+
+    <ul class="pros-cons__list">
+      {% for item in cons %}
+        <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+</div>

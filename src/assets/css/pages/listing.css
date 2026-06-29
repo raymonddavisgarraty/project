@@ -1,0 +1,28 @@
+.page-hero {
+    padding-block: clamp(40px, 7vw, 80px);
+    background: linear-gradient(135deg, #ffffff 0%, #edf3ff 100%);
+}
+
+.page-hero__title {
+    max-width: 780px;
+    margin-bottom: 16px;
+}
+
+.page-hero__text {
+    max-width: 680px;
+    margin-bottom: 0;
+    color: var(--color-muted);
+    font-size: 1.125rem;
+}
+
+.listing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media (min-width: 760px) {
+    .listing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

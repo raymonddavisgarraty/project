@@ -1,0 +1,92 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: games
+  size: 1
+  alias: game
+permalink: "/en/games/{{ game.slug }}/index.html"
+eleventyComputed:
+  lang: en
+  metaTitle: "{{ game.seo.metaTitle }}"
+  metaDescription: "{{ game.seo.metaDescription }}"
+  canonical: "/en/games/{{ game.slug }}/"
+  breadcrumbs:
+    - label: Home
+      url: /en/
+    - label: Games
+      url: /en/games/
+    - label: "{{ game.hero.title }}"
+---
+
+<section class="detail-hero">
+  <div class="container">
+    {% include "components/breadcrumbs/breadcrumbs.njk" %}
+
+    <div class="detail-hero__grid">
+      <div>
+        <p class="detail-hero__eyebrow">{{ game.facts.provider }}</p>
+
+        <h1 class="detail-hero__title">{{ game.seo.h1 }}</h1>
+
+        <p class="detail-hero__text">{{ game.hero.description }}</p>
+
+        <p class="detail-hero__rating" aria-label="Rating {{ game.rating.overall }} out of 5">
+          ★ {{ game.rating.overall }} / 5
+        </p>
+      </div>
+
+      {% set cover = game.media.cover %}
+      {% set title = game.hero.title %}
+      {% include "components/media-cover/media-cover.njk" %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container detail-layout">
+    <article class="detail-content">
+      <h2>{{ game.sections.overview.title }}</h2>
+      <p>{{ game.sections.overview.text }}</p>
+
+      {% set rows = [
+        { label: "Provider", value: game.facts.provider },
+        { label: "Rating", value: game.rating.overall + " / 5" },
+        { label: "RTP", value: game.facts.rtp },
+        { label: "Volatility", value: game.facts.volatility },
+        { label: "Reels", value: game.facts.reels },
+        { label: "Paylines", value: game.facts.paylines },
+        { label: "Release year", value: game.facts.releaseYear },
+        { label: "Last updated", value: game.updatedDate }
+      ] %}
+
+      {% include "components/info-table/info-table.njk" %}
+
+      <h2>{{ game.sections.features.title }}</h2>
+
+      <ul>
+        {% for item in game.sections.features.items %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+
+      <h2>{{ game.sections.gameplay.title }}</h2>
+      <p>{{ game.sections.gameplay.text }}</p>
+
+      <h2>{{ game.sections.rtpVolatility.title }}</h2>
+      <p>{{ game.sections.rtpVolatility.text }}</p>
+
+      {% set faq = game.faq %}
+      {% include "components/faq/faq.njk" %}
+    </article>
+
+    <div class="detail-sidebar">
+      {% set affiliateId = game.monetization.affiliateId %}
+      {% set rating = game.rating.overall %}
+      {% include "components/cta-panel/cta-panel.njk" %}
+
+      {% set pros = game.pros %}
+      {% set cons = game.cons %}
+      {% include "components/pros-cons/pros-cons.njk" %}
+    </div>
+  </div>
+</section>

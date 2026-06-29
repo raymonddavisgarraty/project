@@ -1,0 +1,10 @@
+<table class="info-table">
+  <tbody>
+    {% for row in rows %}
+      <tr class="info-table__row">
+        <th class="info-table__label" scope="row">{{ row.label }}</th>
+        <td class="info-table__value">{{ row.value }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

@@ -1,0 +1,56 @@
+.skip-link {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    z-index: 10;
+    padding: 10px 14px;
+    background: var(--color-text);
+    color: #ffffff;
+    transform: translateY(-140%);
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body,
+.site-header,
+.card,
+.listing-card,
+.detail-content,
+.cta-panel,
+.pros-cons__group,
+.info-table,
+.game-grid-card__media,
+.game-rail__media,
+.home-banners__slider,
+.home-banners__widget {
+    transition:
+        background-color 180ms ease,
+        color 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms;
+        animation-duration: 0.01ms;
+        animation-iteration-count: 1;
+    }
+}

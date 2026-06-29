@@ -1,0 +1,30 @@
+<a
+  class="game-grid-card"
+  href="/en/games/{{ game.slug }}/"
+  data-game-card
+  data-game-title="{{ game.title | lower }}"
+  data-game-provider="{{ game.provider | lower }}"
+>
+  <span class="game-grid-card__media">
+    {% if game.cover and game.cover.src %}
+      <img
+        class="game-grid-card__image"
+        src="{{ game.cover.src }}"
+        alt="{{ game.cover.alt }}"
+        width="260"
+        height="360"
+        loading="lazy"
+      >
+    {% else %}
+      <span class="game-grid-card__placeholder">
+        <span>🎰</span>
+        <strong>{{ game.title }}</strong>
+      </span>
+    {% endif %}
+  </span>
+
+  <span class="game-grid-card__content">
+    <span class="game-grid-card__title">{{ game.title }}</span>
+    <span class="game-grid-card__provider">{{ game.provider }}</span>
+  </span>
+</a>

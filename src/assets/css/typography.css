@@ -1,0 +1,35 @@
+body {
+    font-family: var(--font-base);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-text);
+    background:
+        radial-gradient(circle at top left, #eaf1ff 0, transparent 340px),
+        var(--color-bg);
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+}
+
+h1 {
+    font-size: clamp(2.25rem, 6vw, 4.75rem);
+}
+
+h2 {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+h3 {
+    font-size: 1.25rem;
+}

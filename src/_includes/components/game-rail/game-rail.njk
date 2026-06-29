@@ -1,0 +1,51 @@
+<section class="game-rail" aria-labelledby="featured-games-title">
+  <div class="container">
+    <div class="game-rail__header">
+      <div>
+        <p class="game-rail__eyebrow">Provider spotlight</p>
+        <h2 class="game-rail__title" id="featured-games-title">Pragmatic Play Games</h2>
+      </div>
+
+      <div class="game-rail__actions">
+        <a class="game-rail__all" href="/en/games/">All games</a>
+
+        <button class="game-rail__arrow" type="button" data-game-rail-prev aria-label="Scroll games left">
+          ‹
+        </button>
+
+        <button class="game-rail__arrow" type="button" data-game-rail-next aria-label="Scroll games right">
+          ›
+        </button>
+      </div>
+    </div>
+
+    <div class="game-rail__viewport" data-game-rail>
+      {% for game in games %}
+        <a class="game-rail__card" href="/en/games/{{ game.slug }}/">
+          <span class="game-rail__media">
+            {% if game.cover and game.cover.src %}
+              <img
+                class="game-rail__image"
+                src="{{ game.cover.src }}"
+                alt="{{ game.cover.alt }}"
+                width="260"
+                height="360"
+                loading="lazy"
+              >
+            {% else %}
+              <span class="game-rail__placeholder">
+                <span>🎰</span>
+                <strong>{{ game.title }}</strong>
+              </span>
+            {% endif %}
+          </span>
+
+          <span class="game-rail__info">
+            <span class="game-rail__name">{{ game.title }}</span>
+            <span class="game-rail__provider">{{ game.provider }}</span>
+          </span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

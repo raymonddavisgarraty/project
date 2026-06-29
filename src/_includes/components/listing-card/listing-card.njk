@@ -1,0 +1,21 @@
+<article class="listing-card">
+  <div class="listing-card__content">
+    <p class="listing-card__meta">{{ item.provider or item.bonus }}</p>
+
+    <h2 class="listing-card__title">
+      <a href="{{ itemUrl }}">{{ item.title }}</a>
+    </h2>
+
+    <p class="listing-card__text">{{ item.description }}</p>
+
+    <div class="listing-card__footer">
+      <span class="listing-card__rating" aria-label="Rating {{ item.rating }} out of 5">
+        ★ {{ item.rating }}
+      </span>
+
+      <a class="listing-card__link" href="{{ itemUrl }}">
+        Read review
+      </a>
+    </div>
+  </div>
+</article>

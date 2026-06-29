@@ -1,0 +1,115 @@
+.games-search {
+    padding-block: 32px 72px;
+}
+
+.games-search__panel {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding: 18px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.games-search__field {
+    position: relative;
+}
+
+.games-search__label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 900;
+}
+
+.games-search__input {
+    width: 100%;
+    min-height: 52px;
+    padding: 12px 16px 12px 46px;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font: inherit;
+    font-weight: 700;
+}
+
+.games-search__input:focus {
+    border-color: var(--color-primary);
+    outline: 3px solid var(--color-primary-soft);
+}
+
+.games-search__icon {
+    position: absolute;
+    left: 17px;
+    bottom: 15px;
+    color: var(--color-muted);
+    pointer-events: none;
+}
+
+.games-search__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: end;
+}
+
+.games-search__button {
+    min-height: 52px;
+    padding: 12px 18px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--color-primary);
+    color: #ffffff;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.games-search__button:hover,
+.games-search__button:focus-visible {
+    background: var(--color-primary-dark);
+}
+
+.games-search__count {
+    margin: 0;
+    color: var(--color-muted);
+    font-weight: 800;
+}
+
+.games-search__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.games-search__empty {
+    display: none;
+    padding: 24px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    color: var(--color-muted);
+    font-weight: 800;
+}
+
+.games-search__empty.is-visible {
+    display: block;
+}
+
+@media (min-width: 620px) {
+    .games-search__grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 900px) {
+    .games-search__panel {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: end;
+    }
+
+    .games-search__grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}

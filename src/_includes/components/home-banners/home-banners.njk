@@ -1,0 +1,81 @@
+<section class="home-banners" aria-label="Featured promotions">
+  <div class="container home-banners__grid">
+    <div class="home-banners__slider" data-banner-slider>
+      <div class="home-banners__track" data-banner-track>
+        {% for slide in homeBanners.slides %}
+          <a
+            class="home-banners__slide"
+            href="{{ slide.url }}"
+            data-banner-slide
+            {% if not loop.first %}hidden{% endif %}
+          >
+            {% if slide.image %}
+              <img
+                class="home-banners__image"
+                src="{{ slide.image }}"
+                alt="{{ slide.alt }}"
+                width="900"
+                height="480"
+                {% if loop.first %}loading="eager"{% else %}loading="lazy"{% endif %}
+              >
+            {% endif %}
+
+            <span class="home-banners__shade"></span>
+
+            <span class="home-banners__content">
+              <span class="home-banners__label">{{ slide.label }}</span>
+              <span class="home-banners__title">{{ slide.title }}</span>
+              <span class="home-banners__cta">{{ slide.cta }}</span>
+            </span>
+          </a>
+        {% endfor %}
+      </div>
+
+      <div class="home-banners__controls" aria-label="Banner controls">
+        <button class="home-banners__button" type="button" data-banner-prev aria-label="Previous banner">
+          ‹
+        </button>
+
+        <div class="home-banners__dots" data-banner-dots>
+          {% for slide in homeBanners.slides %}
+            <button
+              class="home-banners__dot{% if loop.first %} home-banners__dot--active{% endif %}"
+              type="button"
+              data-banner-dot="{{ loop.index0 }}"
+              aria-label="Show banner {{ loop.index }}"
+              {% if loop.first %}aria-current="true"{% endif %}
+            ></button>
+          {% endfor %}
+        </div>
+
+        <button class="home-banners__button" type="button" data-banner-next aria-label="Next banner">
+          ›
+        </button>
+      </div>
+    </div>
+
+    <div class="home-banners__widgets">
+      {% for widget in homeBanners.widgets %}
+        <a class="home-banners__widget" href="{{ widget.url }}">
+          {% if widget.image %}
+            <img
+              class="home-banners__widget-image"
+              src="{{ widget.image }}"
+              alt="{{ widget.alt }}"
+              width="420"
+              height="220"
+              loading="lazy"
+            >
+          {% endif %}
+
+          <span class="home-banners__widget-shade"></span>
+
+          <span class="home-banners__widget-content">
+            <span class="home-banners__widget-label">{{ widget.title }}</span>
+            <span class="home-banners__widget-text">{{ widget.text }}</span>
+          </span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

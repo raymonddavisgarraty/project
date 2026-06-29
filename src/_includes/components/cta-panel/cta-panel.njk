@@ -1,0 +1,54 @@
+<aside class="cta-panel" aria-label="Review actions">
+  <div class="cta-panel__rating">
+    <span class="cta-panel__rating-label">Rating</span>
+    <strong class="cta-panel__rating-value">★ {{ rating }} / 5</strong>
+  </div>
+
+  {% if affiliateId and partners %}
+    {% for partner in partners %}
+      {% if partner.id == affiliateId %}
+        <a
+          class="cta-panel__button"
+          href="{{ partner.url }}"
+          rel="nofollow sponsored noopener"
+          target="_blank"
+        >
+          Try now
+        </a>
+
+        {% if partner.demoUrl %}
+          <a
+            class="cta-panel__button cta-panel__button--secondary"
+            href="{{ partner.demoUrl }}"
+            rel="nofollow noopener"
+            target="_blank"
+          >
+            Play demo
+          </a>
+        {% endif %}
+
+        {% if partner.bonusUrl %}
+          <a
+            class="cta-panel__button cta-panel__button--secondary"
+            href="{{ partner.bonusUrl }}"
+            rel="nofollow sponsored noopener"
+            target="_blank"
+          >
+            Get bonus
+          </a>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% if site.social.telegram %}
+    <a
+      class="cta-panel__telegram"
+      href="{{ site.social.telegram }}"
+      rel="noopener"
+      target="_blank"
+    >
+      Join Telegram channel
+    </a>
+  {% endif %}
+</aside>

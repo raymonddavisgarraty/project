@@ -1,0 +1,17 @@
+<div class="media-cover">
+  {% if cover and cover.src %}
+    <img
+      class="media-cover__image"
+      src="{{ cover.src }}"
+      width="{{ cover.width }}"
+      height="{{ cover.height }}"
+      alt="{{ cover.alt }}"
+      loading="lazy"
+    >
+  {% else %}
+    <div class="media-cover__placeholder" role="img" aria-label="{{ title }} preview image placeholder">
+      <span class="media-cover__icon">🎰</span>
+      <span class="media-cover__title">{{ title }}</span>
+    </div>
+  {% endif %}
+</div>

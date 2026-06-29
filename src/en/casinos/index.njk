@@ -1,0 +1,41 @@
+---
+layout: layouts/base.njk
+lang: en
+permalink: /en/casinos/
+metaTitle: Best Online Casino Reviews
+metaDescription: Compare online casino reviews with ratings, bonuses, game libraries and key player information.
+canonical: /en/casinos/
+breadcrumbs:
+  - label: Home
+    url: /en/
+  - label: Casinos
+jsonLd:
+  "@context": "https://schema.org"
+  "@type": "CollectionPage"
+  name: "Best Online Casino Reviews"
+  url: "https://example.com/en/casinos/"
+  inLanguage: "en"
+---
+
+<section class="page-hero">
+  <div class="container">
+    {% include "components/breadcrumbs/breadcrumbs.njk" %}
+
+    <h1 class="page-hero__title">Best Online Casino Reviews</h1>
+
+    <p class="page-hero__text">
+      Compare online casinos by ratings, bonuses, game selection and important review details.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="listing-grid">
+      {% for item in casinos %}
+        {% set itemUrl = "/en/casinos/" + item.slug + "/" %}
+        {% include "components/listing-card/listing-card.njk" %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
