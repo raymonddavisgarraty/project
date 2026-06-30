@@ -20,22 +20,33 @@
 .games-search__label {
     display: block;
     margin-bottom: 8px;
+    color: var(--color-text);
     font-weight: 900;
 }
 
-.games-search__input {
+.games-search__input,
+.games-search__select {
     width: 100%;
     min-height: 52px;
-    padding: 12px 16px 12px 46px;
     border: 1px solid var(--color-border);
     border-radius: 999px;
     background: var(--color-bg);
     color: var(--color-text);
     font: inherit;
-    font-weight: 700;
+    font-weight: 750;
 }
 
-.games-search__input:focus {
+.games-search__input {
+    padding: 12px 16px 12px 46px;
+}
+
+.games-search__select {
+    padding: 12px 16px;
+    cursor: pointer;
+}
+
+.games-search__input:focus,
+.games-search__select:focus {
     border-color: var(--color-primary);
     outline: 3px solid var(--color-primary-soft);
 }
@@ -69,6 +80,11 @@
 .games-search__button:hover,
 .games-search__button:focus-visible {
     background: var(--color-primary-dark);
+}
+
+.games-search__button--secondary {
+    background: var(--color-surface-soft);
+    color: var(--color-text);
 }
 
 .games-search__count {
@@ -105,8 +121,12 @@
 
 @media (min-width: 900px) {
     .games-search__panel {
-        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-columns: minmax(260px, 1.4fr) minmax(160px, 0.7fr) minmax(160px, 0.7fr) minmax(160px, 0.7fr);
         align-items: end;
+    }
+
+    .games-search__actions {
+        grid-column: 1 / -1;
     }
 
     .games-search__grid {

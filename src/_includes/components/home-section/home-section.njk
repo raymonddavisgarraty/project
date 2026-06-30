@@ -1,0 +1,18 @@
+<section class="home-section" aria-labelledby="{{ sectionId }}">
+  <div class="container">
+    <div class="home-section__header">
+      <div>
+        <p class="home-section__eyebrow">{{ eyebrow }}</p>
+        <h2 class="home-section__title" id="{{ sectionId }}">{{ title }}</h2>
+      </div>
+
+      {% if url %}
+        <a class="home-section__link" href="{{ url }}">View all</a>
+      {% endif %}
+    </div>
+
+    <div class="home-section__grid">
+      {{ content | safe }}
+    </div>
+  </div>
+</section>

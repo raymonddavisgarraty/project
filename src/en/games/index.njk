@@ -1,101 +1,116 @@
 ---
 layout: layouts/base.njk
-
 lang: en
-
 permalink: /en/games/
 
 metaTitle: Best Online Slot Games Reviews
-
-metaDescription: Browse slot reviews by title or provider.
+metaDescription: Browse slot reviews by title, provider, RTP, volatility and rating.
 
 canonical: /en/games/
+
+breadcrumbs:
+  - label: Home
+    url: /en/
+  - label: Games
 ---
 
 <section class="page-hero">
+  <div class="container">
+    {% include "components/breadcrumbs/breadcrumbs.njk" %}
 
-    <div class="container">
+    <h1>Slot Games</h1>
 
-        {% include "components/breadcrumbs/breadcrumbs.njk" %}
-
-        <h1>
-            Slot Games
-        </h1>
-
-        <p>
-            Browse our slot database or search for a specific game.
-        </p>
-
-    </div>
-
+    <p>
+      Browse slot reviews by game title, provider, RTP, volatility and rating.
+    </p>
+  </div>
 </section>
 
 <section class="games-search" data-games-search>
+  <div class="container">
+    <div class="games-search__panel">
+      <div class="games-search__field games-search__field--wide">
+        <label class="games-search__label" for="games-search">
+          Search games
+        </label>
 
-    <div class="container">
+        <span class="games-search__icon" aria-hidden="true">⌕</span>
 
-        <div class="games-search__panel">
-
-            <div class="games-search__field">
-
-                <label
-                    class="games-search__label"
-                    for="games-search"
-                >
-                    Search games
-                </label>
-
-                <input
-                    id="games-search"
-                    class="games-search__input"
-                    type="search"
-                    placeholder="Search game or provider..."
-                    data-games-search-input
-                >
-
-            </div>
-
-            <div class="games-search__actions">
-
-                <button
-                    class="games-search__button"
-                    data-random-game
-                    type="button"
-                >
-                    🎲 Random Game
-                </button>
-
-                <p
-                    class="games-search__count"
-                    data-games-count
-                ></p>
-
-            </div>
-
-        </div>
-
-        <p
-            class="games-search__empty"
-            data-games-empty
+        <input
+          id="games-search"
+          class="games-search__input"
+          type="search"
+          placeholder="Search game or provider..."
+          autocomplete="off"
+          data-games-search-input
         >
-            No games found.
-        </p>
+      </div>
 
-        <div class="games-search__grid">
+      <div class="games-search__field">
+        <label class="games-search__label" for="provider-filter">
+          Provider
+        </label>
 
-            {% for game in games %}
+        <select class="games-search__select" id="provider-filter" data-provider-filter>
+          <option value="">All providers</option>
+          {% set providers = [] %}
+          {% for game in games %}
+            {% if game.provider not in providers %}
+              {% set providers = providers.concat([game.provider]) %}
+              <option value="{{ game.provider | lower }}">{{ game.provider }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
 
-                {% include "components/game-grid-card/game-grid-card.njk" %}
+      <div class="games-search__field">
+        <label class="games-search__label" for="volatility-filter">
+          Volatility
+        </label>
 
-            {% endfor %}
+        <select class="games-search__select" id="volatility-filter" data-volatility-filter>
+          <option value="">All volatility</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
 
-        </div>
+      <div class="games-search__field">
+        <label class="games-search__label" for="sort-filter">
+          Sort by
+        </label>
 
+        <select class="games-search__select" id="sort-filter" data-sort-filter>
+          <option value="title-asc">Title A-Z</option>
+          <option value="rating-desc">Highest rating</option>
+          <option value="rtp-desc">Highest RTP</option>
+        </select>
+      </div>
+
+      <div class="games-search__actions">
+        <button class="games-search__button" data-random-game type="button">
+          Random Game
+        </button>
+
+        <button class="games-search__button games-search__button--secondary" data-reset-filters type="button">
+          Reset
+        </button>
+
+        <p class="games-search__count" data-games-count></p>
+      </div>
     </div>
 
+    <p class="games-search__empty" data-games-empty>
+      No games found. Try another search or reset filters.
+    </p>
+
+    <div class="games-search__grid" data-games-grid>
+      {% for game in games %}
+        {% include "components/game-grid-card/game-grid-card.njk" %}
+      {% endfor %}
+    </div>
+  </div>
 </section>
 
-<script
-    src="/assets/js/pages/games-search.js"
-    defer
-></script>
+<script src="/assets/js/pages/games-search.js" defer></script>

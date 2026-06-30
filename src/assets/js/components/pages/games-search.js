@@ -6,13 +6,28 @@
   }
 
   const input = root.querySelector("[data-games-search-input]");
+  const providerFilter = root.querySelector("[data-provider-filter]");
+  const volatilityFilter = root.querySelector("[data-volatility-filter]");
+  const sortFilter = root.querySelector("[data-sort-filter]");
+  const resetButton = root.querySelector("[data-reset-filters]");
+  const grid = root.querySelector("[data-games-grid]");
   const cards = Array.from(root.querySelectorAll("[data-game-card]"));
   const count = root.querySelector("[data-games-count]");
   const empty = root.querySelector("[data-games-empty]");
   const randomButton = root.querySelector("[data-random-game]");
 
   function normalize(value) {
-    return value.trim().toLowerCase();
+    return String(value || "")
+      .trim()
+      .toLowerCase();
+  }
+
+  function parseRtp(value) {
+    return Number(String(value || "").replace("%", "")) || 0;
+  }
+
+  function parseRating(value) {
+    return Number(value) || 0;
   }
 
   function getVisibleCards() {
@@ -27,14 +42,48 @@
     count.textContent = `${visibleCount} game${visibleCount === 1 ? "" : "s"} found`;
   }
 
+  function sortCards() {
+    const sortValue = sortFilter?.value || "title-asc";
+
+    const sortedCards = [...cards].sort((a, b) => {
+      if (sortValue === "rating-desc") {
+        return (
+          parseRating(b.dataset.gameRating) - parseRating(a.dataset.gameRating)
+        );
+      }
+
+      if (sortValue === "rtp-desc") {
+        return parseRtp(b.dataset.gameRtp) - parseRtp(a.dataset.gameRtp);
+      }
+
+      return normalize(a.dataset.gameTitle).localeCompare(
+        normalize(b.dataset.gameTitle),
+      );
+    });
+
+    sortedCards.forEach((card) => {
+      grid.appendChild(card);
+    });
+  }
+
   function filterGames() {
-    const query = normalize(input.value);
+    const query = normalize(input?.value);
+    const provider = normalize(providerFilter?.value);
+    const volatility = normalize(volatilityFilter?.value);
+
     let visibleCount = 0;
 
     cards.forEach((card) => {
-      const title = card.dataset.gameTitle || "";
-      const provider = card.dataset.gameProvider || "";
-      const isVisible = title.includes(query) || provider.includes(query);
+      const title = normalize(card.dataset.gameTitle);
+      const cardProvider = normalize(card.dataset.gameProvider);
+      const cardVolatility = normalize(card.dataset.gameVolatility);
+
+      const matchesSearch =
+        !query || title.includes(query) || cardProvider.includes(query);
+      const matchesProvider = !provider || cardProvider === provider;
+      const matchesVolatility = !volatility || cardVolatility === volatility;
+
+      const isVisible = matchesSearch && matchesProvider && matchesVolatility;
 
       card.hidden = !isVisible;
 
@@ -45,11 +94,32 @@
       card.classList.remove("is-random-highlight");
     });
 
+    sortCards();
     updateCount(visibleCount);
 
     if (empty) {
       empty.classList.toggle("is-visible", visibleCount === 0);
     }
+  }
+
+  function resetFilters() {
+    if (input) {
+      input.value = "";
+    }
+
+    if (providerFilter) {
+      providerFilter.value = "";
+    }
+
+    if (volatilityFilter) {
+      volatilityFilter.value = "";
+    }
+
+    if (sortFilter) {
+      sortFilter.value = "title-asc";
+    }
+
+    filterGames();
   }
 
   function chooseRandomGame() {
@@ -69,7 +139,8 @@
     const maxTicks = 16;
 
     const intervalId = window.setInterval(() => {
-      const randomCard = visibleCards[Math.floor(Math.random() * visibleCards.length)];
+      const randomCard =
+        visibleCards[Math.floor(Math.random() * visibleCards.length)];
 
       cards.forEach((card) => {
         card.classList.remove("is-random-highlight");
@@ -78,7 +149,7 @@
       randomCard.classList.add("is-random-highlight");
       randomCard.scrollIntoView({
         behavior: "smooth",
-        block: "center"
+        block: "center",
       });
 
       ticks += 1;
@@ -86,7 +157,8 @@
       if (ticks >= maxTicks) {
         window.clearInterval(intervalId);
 
-        const finalCard = visibleCards[Math.floor(Math.random() * visibleCards.length)];
+        const finalCard =
+          visibleCards[Math.floor(Math.random() * visibleCards.length)];
 
         cards.forEach((card) => {
           card.classList.remove("is-random-highlight");
@@ -100,7 +172,11 @@
     }, 90);
   }
 
-  input.addEventListener("input", filterGames);
+  input?.addEventListener("input", filterGames);
+  providerFilter?.addEventListener("change", filterGames);
+  volatilityFilter?.addEventListener("change", filterGames);
+  sortFilter?.addEventListener("change", filterGames);
+  resetButton?.addEventListener("click", resetFilters);
   randomButton?.addEventListener("click", chooseRandomGame);
 
   filterGames();

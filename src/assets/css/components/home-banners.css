@@ -1,5 +1,5 @@
 .home-banners {
-    padding-block: 28px 18px;
+    padding-block: 28px 22px;
 }
 
 .home-banners__grid {
@@ -11,13 +11,15 @@
 .home-banners__widget {
     position: relative;
     overflow: hidden;
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-xl);
     background: #111827;
     box-shadow: var(--shadow-card);
+    isolation: isolate;
 }
 
 .home-banners__slider {
-    min-height: 340px;
+    min-height: 420px;
 }
 
 .home-banners__track,
@@ -28,7 +30,7 @@
 .home-banners__slide {
     position: relative;
     display: block;
-    min-height: 340px;
+    min-height: 420px;
     color: #ffffff;
     text-decoration: none;
 }
@@ -46,50 +48,85 @@
     object-fit: cover;
 }
 
-.home-banners__shade,
-.home-banners__widget-shade {
+.home-banners__shade {
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(90deg, rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.25)),
-        radial-gradient(circle at 80% 20%, rgba(37, 99, 235, 0.35), transparent 38%);
+        linear-gradient(90deg, rgba(2, 6, 23, 0.92), rgba(2, 6, 23, 0.48) 52%, rgba(2, 6, 23, 0.1)),
+        radial-gradient(circle at 78% 20%, rgba(37, 99, 235, 0.48), transparent 36%);
 }
 
 .home-banners__content {
     position: relative;
     z-index: 1;
     display: grid;
-    max-width: 560px;
-    min-height: 340px;
+    max-width: 650px;
+    min-height: 420px;
     align-content: center;
     gap: 16px;
-    padding: clamp(24px, 5vw, 48px);
+    padding: clamp(26px, 5vw, 56px);
 }
 
-.home-banners__label,
-.home-banners__widget-label {
+.home-banners__label {
     width: fit-content;
-    padding: 6px 12px;
+    padding: 7px 13px;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.16);
     color: #ffffff;
-    font-weight: 900;
+    font-weight: 950;
 }
 
 .home-banners__title {
-    font-size: clamp(2rem, 5vw, 4rem);
+    font-size: clamp(2.25rem, 5vw, 4.6rem);
     font-weight: 950;
-    line-height: 1;
-    letter-spacing: -0.05em;
+    line-height: 0.98;
+    letter-spacing: -0.06em;
+}
+
+.home-banners__text {
+    max-width: 520px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1.08rem;
+    font-weight: 700;
+}
+
+.home-banners__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.home-banners__meta span {
+    width: fit-content;
+    padding: 7px 11px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.13);
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 850;
+}
+
+.home-banners__rating {
+    color: #fde68a;
 }
 
 .home-banners__cta {
     width: fit-content;
-    padding: 10px 16px;
+    min-height: 46px;
+    padding: 11px 18px;
     border-radius: 999px;
     background: #ffffff;
     color: #111827;
-    font-weight: 900;
+    font-weight: 950;
+    transition:
+        transform 180ms ease,
+        background-color 180ms ease;
+}
+
+.home-banners__slide:hover .home-banners__cta,
+.home-banners__slide:focus-visible .home-banners__cta {
+    transform: translateY(-2px);
+    background: #dbeafe;
 }
 
 .home-banners__controls {
@@ -111,20 +148,32 @@
 
 .home-banners__button {
     display: grid;
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     place-items: center;
     border: 0;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.92);
     color: #111827;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     cursor: pointer;
+    transition:
+        transform 180ms ease,
+        background-color 180ms ease;
+}
+
+.home-banners__button:hover,
+.home-banners__button:focus-visible {
+    transform: scale(1.05);
+    background: #ffffff;
 }
 
 .home-banners__dots {
     display: flex;
     gap: 7px;
+    padding: 8px;
+    border-radius: 999px;
+    background: rgba(2, 6, 23, 0.28);
 }
 
 .home-banners__dot {
@@ -135,10 +184,13 @@
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.45);
     cursor: pointer;
+    transition:
+        width 180ms ease,
+        background-color 180ms ease;
 }
 
 .home-banners__dot--active {
-    width: 24px;
+    width: 26px;
     background: #ffffff;
 }
 
@@ -148,25 +200,48 @@
 }
 
 .home-banners__widget {
-    min-height: 162px;
+    min-height: 190px;
     color: #ffffff;
     text-decoration: none;
+}
+
+.home-banners__widget-shade {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(2, 6, 23, 0.2), rgba(2, 6, 23, 0.82)),
+        radial-gradient(circle at 80% 15%, rgba(37, 99, 235, 0.38), transparent 34%);
 }
 
 .home-banners__widget-content {
     position: relative;
     z-index: 1;
     display: grid;
-    min-height: 162px;
+    min-height: 190px;
     align-content: end;
     gap: 10px;
     padding: 20px;
 }
 
+.home-banners__widget-label {
+    width: fit-content;
+    padding: 6px 11px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+    font-weight: 950;
+}
+
 .home-banners__widget-text {
-    max-width: 280px;
-    font-weight: 800;
+    max-width: 300px;
+    font-weight: 850;
     line-height: 1.25;
+}
+
+.home-banners__widget-link {
+    width: fit-content;
+    color: #dbeafe;
+    font-weight: 950;
 }
 
 .home-banners__slide:hover .home-banners__image,
@@ -176,28 +251,28 @@
 
 .home-banners__image,
 .home-banners__widget-image {
-    transition: transform 220ms ease;
+    transition: transform 420ms ease;
 }
 
 @media (min-width: 980px) {
     .home-banners__grid {
-        grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.7fr);
+        grid-template-columns: minmax(0, 1.65fr) minmax(280px, 0.7fr);
     }
 
     .home-banners__slider,
     .home-banners__slide {
-        min-height: 460px;
+        min-height: 520px;
     }
 
     .home-banners__content {
-        min-height: 460px;
+        min-height: 520px;
     }
 
     .home-banners__widget {
-        min-height: 222px;
+        min-height: 252px;
     }
 
     .home-banners__widget-content {
-        min-height: 222px;
+        min-height: 252px;
     }
 }

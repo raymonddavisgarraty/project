@@ -4,7 +4,7 @@ lang: en
 permalink: /en/
 
 metaTitle: Best Online Casino Reviews, Slots and Bonuses
-metaDescription: Independent casino reviews, slot guides and bonus comparisons.
+metaDescription: Independent casino reviews, slot guides, bonus comparisons and provider rankings.
 
 canonical: /en/
 
@@ -20,45 +20,99 @@ jsonLd:
 
 {% include "components/game-rail/game-rail.njk" %}
 
-<section class="section">
+<section class="home-section" aria-labelledby="top-casinos-title">
   <div class="container">
+    <div class="home-section__header">
+      <div>
+        <p class="home-section__eyebrow">Casino reviews</p>
+        <h2 class="home-section__title" id="top-casinos-title">Top Online Casinos</h2>
+      </div>
 
-    <h2>Main sections</h2>
-
-    <div class="grid grid--cards">
-
-      <article class="card">
-        <h3>Casinos</h3>
-        <p>Independent casino reviews.</p>
-
-        <a href="/en/casinos/">
-          View casinos
-        </a>
-      </article>
-
-      <article class="card">
-        <h3>Games</h3>
-        <p>Detailed slot game reviews.</p>
-
-        <a href="/en/games/">
-          View games
-        </a>
-      </article>
-
-      <article class="card">
-        <h3>Bonuses</h3>
-        <p>Best welcome bonuses.</p>
-
-        <a href="/en/bonuses/">
-          View bonuses
-        </a>
-      </article>
-
+      <a class="home-section__link" href="/en/casinos/">View all</a>
     </div>
 
+    <div class="home-section__grid">
+      {% for item in casinos %}
+        {% set itemUrl = "/en/casinos/" + item.slug + "/" %}
+        {% include "components/listing-card/listing-card.njk" %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="home-section" aria-labelledby="bonuses-title">
+  <div class="container">
+    <div class="home-section__header">
+      <div>
+        <p class="home-section__eyebrow">Promotions</p>
+        <h2 class="home-section__title" id="bonuses-title">Latest Bonuses</h2>
+      </div>
+
+      <a class="home-section__link" href="/en/bonuses/">View all</a>
+    </div>
+
+    <div class="home-section__grid">
+      {% for item in homeSections.bonuses %}
+        {% set badge = "Bonus" %}
+        {% include "components/compact-card/compact-card.njk" %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="home-section" aria-labelledby="providers-title">
+  <div class="container">
+    <div class="home-section__header">
+      <div>
+        <p class="home-section__eyebrow">Game studios</p>
+        <h2 class="home-section__title" id="providers-title">Top Providers</h2>
+      </div>
+
+      <a class="home-section__link" href="/en/providers/">View all</a>
+    </div>
+
+    <div class="home-section__grid">
+      {% for item in homeSections.providers %}
+        {% set badge = "Provider" %}
+        {% include "components/compact-card/compact-card.njk" %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="home-section" aria-labelledby="articles-title">
+  <div class="container">
+    <div class="home-section__header">
+      <div>
+        <p class="home-section__eyebrow">Guides</p>
+        <h2 class="home-section__title" id="articles-title">Latest Articles</h2>
+      </div>
+
+      <a class="home-section__link" href="/en/articles/">View all</a>
+    </div>
+
+    <div class="home-section__grid">
+      {% for item in homeSections.articles %}
+        {% set badge = "Article" %}
+        {% include "components/compact-card/compact-card.njk" %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="home-seo">
+  <div class="container home-seo__inner">
+    <h2>Independent casino and slot reviews</h2>
+
+    <p>
+      ReviewHub is built to help players compare online casinos, slot games, providers and bonuses using structured information. Every review is designed around clear facts, useful comparisons and transparent ratings.
+    </p>
+
+    <p>
+      Our long-term goal is to build a scalable review platform with dedicated pages for games, casinos, providers, bonuses, guides and authors.
+    </p>
   </div>
 </section>
 
 <script src="/assets/js/components/home-banners.js" defer></script>
-
 <script src="/assets/js/components/game-rail.js" defer></script>

@@ -16,6 +16,8 @@
 @import url("./components/game-rail.css");
 @import url("./components/game-grid-card.css");
 @import url("./components/faq.css");
+@import url("./components/home-section.css");
+@import url("./components/compact-card.css");
 
 @import url("./pages/home.css");
 @import url("./pages/listing.css");

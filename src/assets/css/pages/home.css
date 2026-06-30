@@ -88,3 +88,25 @@
     font-weight: 800;
     color: var(--color-primary);
 }
+
+.home-seo {
+    padding-block: 42px 72px;
+}
+
+.home-seo__inner {
+    max-width: 900px;
+    padding: 28px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.home-seo h2 {
+    margin-bottom: 14px;
+    color: var(--color-text);
+}
+
+.home-seo p {
+    color: var(--color-muted);
+}
