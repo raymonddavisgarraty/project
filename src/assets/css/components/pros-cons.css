@@ -1,0 +1,27 @@
+.pros-cons {
+    display: grid;
+    gap: 20px;
+}
+
+.pros-cons__group {
+    padding: 22px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.pros-cons__title {
+    margin-bottom: 16px;
+    color: var(--color-text);
+    font-size: 1.375rem;
+}
+
+.pros-cons__list {
+    display: grid;
+    gap: 10px;
+    padding-left: 20px;
+    margin: 0;
+    color: var(--color-muted);
+    font-weight: 750;
+}

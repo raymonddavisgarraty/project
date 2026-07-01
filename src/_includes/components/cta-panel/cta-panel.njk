@@ -1,4 +1,4 @@
-<aside class="cta-panel" aria-label="Review actions">
+<aside class="cta-panel ui-card" aria-label="Review actions">
   <div class="cta-panel__rating">
     <span class="cta-panel__rating-label">Rating</span>
     <strong class="cta-panel__rating-value">★ {{ rating }} / 5</strong>
@@ -8,7 +8,7 @@
     {% for partner in partners %}
       {% if partner.id == affiliateId %}
         <a
-          class="cta-panel__button"
+          class="ui-button ui-button--success"
           href="{{ partner.url }}"
           rel="nofollow sponsored noopener"
           target="_blank"
@@ -18,7 +18,7 @@
 
         {% if partner.demoUrl %}
           <a
-            class="cta-panel__button cta-panel__button--secondary"
+            class="ui-button ui-button--secondary"
             href="{{ partner.demoUrl }}"
             rel="nofollow noopener"
             target="_blank"
@@ -29,7 +29,7 @@
 
         {% if partner.bonusUrl %}
           <a
-            class="cta-panel__button cta-panel__button--secondary"
+            class="ui-button ui-button--secondary"
             href="{{ partner.bonusUrl }}"
             rel="nofollow sponsored noopener"
             target="_blank"
@@ -43,7 +43,7 @@
 
   {% if site.social.telegram %}
     <a
-      class="cta-panel__telegram"
+      class="ui-button ui-button--outline"
       href="{{ site.social.telegram }}"
       rel="noopener"
       target="_blank"

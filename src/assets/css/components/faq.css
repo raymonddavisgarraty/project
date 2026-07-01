@@ -6,6 +6,7 @@
 
 .faq__title {
     margin: 0;
+    color: var(--color-text);
     font-size: 1.75rem;
 }
 
@@ -16,13 +17,15 @@
 
 .faq__item {
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
     background: var(--color-surface);
+    box-shadow: var(--shadow-card);
 }
 
 .faq__question {
     padding: 16px 18px;
-    font-weight: 900;
+    color: var(--color-text);
+    font-weight: 950;
     cursor: pointer;
 }
 

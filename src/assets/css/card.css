@@ -1,0 +1,21 @@
+.ui-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.ui-card--interactive {
+    transition:
+        transform var(--transition-ui),
+        border-color var(--transition-ui),
+        box-shadow var(--transition-ui),
+        background-color var(--transition-ui);
+}
+
+.ui-card--interactive:hover,
+.ui-card--interactive:focus-within {
+    transform: translateY(-3px);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-card-hover);
+}

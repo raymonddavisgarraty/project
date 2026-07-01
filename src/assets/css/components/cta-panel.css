@@ -2,10 +2,6 @@
     display: grid;
     gap: 12px;
     padding: 20px;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-    background: var(--color-surface);
-    box-shadow: var(--shadow-card);
 }
 
 .cta-panel__rating {
@@ -18,49 +14,10 @@
 .cta-panel__rating-label {
     color: var(--color-muted);
     font-size: 0.9375rem;
-    font-weight: 700;
+    font-weight: 800;
 }
 
 .cta-panel__rating-value {
+    color: var(--color-text);
     font-size: 1.35rem;
-}
-
-.cta-panel__button,
-.cta-panel__telegram {
-    display: inline-flex;
-    min-height: 46px;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 16px;
-    border-radius: 999px;
-    font-weight: 900;
-    text-align: center;
-    text-decoration: none;
-}
-
-.cta-panel__button {
-    background: var(--color-accent);
-    color: #ffffff;
-}
-
-.cta-panel__button:hover,
-.cta-panel__button:focus-visible {
-    filter: brightness(0.95);
-}
-
-.cta-panel__button--secondary {
-    background: var(--color-primary-soft);
-    color: var(--color-primary-dark);
-}
-
-.cta-panel__telegram {
-    margin-top: 4px;
-    border: 1px solid var(--color-border);
-    color: var(--color-primary);
-    background: #ffffff;
-}
-
-.cta-panel__telegram:hover,
-.cta-panel__telegram:focus-visible {
-    background: var(--color-primary-soft);
 }
