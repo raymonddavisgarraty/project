@@ -1,0 +1,15 @@
+<a class="entity-card entity-card--{{ variant }} ui-card ui-card--interactive" href="{{ href }}">
+  {% if badge %}
+    <span class="ui-badge">{{ badge }}</span>
+  {% endif %}
+
+  <strong class="entity-card__title">{{ title }}</strong>
+
+  {% if text %}
+    <span class="entity-card__text">{{ text }}</span>
+  {% endif %}
+
+  {% if meta %}
+    <span class="entity-card__meta">{{ meta }}</span>
+  {% endif %}
+</a>

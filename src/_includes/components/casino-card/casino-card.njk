@@ -1,0 +1,49 @@
+<article
+  class="casino-card ui-card ui-card--interactive"
+  data-casino-card
+  data-casino-title="{{ casino.title | lower }}"
+  data-casino-license="{{ casino.license | lower }}"
+  data-casino-type="{{ casino.type | lower }}"
+  data-casino-withdrawal="{{ casino.withdrawalSpeed | lower }}"
+  data-casino-rating="{{ casino.rating }}"
+  data-casino-new="{{ casino.isNew }}"
+>
+  <div class="casino-card__body">
+    <div class="casino-card__top">
+      <div>
+        <p class="casino-card__eyebrow">{{ casino.license }}</p>
+
+        <h2 class="casino-card__title">
+          <a href="/en/casinos/{{ casino.slug }}/">{{ casino.title }}</a>
+        </h2>
+      </div>
+
+      <span class="ui-badge ui-badge--warning">★ {{ casino.rating }}</span>
+    </div>
+
+    <p class="casino-card__text">{{ casino.description }}</p>
+
+    <div class="casino-card__facts">
+      <span>{{ casino.bonus }}</span>
+      <span>{{ casino.gamesCount }} games</span>
+      <span>{{ casino.withdrawalSpeed }} withdrawals</span>
+    </div>
+
+    <div class="casino-card__actions">
+      {% set affiliateId = casino.affiliateId %}
+      {% if affiliateId and partners %}
+        {% for partner in partners %}
+          {% if partner.id == affiliateId %}
+            <a class="ui-button ui-button--success" href="{{ partner.url }}" rel="nofollow sponsored noopener" target="_blank">
+              Try now
+            </a>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      <a class="ui-button ui-button--ghost" href="/en/casinos/{{ casino.slug }}/">
+        Read review
+      </a>
+    </div>
+  </div>
+</article>

@@ -24,8 +24,14 @@
 @import url("./components/compact-card.css");
 @import url("./components/table-of-contents.css");
 @import url("./components/rating-breakdown.css");
+@import url("./components/trust-grid.css");
+@import url("./components/telegram-cta.css");
+@import url("./components/casino-card.css");
+@import url("./components/entity-card.css");
+
 
 @import url("./pages/home.css");
 @import url("./pages/listing.css");
 @import url("./pages/detail.css");
 @import url("./pages/games-search.css");
+@import url("./pages/casinos-search.css");

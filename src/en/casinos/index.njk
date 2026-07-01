@@ -2,40 +2,105 @@
 layout: layouts/base.njk
 lang: en
 permalink: /en/casinos/
+
 metaTitle: Best Online Casino Reviews
-metaDescription: Compare online casino reviews with ratings, bonuses, game libraries and key player information.
+metaDescription: Compare online casino reviews by rating, bonuses, withdrawal speed and casino type.
+
 canonical: /en/casinos/
+
 breadcrumbs:
   - label: Home
     url: /en/
   - label: Casinos
-jsonLd:
-  "@context": "https://schema.org"
-  "@type": "CollectionPage"
-  name: "Best Online Casino Reviews"
-  url: "https://example.com/en/casinos/"
-  inLanguage: "en"
 ---
 
 <section class="page-hero">
   <div class="container">
     {% include "components/breadcrumbs/breadcrumbs.njk" %}
 
-    <h1 class="page-hero__title">Best Online Casino Reviews</h1>
+    <h1>Online Casinos</h1>
 
-    <p class="page-hero__text">
-      Compare online casinos by ratings, bonuses, game selection and important review details.
+    <p>
+      Compare casino reviews by rating, bonuses, withdrawal speed and player-focused details.
     </p>
   </div>
 </section>
 
-<section class="section">
+<section class="casinos-search" data-casinos-search>
   <div class="container">
-    <div class="listing-grid">
-      {% for item in casinos %}
-        {% set itemUrl = "/en/casinos/" + item.slug + "/" %}
-        {% include "components/listing-card/listing-card.njk" %}
+    <div class="casinos-search__panel">
+      <div class="casinos-search__field">
+        <label class="casinos-search__label" for="casinos-search">
+          Search casinos
+        </label>
+
+        <span class="casinos-search__icon" aria-hidden="true">⌕</span>
+
+        <input
+          id="casinos-search"
+          class="casinos-search__input"
+          type="search"
+          placeholder="Search casino..."
+          autocomplete="off"
+          data-casinos-search-input
+        >
+      </div>
+
+      <div class="casinos-search__field">
+        <label class="casinos-search__label" for="casino-type-filter">
+          Type
+        </label>
+
+        <select class="casinos-search__select" id="casino-type-filter" data-casino-type-filter>
+          <option value="">All types</option>
+          <option value="crypto">Crypto</option>
+          <option value="slots">Slots</option>
+        </select>
+      </div>
+
+      <div class="casinos-search__field">
+        <label class="casinos-search__label" for="casino-withdrawal-filter">
+          Withdrawal
+        </label>
+
+        <select class="casinos-search__select" id="casino-withdrawal-filter" data-casino-withdrawal-filter>
+          <option value="">All speeds</option>
+          <option value="fast">Fast</option>
+          <option value="standard">Standard</option>
+        </select>
+      </div>
+
+      <div class="casinos-search__field">
+        <label class="casinos-search__label" for="casino-sort-filter">
+          Sort by
+        </label>
+
+        <select class="casinos-search__select" id="casino-sort-filter" data-casino-sort-filter>
+          <option value="rating-desc">Highest rating</option>
+          <option value="new-desc">Newest</option>
+          <option value="title-asc">Title A-Z</option>
+        </select>
+      </div>
+
+      <div class="casinos-search__actions">
+        <button class="casinos-search__button casinos-search__button--secondary" data-reset-casino-filters type="button">
+          Reset
+        </button>
+
+        <p class="casinos-search__count" data-casinos-count></p>
+      </div>
+    </div>
+
+    <p class="casinos-search__empty" data-casinos-empty>
+      No casinos found. Try another search or reset filters.
+    </p>
+
+    <div class="casinos-search__grid" data-casinos-grid>
+      {% for casino in casinos %}
+        {% include "components/casino-card/casino-card.njk" %}
       {% endfor %}
     </div>
   </div>
 </section>
+
+<script src="/assets/js/pages/casinos-search.js" defer></script>

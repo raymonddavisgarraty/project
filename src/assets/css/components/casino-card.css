@@ -1,0 +1,64 @@
+.casino-card {
+    overflow: hidden;
+}
+
+.casino-card__body {
+    display: grid;
+    gap: 14px;
+    padding: 22px;
+}
+
+.casino-card__top {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.casino-card__eyebrow {
+    margin: 0 0 6px;
+    color: var(--color-primary);
+    font-weight: 900;
+}
+
+.casino-card__title {
+    margin: 0;
+    font-size: 1.35rem;
+}
+
+.casino-card__title a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.casino-card__title a:hover,
+.casino-card__title a:focus-visible {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.casino-card__text {
+    margin: 0;
+    color: var(--color-muted);
+    font-weight: 700;
+}
+
+.casino-card__facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.casino-card__facts span {
+    padding: 7px 10px;
+    border-radius: 999px;
+    background: var(--color-surface-soft);
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    font-weight: 850;
+}
+
+.casino-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}

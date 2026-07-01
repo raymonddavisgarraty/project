@@ -1,0 +1,19 @@
+<section class="telegram-cta">
+  <div class="container">
+    <div class="telegram-cta__inner">
+      <div>
+        <p class="telegram-cta__eyebrow">Stay updated</p>
+        <h2 class="telegram-cta__title">Get new reviews and bonus updates</h2>
+        <p class="telegram-cta__text">
+          Follow ReviewHub updates, new slot reviews, casino comparisons and bonus alerts.
+        </p>
+      </div>
+
+      {% if site.social.telegram %}
+        <a class="ui-button ui-button--primary" href="{{ site.social.telegram }}" target="_blank" rel="noopener">
+          Join Telegram
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>

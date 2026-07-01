@@ -25,7 +25,7 @@ jsonLd:
     <div class="home-section__header">
       <div>
         <p class="home-section__eyebrow">Casino reviews</p>
-        <h2 class="home-section__title" id="top-casinos-title">Top Online Casinos</h2>
+        <h2 class="home-section__title" id="top-casinos-title">Best Online Casinos</h2>
       </div>
 
       <a class="home-section__link" href="/en/casinos/">View all</a>
@@ -45,7 +45,7 @@ jsonLd:
     <div class="home-section__header">
       <div>
         <p class="home-section__eyebrow">Promotions</p>
-        <h2 class="home-section__title" id="bonuses-title">Latest Bonuses</h2>
+        <h2 class="home-section__title" id="bonuses-title">Top Casino Bonuses</h2>
       </div>
 
       <a class="home-section__link" href="/en/bonuses/">View all</a>
@@ -53,8 +53,13 @@ jsonLd:
 
     <div class="home-section__grid">
       {% for item in homeSections.bonuses %}
+        {% set variant = "bonus" %}
+        {% set href = item.url %}
+        {% set title = item.title %}
+        {% set text = item.text %}
         {% set badge = "Bonus" %}
-        {% include "components/compact-card/compact-card.njk" %}
+        {% set meta = "Compare offer" %}
+        {% include "components/entity-card/entity-card.njk" %}
       {% endfor %}
     </div>
   </div>
@@ -64,8 +69,8 @@ jsonLd:
   <div class="container">
     <div class="home-section__header">
       <div>
-        <p class="home-section__eyebrow">Game studios</p>
-        <h2 class="home-section__title" id="providers-title">Top Providers</h2>
+        <p class="home-section__eyebrow">Studios</p>
+        <h2 class="home-section__title" id="providers-title">Top Game Providers</h2>
       </div>
 
       <a class="home-section__link" href="/en/providers/">View all</a>
@@ -73,8 +78,13 @@ jsonLd:
 
     <div class="home-section__grid">
       {% for item in homeSections.providers %}
+        {% set variant = "provider" %}
+        {% set href = item.url %}
+        {% set title = item.title %}
+        {% set text = item.text %}
         {% set badge = "Provider" %}
-        {% include "components/compact-card/compact-card.njk" %}
+        {% set meta = "View provider" %}
+        {% include "components/entity-card/entity-card.njk" %}
       {% endfor %}
     </div>
   </div>
@@ -93,26 +103,35 @@ jsonLd:
 
     <div class="home-section__grid">
       {% for item in homeSections.articles %}
+        {% set variant = "article" %}
+        {% set href = item.url %}
+        {% set title = item.title %}
+        {% set text = item.text %}
         {% set badge = "Article" %}
-        {% include "components/compact-card/compact-card.njk" %}
+        {% set meta = "Read guide" %}
+        {% include "components/entity-card/entity-card.njk" %}
       {% endfor %}
     </div>
   </div>
 </section>
+
+{% include "components/trust-grid/trust-grid.njk" %}
 
 <section class="home-seo">
   <div class="container home-seo__inner">
     <h2>Independent casino and slot reviews</h2>
 
     <p>
-      ReviewHub is built to help players compare online casinos, slot games, providers and bonuses using structured information. Every review is designed around clear facts, useful comparisons and transparent ratings.
+      ReviewHub helps users compare online casinos, slot games, providers and bonuses with structured information. Each page is designed to support clear decisions through ratings, facts, FAQs and related content.
     </p>
 
     <p>
-      Our long-term goal is to build a scalable review platform with dedicated pages for games, casinos, providers, bonuses, guides and authors.
+      The platform is built for long-term SEO growth with reusable components, independent content files and scalable page templates.
     </p>
   </div>
 </section>
+
+{% include "components/telegram-cta/telegram-cta.njk" %}
 
 <script src="/assets/js/components/home-banners.js" defer></script>
 <script src="/assets/js/components/game-rail.js" defer></script>

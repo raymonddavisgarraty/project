@@ -9,6 +9,9 @@ export default [
     license: "Curacao",
     gamesCount: "2,000+",
     paymentMethods: "Cards, e-wallets, bank transfer",
+    withdrawalSpeed: "Fast",
+    type: "crypto",
+    isNew: true,
     affiliateId: "royalspin",
     cover: {
       src: "/assets/images/casinos/royalspin-casino.webp",
@@ -38,6 +41,9 @@ export default [
     license: "Curacao",
     gamesCount: "1,500+",
     paymentMethods: "Cards, crypto, e-wallets",
+    withdrawalSpeed: "Standard",
+    type: "slots",
+    isNew: false,
     affiliateId: "luckynova",
     cover: {
       src: "/assets/images/casinos/luckynova-casino.webp",
