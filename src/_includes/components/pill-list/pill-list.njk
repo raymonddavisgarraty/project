@@ -1,0 +1,9 @@
+<section class="pill-list" aria-labelledby="{{ titleId }}">
+  <h2 class="pill-list__title" id="{{ titleId }}">{{ title }}</h2>
+
+  <div class="pill-list__items">
+    {% for item in items %}
+      <span class="pill-list__item">{{ item }}</span>
+    {% endfor %}
+  </div>
+</section>

@@ -1,0 +1,18 @@
+{% if items and items.length %}
+  <section class="security-grid" aria-labelledby="security-grid-title">
+    <h2 class="security-grid__title" id="security-grid-title">Security and trust</h2>
+
+    <div class="security-grid__items">
+      {% for item in items %}
+        <article class="security-grid__item ui-card">
+          <span class="security-grid__icon">
+            {% set name = "shield" %}
+            {% include "components/icon/icon.njk" %}
+          </span>
+
+          <strong>{{ item }}</strong>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

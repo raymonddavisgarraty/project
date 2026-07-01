@@ -1,0 +1,18 @@
+{% if payments and payments.length %}
+  <section class="payment-grid" aria-labelledby="payment-grid-title">
+    <h2 class="payment-grid__title" id="payment-grid-title">Supported payment methods</h2>
+
+    <div class="payment-grid__items">
+      {% for payment in payments %}
+        <article class="payment-grid__item ui-card">
+          <span class="payment-grid__icon">
+            {% set name = "cards" %}
+            {% include "components/icon/icon.njk" %}
+          </span>
+
+          <strong>{{ payment }}</strong>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

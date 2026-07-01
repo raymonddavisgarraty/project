@@ -30,6 +30,8 @@ export default {
     reels: "5",
     paylines: "20",
     releaseYear: "2024",
+    maxWin: "5,000x",
+    hitFrequency: "Medium",
   },
 
   rating: {
@@ -61,6 +63,23 @@ export default {
     rtpVolatility: {
       title: "RTP and volatility",
       text: "The Big Dog House has an RTP of 96.50% and high volatility. This means wins may be less frequent, but bonus rounds can carry stronger payout potential.",
+    },
+    bonusFeatures: {
+      title: "Bonus features",
+      text: "The game includes bonus mechanics designed to increase engagement during special rounds. Players should check the paytable before playing for real money.",
+    },
+    howToPlay: {
+      title: "How to play",
+      items: [
+        "Choose your bet size.",
+        "Spin the reels.",
+        "Check winning combinations in the paytable.",
+        "Trigger bonus features when eligible symbols appear.",
+      ],
+    },
+    mobileExperience: {
+      title: "Mobile experience",
+      text: "The game is designed to work on modern mobile browsers with touch-friendly controls and responsive layouts.",
     },
   },
 

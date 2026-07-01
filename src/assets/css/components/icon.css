@@ -1,0 +1,15 @@
+.icon {
+    display: inline-grid;
+    width: 1em;
+    height: 1em;
+    place-items: center;
+    flex: 0 0 auto;
+    color: currentColor;
+}
+
+.icon svg {
+    display: block;
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+}

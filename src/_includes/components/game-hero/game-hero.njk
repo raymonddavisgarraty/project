@@ -1,0 +1,80 @@
+<section class="game-hero">
+  <div class="container">
+    {% include "components/breadcrumbs/breadcrumbs.njk" %}
+
+    <div class="game-hero__card">
+      <div class="game-hero__content">
+        <p class="game-hero__eyebrow">{{ game.facts.provider }}</p>
+
+        <h1 class="game-hero__title">{{ game.seo.h1 }}</h1>
+
+        <p class="game-hero__text">{{ game.hero.description }}</p>
+
+        <div class="game-hero__rating" aria-label="Rating {{ game.rating.overall }} out of 5">
+          {% set name = "star" %}
+          {% include "components/icon/icon.njk" %}
+          <strong>{{ game.rating.overall }} / 5</strong>
+          <span>Editorial rating</span>
+        </div>
+
+        <div class="game-hero__facts">
+          <span>{{ game.facts.provider }}</span>
+          <span>RTP {{ game.facts.rtp }}</span>
+          <span>{{ game.facts.volatility }} volatility</span>
+          <span>Max win {{ game.facts.maxWin }}</span>
+        </div>
+
+        <div class="game-hero__stats">
+          <div>
+            <span>RTP</span>
+            <strong>{{ game.facts.rtp }}</strong>
+          </div>
+
+          <div>
+            <span>Volatility</span>
+            <strong>{{ game.facts.volatility }}</strong>
+          </div>
+
+          <div>
+            <span>Max win</span>
+            <strong>{{ game.facts.maxWin }}</strong>
+          </div>
+
+          <div>
+            <span>Hit frequency</span>
+            <strong>{{ game.facts.hitFrequency }}</strong>
+          </div>
+        </div>
+
+        <div class="game-hero__actions">
+          {% set affiliateId = game.monetization.affiliateId %}
+          {% if affiliateId and partners %}
+            {% for partner in partners %}
+              {% if partner.id == affiliateId %}
+                <a class="ui-button ui-button--success" href="{{ partner.url }}" rel="nofollow sponsored noopener" target="_blank">
+                  Play now
+                </a>
+
+                {% if partner.demoUrl %}
+                  <a class="ui-button ui-button--outline" href="{{ partner.demoUrl }}" rel="nofollow noopener" target="_blank">
+                    Play demo
+                  </a>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+
+          <a class="ui-button ui-button--ghost" href="#game-info">
+            Read review
+          </a>
+        </div>
+      </div>
+
+      <div class="game-hero__media">
+        {% set cover = game.media.cover %}
+        {% set title = game.hero.title %}
+        {% include "components/media-cover/media-cover.njk" %}
+      </div>
+    </div>
+  </div>
+</section>

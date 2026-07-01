@@ -1,0 +1,42 @@
+{% set author = authors[authorId] %}
+
+{% if author %}
+  <aside class="author-card ui-card" aria-label="Review author">
+    <div class="author-card__top">
+      {% if author.avatar %}
+        <img
+          class="author-card__avatar"
+          src="{{ author.avatar }}"
+          width="56"
+          height="56"
+          alt="{{ author.name }}"
+          loading="lazy"
+        >
+      {% else %}
+        <span class="author-card__placeholder" aria-hidden="true">
+          {{ author.name | first }}
+        </span>
+      {% endif %}
+
+      <div>
+        <p class="author-card__eyebrow">Reviewed by</p>
+        <h2 class="author-card__name">{{ author.name }}</h2>
+        <p class="author-card__role">{{ author.role }}</p>
+      </div>
+    </div>
+
+    <p class="author-card__bio">{{ author.bio }}</p>
+
+    <ul class="author-card__facts">
+      <li>{{ author.reviewsCount }} reviews published</li>
+      <li>Independent research</li>
+      {% if updatedDate %}
+        <li>Updated {{ updatedDate }}</li>
+      {% endif %}
+    </ul>
+
+    <a class="ui-button ui-button--ghost" href="{{ author.profileUrl }}">
+      Read author profile
+    </a>
+  </aside>
+{% endif %}

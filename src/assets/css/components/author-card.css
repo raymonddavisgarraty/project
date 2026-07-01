@@ -1,0 +1,68 @@
+.author-card {
+    display: grid;
+    gap: 16px;
+    padding: 20px;
+}
+
+.author-card__top {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.author-card__avatar,
+.author-card__placeholder {
+    width: 56px;
+    height: 56px;
+    flex: 0 0 auto;
+    border-radius: 18px;
+}
+
+.author-card__avatar {
+    object-fit: cover;
+}
+
+.author-card__placeholder {
+    display: grid;
+    place-items: center;
+    background: var(--color-primary-soft);
+    color: var(--color-primary-dark);
+    font-size: 1.35rem;
+    font-weight: 950;
+}
+
+.author-card__eyebrow {
+    margin: 0 0 3px;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    font-weight: 850;
+}
+
+.author-card__name {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 1.1rem;
+    letter-spacing: 0;
+}
+
+.author-card__role {
+    margin: 0;
+    color: var(--color-primary);
+    font-size: 0.95rem;
+    font-weight: 850;
+}
+
+.author-card__bio {
+    margin: 0;
+    color: var(--color-muted);
+    font-weight: 750;
+}
+
+.author-card__facts {
+    display: grid;
+    gap: 8px;
+    padding-left: 18px;
+    margin: 0;
+    color: var(--color-muted);
+    font-weight: 800;
+}

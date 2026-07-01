@@ -17,34 +17,13 @@ eleventyComputed:
       url: /en/games/
     - label: "{{ game.hero.title }}"
 ---
-
-<section class="detail-hero">
-  <div class="container">
-    {% include "components/breadcrumbs/breadcrumbs.njk" %}
-
-    <div class="detail-hero__grid">
-      <div>
-        <p class="detail-hero__eyebrow">{{ game.facts.provider }}</p>
-
-        <h1 class="detail-hero__title">{{ game.seo.h1 }}</h1>
-
-        <p class="detail-hero__text">{{ game.hero.description }}</p>
-
-        <p class="detail-hero__rating" aria-label="Rating {{ game.rating.overall }} out of 5">
-          ★ {{ game.rating.overall }} / 5
-        </p>
-      </div>
-
-      {% set cover = game.media.cover %}
-      {% set title = game.hero.title %}
-      {% include "components/media-cover/media-cover.njk" %}
-    </div>
-  </div>
-</section>
+{% include "components/game-hero/game-hero.njk" %}
 
 <section class="section">
   <div class="container detail-layout">
     <article class="detail-content">
+    {% set tocClass = "toc--content" %}
+{% include "components/table-of-contents/table-of-contents.njk" %}
       {% set toc = [
         { id: "overview", label: "Overview" },
         { id: "game-info", label: "Game information" },
@@ -52,6 +31,9 @@ eleventyComputed:
         { id: "features", label: "Features" },
         { id: "gameplay", label: "Gameplay" },
         { id: "rtp-volatility", label: "RTP & volatility" },
+        { id: "bonus-features", label: "Bonus features" },
+        { id: "how-to-play", label: "How to play" },
+        { id: "mobile-experience", label: "Mobile experience" },
         { id: "faq-title", label: "FAQ" }
       ] %}
 
@@ -97,6 +79,19 @@ eleventyComputed:
 
       <h2 id="rtp-volatility">{{ game.sections.rtpVolatility.title }}</h2>
       <p>{{ game.sections.rtpVolatility.text }}</p>
+      <h2 id="bonus-features">{{ game.sections.bonusFeatures.title }}</h2>
+<p>{{ game.sections.bonusFeatures.text }}</p>
+
+<h2 id="how-to-play">{{ game.sections.howToPlay.title }}</h2>
+
+<ol>
+  {% for item in game.sections.howToPlay.items %}
+    <li>{{ item }}</li>
+  {% endfor %}
+</ol>
+
+<h2 id="mobile-experience">{{ game.sections.mobileExperience.title }}</h2>
+<p>{{ game.sections.mobileExperience.text }}</p>
 
       {% set faq = game.faq %}
       {% include "components/faq/faq.njk" %}
@@ -106,6 +101,8 @@ eleventyComputed:
       {% set affiliateId = game.monetization.affiliateId %}
       {% set rating = game.rating.overall %}
       {% include "components/cta-panel/cta-panel.njk" %}
+      {% set tocClass = "toc--sidebar" %}
+{% include "components/table-of-contents/table-of-contents.njk" %}
 
       {% set pros = game.pros %}
       {% set cons = game.cons %}

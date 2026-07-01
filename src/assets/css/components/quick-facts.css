@@ -1,0 +1,42 @@
+.quick-facts {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.quick-facts__item {
+    display: grid;
+    gap: 4px;
+    padding: 16px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-elevated);
+}
+
+.quick-facts__label {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    font-weight: 850;
+}
+
+.quick-facts__value {
+    color: var(--color-text);
+    font-size: 1.05rem;
+}
+
+@media (min-width: 760px) {
+    .quick-facts {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+.quick-facts__icon {
+    display: grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    border-radius: 999px;
+    background: var(--color-primary-soft);
+    color: var(--color-primary-dark);
+    font-size: 1.05rem;
+}

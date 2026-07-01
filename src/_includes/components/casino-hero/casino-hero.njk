@@ -1,0 +1,74 @@
+<section class="casino-hero">
+  <div class="container">
+    {% include "components/breadcrumbs/breadcrumbs.njk" %}
+
+    <div class="casino-hero__card">
+      <div class="casino-hero__content">
+        <p class="casino-hero__eyebrow">{{ casino.bonus }}</p>
+
+        <h1 class="casino-hero__title">{{ casino.title }} Review</h1>
+
+        <p class="casino-hero__text">{{ casino.description }}</p>
+
+        <div class="casino-hero__rating" aria-label="Rating {{ casino.rating }} out of 5">
+          {% set name = "star" %}
+          {% include "components/icon/icon.njk" %}
+          <strong>{{ casino.rating }} / 5</strong>
+          <span>Editorial rating</span>
+        </div>
+
+        <div class="casino-hero__facts">
+          <span>{{ casino.license }}</span>
+          <span>{{ casino.gamesCount }} games</span>
+          <span>{{ casino.type }}</span>
+          <span>{{ casino.withdrawalSpeed }} withdrawal</span>
+        </div>
+
+        <div class="casino-hero__bonus">
+          <div>
+            <span>Welcome bonus</span>
+            <strong>{{ casino.bonus }}</strong>
+          </div>
+
+          <div>
+            <span>Wager</span>
+            <strong>{{ casino.bonusDetails.wager }}</strong>
+          </div>
+
+          <div>
+            <span>Min deposit</span>
+            <strong>{{ casino.bonusDetails.minDeposit }}</strong>
+          </div>
+
+          <div>
+            <span>Players</span>
+            <strong>{{ casino.bonusDetails.players }}</strong>
+          </div>
+        </div>
+
+        <div class="casino-hero__actions">
+          {% set affiliateId = casino.affiliateId %}
+          {% if affiliateId and partners %}
+            {% for partner in partners %}
+              {% if partner.id == affiliateId %}
+                <a class="ui-button ui-button--success" href="{{ partner.url }}" rel="nofollow sponsored noopener" target="_blank">
+                  Get bonus
+                </a>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+
+          <a class="ui-button ui-button--outline" href="#casino-info">
+            Read review
+          </a>
+        </div>
+      </div>
+
+      <div class="casino-hero__media">
+        {% set cover = casino.cover %}
+        {% set title = casino.title %}
+        {% include "components/media-cover/media-cover.njk" %}
+      </div>
+    </div>
+  </div>
+</section>

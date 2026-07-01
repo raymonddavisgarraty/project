@@ -1,0 +1,51 @@
+.payment-grid {
+    display: grid;
+    gap: 16px;
+    margin-top: 28px;
+}
+
+.payment-grid__title {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 1.75rem;
+}
+
+.payment-grid__items {
+    display: grid;
+    gap: 12px;
+}
+
+.payment-grid__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+}
+
+.payment-grid__icon {
+    display: grid;
+    width: 34px;
+    height: 34px;
+    flex: 0 0 auto;
+    place-items: center;
+    border-radius: 999px;
+    background: var(--color-primary-soft);
+    color: var(--color-primary-dark);
+    font-size: 1.1rem;
+}
+
+.payment-grid__item strong {
+    color: var(--color-text);
+}
+
+@media (min-width: 640px) {
+    .payment-grid__items {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 980px) {
+    .payment-grid__items {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}

@@ -1,0 +1,30 @@
+.pill-list {
+    display: grid;
+    gap: 14px;
+    margin-top: 28px;
+    padding: 22px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.pill-list__title {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 1.75rem;
+}
+
+.pill-list__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pill-list__item {
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: var(--color-surface-soft);
+    color: var(--color-muted);
+    font-weight: 850;
+}

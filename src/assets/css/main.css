@@ -28,7 +28,14 @@
 @import url("./components/telegram-cta.css");
 @import url("./components/casino-card.css");
 @import url("./components/entity-card.css");
-
+@import url("./components/quick-facts.css");
+@import url("./components/pill-list.css");
+@import url("./components/author-card.css");
+@import url("./components/security-grid.css");
+@import url("./components/icon.css");
+@import url("./components/payment-grid.css");
+@import url("./components/casino-hero.css");
+@import url("./components/game-hero.css");
 
 @import url("./pages/home.css");
 @import url("./pages/listing.css");

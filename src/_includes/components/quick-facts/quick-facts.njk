@@ -1,0 +1,15 @@
+<section class="quick-facts" aria-label="Quick facts">
+  {% for item in facts %}
+    <div class="quick-facts__item">
+      {% if item.icon %}
+        <span class="quick-facts__icon">
+          {% set name = item.icon %}
+          {% include "components/icon/icon.njk" %}
+        </span>
+      {% endif %}
+
+      <span class="quick-facts__label">{{ item.label }}</span>
+      <strong class="quick-facts__value">{{ item.value }}</strong>
+    </div>
+  {% endfor %}
+</section>

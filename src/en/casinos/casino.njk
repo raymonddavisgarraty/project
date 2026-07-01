@@ -18,58 +18,96 @@ eleventyComputed:
     - label: "{{ casino.title }}"
 ---
 
-<section class="detail-hero">
-  <div class="container">
-    {% include "components/breadcrumbs/breadcrumbs.njk" %}
-
-    <div class="detail-hero__grid">
-      <div>
-        <p class="detail-hero__eyebrow">{{ casino.bonus }}</p>
-
-        <h1 class="detail-hero__title">{{ casino.title }} Review</h1>
-
-        <p class="detail-hero__text">{{ casino.description }}</p>
-
-        <p class="detail-hero__rating" aria-label="Rating {{ casino.rating }} out of 5">
-          ★ {{ casino.rating }} / 5
-        </p>
-      </div>
-
-      {% set cover = casino.cover %}
-      {% set title = casino.title %}
-      {% include "components/media-cover/media-cover.njk" %}
-    </div>
-  </div>
-</section>
+{% include "components/casino-hero/casino-hero.njk" %}
 
 <section class="section">
   <div class="container detail-layout">
     <article class="detail-content">
-      <h2>Casino overview</h2>
+      {% set facts = [
+  { label: "Rating", value: casino.rating + " / 5", icon: "star" },
+  { label: "License", value: casino.license, icon: "shield" },
+  { label: "Games", value: casino.gamesCount, icon: "cards" },
+  { label: "Withdrawal", value: casino.withdrawalSpeed, icon: "clock" }
+] %}
 
-      <p>
-        {{ casino.title }} is reviewed with a focus on bonus value, game selection, payment options and important player-facing details.
-      </p>
+      {% include "components/quick-facts/quick-facts.njk" %}
+{% set tocClass = "toc--content" %}
+{% include "components/table-of-contents/table-of-contents.njk" %}
+      {% set toc = [
+        { id: "overview", label: "Overview" },
+        { id: "casino-info", label: "Casino information" },
+        { id: "bonus", label: "Bonus" },
+        { id: "games", label: "Game selection" },
+        { id: "payments", label: "Payment methods" },
+        { id: "security", label: "Security & license" },
+        { id: "rating-breakdown", label: "Rating breakdown" }
+      ] %}
+
+      {% include "components/table-of-contents/table-of-contents.njk" %}
+
+      <h2 id="overview">Casino overview</h2>
+      <p>{{ casino.sections.overview }}</p>
+
+      <h2 id="casino-info">Casino information</h2>
 
       {% set rows = [
         { label: "Rating", value: casino.rating + " / 5" },
         { label: "Welcome bonus", value: casino.bonus },
         { label: "License", value: casino.license },
         { label: "Games", value: casino.gamesCount },
-        { label: "Payment methods", value: casino.paymentMethods }
+        { label: "Payment methods", value: casino.paymentMethods },
+        { label: "Withdrawal speed", value: casino.withdrawalSpeed },
+        { label: "Casino type", value: casino.type }
       ] %}
 
       {% include "components/info-table/info-table.njk" %}
-    </article>
+
+      <h2 id="bonus">Bonus overview</h2>
+      <p>{{ casino.sections.bonus }}</p>
+
+      <h2 id="games">Game selection</h2>
+      <p>{{ casino.sections.games }}</p>
+
+      {% set title = "Available game types" %}
+      {% set titleId = "game-types" %}
+      {% set items = casino.gameTypes %}
+      {% include "components/pill-list/pill-list.njk" %}
+
+      <h2 id="payments">Payment methods</h2>
+      <p>{{ casino.sections.payments }}</p>
+
+      {% set payments = casino.payments %}
+{% include "components/payment-grid/payment-grid.njk" %}
+      <h2 id="security">Security and license</h2>
+      <p>{{ casino.sections.security }}</p>
+      {% set items = casino.trustItems %}
+{% include "components/security-grid/security-grid.njk" %}
+
+      {% set ratings = [
+        { label: "Bonuses", value: casino.ratingBreakdown.bonuses },
+        { label: "Games", value: casino.ratingBreakdown.games },
+        { label: "Payments", value: casino.ratingBreakdown.payments },
+        { label: "Mobile", value: casino.ratingBreakdown.mobile },
+        { label: "Support", value: casino.ratingBreakdown.support },
+        { label: "Safety", value: casino.ratingBreakdown.safety }
+      ] %}
+
+      {% include "components/rating-breakdown/rating-breakdown.njk" %}
+        </article>
 
     <div class="detail-sidebar">
       {% set affiliateId = casino.affiliateId %}
       {% set rating = casino.rating %}
       {% include "components/cta-panel/cta-panel.njk" %}
-
+{% set tocClass = "toc--sidebar" %}
+{% include "components/table-of-contents/table-of-contents.njk" %}
       {% set pros = casino.pros %}
       {% set cons = casino.cons %}
       {% include "components/pros-cons/pros-cons.njk" %}
+
+      {% set authorId = casino.author %}
+      {% set updatedDate = casino.updatedDate %}
+      {% include "components/author-card/author-card.njk" %}
     </div>
   </div>
 </section>

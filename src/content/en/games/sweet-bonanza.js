@@ -30,6 +30,8 @@ export default {
     reels: "6",
     paylines: "Pays anywhere",
     releaseYear: "2019",
+    maxWin: "21,100x",
+    hitFrequency: "Medium",
   },
 
   rating: {
