@@ -45,8 +45,22 @@ eleventyComputed:
 <section class="section">
   <div class="container detail-layout">
     <article class="detail-content">
-      <h2>{{ game.sections.overview.title }}</h2>
+      {% set toc = [
+        { id: "overview", label: "Overview" },
+        { id: "game-info", label: "Game information" },
+        { id: "rating-breakdown", label: "Rating breakdown" },
+        { id: "features", label: "Features" },
+        { id: "gameplay", label: "Gameplay" },
+        { id: "rtp-volatility", label: "RTP & volatility" },
+        { id: "faq-title", label: "FAQ" }
+      ] %}
+
+      {% include "components/table-of-contents/table-of-contents.njk" %}
+
+      <h2 id="overview">{{ game.sections.overview.title }}</h2>
       <p>{{ game.sections.overview.text }}</p>
+
+      <h2 id="game-info">Game information</h2>
 
       {% set rows = [
         { label: "Provider", value: game.facts.provider },
@@ -61,7 +75,16 @@ eleventyComputed:
 
       {% include "components/info-table/info-table.njk" %}
 
-      <h2>{{ game.sections.features.title }}</h2>
+      {% set ratings = [
+        { label: "Gameplay", value: game.rating.gameplay },
+        { label: "Bonus features", value: game.rating.bonusFeatures },
+        { label: "Mobile experience", value: game.rating.mobile },
+        { label: "Design", value: game.rating.design }
+      ] %}
+
+      {% include "components/rating-breakdown/rating-breakdown.njk" %}
+
+      <h2 id="features">{{ game.sections.features.title }}</h2>
 
       <ul>
         {% for item in game.sections.features.items %}
@@ -69,10 +92,10 @@ eleventyComputed:
         {% endfor %}
       </ul>
 
-      <h2>{{ game.sections.gameplay.title }}</h2>
+      <h2 id="gameplay">{{ game.sections.gameplay.title }}</h2>
       <p>{{ game.sections.gameplay.text }}</p>
 
-      <h2>{{ game.sections.rtpVolatility.title }}</h2>
+      <h2 id="rtp-volatility">{{ game.sections.rtpVolatility.title }}</h2>
       <p>{{ game.sections.rtpVolatility.text }}</p>
 
       {% set faq = game.faq %}

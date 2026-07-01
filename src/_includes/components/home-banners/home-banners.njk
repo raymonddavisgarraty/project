@@ -41,26 +41,32 @@
       </div>
 
       <div class="home-banners__controls" aria-label="Banner controls">
-        <button class="home-banners__button" type="button" data-banner-prev aria-label="Previous banner">
-          ‹
-        </button>
+  <div class="home-banners__dots" data-banner-dots>
+    {% for slide in homeBanners.slides %}
+      <button
+        class="home-banners__dot{% if loop.first %} home-banners__dot--active{% endif %}"
+        type="button"
+        data-banner-dot="{{ loop.index0 }}"
+        aria-label="Show banner {{ loop.index }}"
+        {% if loop.first %}aria-current="true"{% endif %}
+      ></button>
+    {% endfor %}
+  </div>
 
-        <div class="home-banners__dots" data-banner-dots>
-          {% for slide in homeBanners.slides %}
-            <button
-              class="home-banners__dot{% if loop.first %} home-banners__dot--active{% endif %}"
-              type="button"
-              data-banner-dot="{{ loop.index0 }}"
-              aria-label="Show banner {{ loop.index }}"
-              {% if loop.first %}aria-current="true"{% endif %}
-            ></button>
-          {% endfor %}
-        </div>
+  <div class="home-banners__arrows">
+    <button class="home-banners__button home-banners__button--prev" type="button" data-banner-prev aria-label="Previous banner">
+      <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+        <path d="M10.2 13.1a.8.8 0 0 1-1.1 0L5.1 9.1a1.6 1.6 0 0 1 0-2.2l4-4a.8.8 0 1 1 1.1 1.1L6.2 8l4 4a.8.8 0 0 1 0 1.1Z"/>
+      </svg>
+    </button>
 
-        <button class="home-banners__button" type="button" data-banner-next aria-label="Next banner">
-          ›
-        </button>
-      </div>
+    <button class="home-banners__button home-banners__button--next" type="button" data-banner-next aria-label="Next banner">
+      <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+        <path d="M5.8 13.1a.8.8 0 0 0 1.1 0l4-4a1.6 1.6 0 0 0 0-2.2l-4-4A.8.8 0 1 0 5.8 4l4 4-4 4a.8.8 0 0 0 0 1.1Z"/>
+      </svg>
+    </button>
+  </div>
+</div>
     </div>
 
     <div class="home-banners__widgets">

@@ -1,0 +1,11 @@
+<nav class="toc" aria-labelledby="toc-title">
+  <h2 class="toc__title" id="toc-title">On this page</h2>
+
+  <ol class="toc__list">
+    {% for item in toc %}
+      <li>
+        <a href="#{{ item.id }}">{{ item.label }}</a>
+      </li>
+    {% endfor %}
+  </ol>
+</nav>

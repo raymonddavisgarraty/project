@@ -1,0 +1,18 @@
+<section class="rating-breakdown" aria-labelledby="rating-breakdown-title">
+  <h2 class="rating-breakdown__title" id="rating-breakdown-title">Rating breakdown</h2>
+
+  <div class="rating-breakdown__list">
+    {% for item in ratings %}
+      <div class="rating-breakdown__item">
+        <div class="rating-breakdown__top">
+          <span>{{ item.label }}</span>
+          <strong>{{ item.value }} / 5</strong>
+        </div>
+
+        <div class="rating-breakdown__bar" aria-hidden="true">
+          <span style="width: {{ item.value * 20 }}%"></span>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>

@@ -66,7 +66,7 @@
     });
   }
 
-  function filterGames() {
+  function filterGames({ updateUrl = true } = {}) {
     const query = normalize(input?.value);
     const provider = normalize(providerFilter?.value);
     const volatility = normalize(volatilityFilter?.value);
@@ -100,6 +100,64 @@
     if (empty) {
       empty.classList.toggle("is-visible", visibleCount === 0);
     }
+
+    if (updateUrl) {
+      syncUrlParams();
+    }
+  }
+
+  function syncUrlParams() {
+    const params = new URLSearchParams();
+
+    if (input?.value.trim()) {
+      params.set("q", input.value.trim());
+    }
+
+    if (providerFilter?.value) {
+      params.set("provider", providerFilter.value);
+    }
+
+    if (volatilityFilter?.value) {
+      params.set("volatility", volatilityFilter.value);
+    }
+
+    if (sortFilter?.value && sortFilter.value !== "title-asc") {
+      params.set("sort", sortFilter.value);
+    }
+
+    const queryString = params.toString();
+    const nextUrl = queryString
+      ? `${window.location.pathname}?${queryString}`
+      : window.location.pathname;
+
+    window.history.replaceState({}, "", nextUrl);
+  }
+
+  function applyUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+
+    const query = params.get("q");
+    const provider = params.get("provider");
+    const volatility = params.get("volatility");
+    const sort = params.get("sort");
+
+    if (input && query) {
+      input.value = query;
+    }
+
+    if (providerFilter && provider) {
+      providerFilter.value = normalize(provider);
+    }
+
+    if (volatilityFilter && volatility) {
+      volatilityFilter.value = normalize(volatility);
+    }
+
+    if (sortFilter && sort) {
+      sortFilter.value = sort;
+    }
+
+    filterGames({ updateUrl: false });
   }
 
   function resetFilters() {
@@ -179,5 +237,5 @@
   resetButton?.addEventListener("click", resetFilters);
   randomButton?.addEventListener("click", chooseRandomGame);
 
-  filterGames();
+  applyUrlParams();
 })();
