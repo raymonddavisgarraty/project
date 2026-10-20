@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "gameId": "sweet-bonanza",
+  "fields": {
+    "providerId": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "providerName": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "rtp": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "volatility": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "reels": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "paylines": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "paylineType": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "releaseYear": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "maxWinMultiplier": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "hitFrequency": {
+      "status": "unverified",
+      "evidence": []
+    }
+  }
+}

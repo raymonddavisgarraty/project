@@ -7,7 +7,8 @@
     "dev": "eleventy --serve",
     "build": "eleventy",
     "check:locales": "node scripts/check-locales.mjs",
-    "check:games": "node scripts/check-games.mjs"
+    "check:games": "node scripts/check-games.mjs",
+    "check:provenance": "node scripts/check-provenance.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"
