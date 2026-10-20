@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+import { extractLatestCasinoBonuses } from './adapters/latestcasinobonuses.mjs';
+import { normalizeLCB } from './normalize-lcb.mjs';
+import { resolveProvider } from './registry.mjs';
+assert.equal(resolveProvider('Red Tiger').id, 'red-tiger-gaming');
+assert.equal(resolveProvider('Unknown Vendor').id, null);
+const html = await readFile('tests/fixtures/lcb-america-burger-bounty.html', 'utf8');
+const item = normalizeLCB(extractLatestCasinoBonuses(html, 'https://latestcasinobonuses.bet/slots/america-burger-bounty/'));
+assert.equal(item.facts.providerId, 'red-tiger-gaming');
+assert.deepEqual(item.facts.themes, ['america','food']);
+assert.equal(item.status, 'pending-review');
+assert.equal(item.facts.rtp, null);
+assert.deepEqual(item.normalization.unmappedThemes, []);
+console.log('Stage 30 tests OK (provider aliases, themes, missing values, pending-review)');

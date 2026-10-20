@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {extractLatestCasinoBonuses} from './adapters/latestcasinobonuses.mjs';
+const html=await readFile('tests/fixtures/lcb-america-burger-bounty.html','utf8');
+const r=extractLatestCasinoBonuses(html,'https://latestcasinobonuses.bet/slots/america-burger-bounty/');
+assert.equal(r.facts.title,'America Burger Bounty');
+assert.equal(r.facts.providerId,'red-tiger-gaming');
+assert.equal(r.facts.releaseDate,'2026-11-19');
+assert.equal(r.facts.reels,5);
+assert.equal(r.facts.rtp,null);
+assert.equal(r.facts.volatility,null);
+assert.deepEqual(r.facts.themes,['Америка','Еда']);
+assert.equal(r.status,'pending-review');
+assert.throws(()=>extractLatestCasinoBonuses(html,'https://example.org/slots/america-burger-bounty/'));
+console.log('LCB adapter fixture tests OK');
