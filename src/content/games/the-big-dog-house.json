@@ -1,0 +1,16 @@
+{
+  "id": "the-big-dog-house",
+  "slug": "the-big-dog-house",
+  "providerId": "pragmatic-play",
+  "providerName": "Pragmatic Play",
+  "rtp": 96.5,
+  "volatility": "high",
+  "reels": 5,
+  "paylines": 20,
+  "paylineType": "fixed",
+  "releaseYear": 2024,
+  "maxWinMultiplier": 5000.0,
+  "hitFrequency": "medium",
+  "sourceStatus": "legacy-unverified",
+  "sourceUrls": []
+}

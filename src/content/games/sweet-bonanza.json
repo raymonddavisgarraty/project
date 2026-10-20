@@ -1,0 +1,16 @@
+{
+  "id": "sweet-bonanza",
+  "slug": "sweet-bonanza",
+  "providerId": "pragmatic-play",
+  "providerName": "Pragmatic Play",
+  "rtp": 96.48,
+  "volatility": "high",
+  "reels": 6,
+  "paylines": null,
+  "paylineType": "pays-anywhere",
+  "releaseYear": 2019,
+  "maxWinMultiplier": 21100.0,
+  "hitFrequency": "medium",
+  "sourceStatus": "legacy-unverified",
+  "sourceUrls": []
+}
