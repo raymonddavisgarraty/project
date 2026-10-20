@@ -2,7 +2,7 @@ export default {
   name: "ReviewHub",
   url: "https://example.com",
   defaultLanguage: "en",
-  languages: ["en", "de", "fr", "es", "tr"],
+  languages: ["en", "de", "es"],
   social: {
     telegram: "https://t.me/yourchannel",
   },

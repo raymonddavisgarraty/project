@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ page.lang or site.defaultLanguage }}">
+<html lang="{{ lang or site.defaultLanguage }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,6 +9,14 @@
   <meta name="robots" content="{{ robots or 'index, follow' }}">
 
   <link rel="canonical" href="{{ canonical | absoluteUrl(site.url) }}">
+  {# Only render alternate URLs explicitly supplied for published translations. #}
+  {% if alternatePages %}
+    {% for alternate in alternatePages %}
+      {% if alternate.published and alternate.lang and alternate.url %}
+  <link rel="alternate" hreflang="{{ alternate.lang }}" href="{{ alternate.url | absoluteUrl(site.url) }}">
+      {% endif %}
+    {% endfor %}
+  {% endif %}
 
   <meta property="og:type" content="{{ ogType or 'website' }}">
   <meta property="og:title" content="{{ metaTitle }}">

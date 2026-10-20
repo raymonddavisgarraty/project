@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "eleventy --serve",
-    "build": "eleventy"
+    "build": "eleventy",
+    "check:locales": "node scripts/check-locales.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"
