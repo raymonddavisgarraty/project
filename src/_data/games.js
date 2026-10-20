@@ -22,7 +22,7 @@ export default games
     metaDescription: game.seo.metaDescription,
     description: game.hero.description,
     provider: game.facts.provider,
-    rating: game.rating.overall,
+    rating: game.rating,
     rtp: game.facts.rtp,
     volatility: game.facts.volatility,
     reels: game.facts.reels,

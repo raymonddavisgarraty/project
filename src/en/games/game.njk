@@ -22,25 +22,42 @@ eleventyComputed:
 <section class="section">
   <div class="container detail-layout">
     <article class="detail-content">
-    {% set tocClass = "toc--content" %}
-{% include "components/table-of-contents/table-of-contents.njk" %}
-      {% set toc = [
-        { id: "overview", label: "Overview" },
-        { id: "game-info", label: "Game information" },
-        { id: "rating-breakdown", label: "Rating breakdown" },
-        { id: "features", label: "Features" },
-        { id: "gameplay", label: "Gameplay" },
-        { id: "rtp-volatility", label: "RTP & volatility" },
-        { id: "bonus-features", label: "Bonus features" },
-        { id: "how-to-play", label: "How to play" },
-        { id: "mobile-experience", label: "Mobile experience" },
-        { id: "faq-title", label: "FAQ" }
-      ] %}
-
+      {% set toc = [] %}
+      {% if game.sections.overview and game.sections.overview.text %}
+        {% set toc = toc.concat([{ id: "overview", label: "Overview" }]) %}
+      {% endif %}
+      {% set toc = toc.concat([{ id: "game-info", label: "Game information" }]) %}
+      {% if game.rating and game.rating.gameplay is defined %}
+        {% set toc = toc.concat([{ id: "rating-breakdown", label: "Rating breakdown" }]) %}
+      {% endif %}
+      {% if game.sections.features and game.sections.features.items and game.sections.features.items.length %}
+        {% set toc = toc.concat([{ id: "features", label: "Features" }]) %}
+      {% endif %}
+      {% if game.sections.gameplay and game.sections.gameplay.text %}
+        {% set toc = toc.concat([{ id: "gameplay", label: "Gameplay" }]) %}
+      {% endif %}
+      {% if game.sections.rtpVolatility and game.sections.rtpVolatility.text %}
+        {% set toc = toc.concat([{ id: "rtp-volatility", label: "RTP & volatility" }]) %}
+      {% endif %}
+      {% if game.sections.bonusFeatures and game.sections.bonusFeatures.text %}
+        {% set toc = toc.concat([{ id: "bonus-features", label: "Bonus features" }]) %}
+      {% endif %}
+      {% if game.sections.howToPlay and game.sections.howToPlay.items and game.sections.howToPlay.items.length %}
+        {% set toc = toc.concat([{ id: "how-to-play", label: "How to play" }]) %}
+      {% endif %}
+      {% if game.sections.mobileExperience and game.sections.mobileExperience.text %}
+        {% set toc = toc.concat([{ id: "mobile-experience", label: "Mobile experience" }]) %}
+      {% endif %}
+      {% if game.faq and game.faq.length %}
+        {% set toc = toc.concat([{ id: "faq-title", label: "FAQ" }]) %}
+      {% endif %}
+      {% set tocClass = "toc--content" %}
       {% include "components/table-of-contents/table-of-contents.njk" %}
 
+      {% if game.sections.overview and game.sections.overview.text %}
       <h2 id="overview">{{ game.sections.overview.title }}</h2>
       <p>{{ game.sections.overview.text }}</p>
+      {% endif %}
 
       <h2 id="game-info">Game information</h2>
 
@@ -57,41 +74,53 @@ eleventyComputed:
 
       {% include "components/info-table/info-table.njk" %}
 
-      {% set ratings = [
-        { label: "Gameplay", value: game.rating.gameplay },
-        { label: "Bonus features", value: game.rating.bonusFeatures },
-        { label: "Mobile experience", value: game.rating.mobile },
-        { label: "Design", value: game.rating.design }
-      ] %}
+      {% if game.rating and game.rating.gameplay is defined %}
+        {% set ratings = [
+          { label: "Gameplay", value: game.rating.gameplay },
+          { label: "Bonus features", value: game.rating.bonusFeatures },
+          { label: "Mobile experience", value: game.rating.mobile },
+          { label: "Design", value: game.rating.design }
+        ] %}
+        {% include "components/rating-breakdown/rating-breakdown.njk" %}
+      {% endif %}
 
-      {% include "components/rating-breakdown/rating-breakdown.njk" %}
+      {% if game.sections.features and game.sections.features.items and game.sections.features.items.length %}
+        <h2 id="features">{{ game.sections.features.title }}</h2>
+        <ul>
+          {% for item in game.sections.features.items %}
+            <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
 
-      <h2 id="features">{{ game.sections.features.title }}</h2>
+      {% if game.sections.gameplay and game.sections.gameplay.text %}
+        <h2 id="gameplay">{{ game.sections.gameplay.title }}</h2>
+        <p>{{ game.sections.gameplay.text }}</p>
+      {% endif %}
 
-      <ul>
-        {% for item in game.sections.features.items %}
-          <li>{{ item }}</li>
-        {% endfor %}
-      </ul>
+      {% if game.sections.rtpVolatility and game.sections.rtpVolatility.text %}
+        <h2 id="rtp-volatility">{{ game.sections.rtpVolatility.title }}</h2>
+        <p>{{ game.sections.rtpVolatility.text }}</p>
+      {% endif %}
 
-      <h2 id="gameplay">{{ game.sections.gameplay.title }}</h2>
-      <p>{{ game.sections.gameplay.text }}</p>
+      {% if game.sections.bonusFeatures and game.sections.bonusFeatures.text %}
+        <h2 id="bonus-features">{{ game.sections.bonusFeatures.title }}</h2>
+        <p>{{ game.sections.bonusFeatures.text }}</p>
+      {% endif %}
 
-      <h2 id="rtp-volatility">{{ game.sections.rtpVolatility.title }}</h2>
-      <p>{{ game.sections.rtpVolatility.text }}</p>
-      <h2 id="bonus-features">{{ game.sections.bonusFeatures.title }}</h2>
-<p>{{ game.sections.bonusFeatures.text }}</p>
+      {% if game.sections.howToPlay and game.sections.howToPlay.items and game.sections.howToPlay.items.length %}
+        <h2 id="how-to-play">{{ game.sections.howToPlay.title }}</h2>
+        <ol>
+          {% for item in game.sections.howToPlay.items %}
+            <li>{{ item }}</li>
+          {% endfor %}
+        </ol>
+      {% endif %}
 
-<h2 id="how-to-play">{{ game.sections.howToPlay.title }}</h2>
-
-<ol>
-  {% for item in game.sections.howToPlay.items %}
-    <li>{{ item }}</li>
-  {% endfor %}
-</ol>
-
-<h2 id="mobile-experience">{{ game.sections.mobileExperience.title }}</h2>
-<p>{{ game.sections.mobileExperience.text }}</p>
+      {% if game.sections.mobileExperience and game.sections.mobileExperience.text %}
+        <h2 id="mobile-experience">{{ game.sections.mobileExperience.title }}</h2>
+        <p>{{ game.sections.mobileExperience.text }}</p>
+      {% endif %}
 
       {% set faq = game.faq %}
       {% include "components/faq/faq.njk" %}
@@ -102,7 +131,7 @@ eleventyComputed:
       {% set rating = game.rating.overall %}
       {% include "components/cta-panel/cta-panel.njk" %}
       {% set tocClass = "toc--sidebar" %}
-{% include "components/table-of-contents/table-of-contents.njk" %}
+      {% include "components/table-of-contents/table-of-contents.njk" %}
 
       {% set pros = game.pros %}
       {% set cons = game.cons %}

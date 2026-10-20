@@ -6,7 +6,7 @@
   data-game-provider="{{ game.provider | lower }}"
   data-game-rtp="{{ game.rtp }}"
   data-game-volatility="{{ game.volatility | lower }}"
-  data-game-rating="{{ game.rating }}"
+  data-game-rating="{{ game.rating.overall }}"
 >
   <span class="game-grid-card__media">
     {% if game.cover and game.cover.src %}
@@ -30,7 +30,7 @@
     <span class="game-grid-card__title">{{ game.title }}</span>
     <span class="game-grid-card__provider">{{ game.provider }}</span>
     <span class="game-grid-card__meta">
-      ★ {{ game.rating }} · {{ game.rtp }} · {{ game.volatility }}
+      ★ {{ game.rating.overall }} · {{ game.rtp }} · {{ game.volatility }}
     </span>
   </span>
 </a>

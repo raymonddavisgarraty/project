@@ -31,8 +31,6 @@ eleventyComputed:
 ] %}
 
       {% include "components/quick-facts/quick-facts.njk" %}
-{% set tocClass = "toc--content" %}
-{% include "components/table-of-contents/table-of-contents.njk" %}
       {% set toc = [
         { id: "overview", label: "Overview" },
         { id: "casino-info", label: "Casino information" },
@@ -43,6 +41,7 @@ eleventyComputed:
         { id: "rating-breakdown", label: "Rating breakdown" }
       ] %}
 
+      {% set tocClass = "toc--content" %}
       {% include "components/table-of-contents/table-of-contents.njk" %}
 
       <h2 id="overview">Casino overview</h2>
@@ -100,7 +99,7 @@ eleventyComputed:
       {% set rating = casino.rating %}
       {% include "components/cta-panel/cta-panel.njk" %}
 {% set tocClass = "toc--sidebar" %}
-{% include "components/table-of-contents/table-of-contents.njk" %}
+      {% include "components/table-of-contents/table-of-contents.njk" %}
       {% set pros = casino.pros %}
       {% set cons = casino.cons %}
       {% include "components/pros-cons/pros-cons.njk" %}
