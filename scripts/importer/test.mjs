@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { extractGame, normalize, candidate, discoverSitemap } from './core.mjs';
+const html = readFileSync('tests/fixtures/sample-game.html', 'utf8');
+const data = extractGame(html, 'https://example.org/slots/demo-fruit-quest/');
+assert.equal(data.title, 'Demo Fruit Quest');
+assert.equal(data.providerName, 'Example Studio');
+assert.equal(normalize(data).rtp, null);
+assert.equal(candidate(data, '2026-10-20T00:00:00.000Z').status, 'pending-review');
+assert.deepEqual(discoverSitemap('<urlset><url><loc>https://example.org/a</loc></url><url><loc>https://elsewhere.org/b</loc></url></urlset>', 'https://example.org/sitemap.xml'), ['https://example.org/a']);
+console.log('Importer tests OK (fixture, normalization, same-host discovery, pending-review).');

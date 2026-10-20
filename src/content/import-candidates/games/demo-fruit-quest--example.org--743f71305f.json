@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "kind": "game-import-candidate",
+  "status": "pending-review",
+  "fetchedAt": "2026-10-20T15:24:51.901Z",
+  "source": {
+    "url": "https://example.org/slots/sample-game/",
+    "domain": "example.org"
+  },
+  "data": {
+    "slug": "demo-fruit-quest",
+    "title": "Demo Fruit Quest",
+    "providerName": "Example Studio",
+    "providerId": null,
+    "rtp": null,
+    "volatility": null,
+    "reels": null,
+    "paylines": null,
+    "maxWinMultiplier": null,
+    "features": [],
+    "themes": []
+  },
+  "evidence": {
+    "title": [
+      {
+        "url": "https://example.org/slots/sample-game/",
+        "method": "html-extraction",
+        "observedValue": "Demo Fruit Quest"
+      }
+    ],
+    "providerName": [
+      {
+        "url": "https://example.org/slots/sample-game/",
+        "method": "html-extraction",
+        "observedValue": "Example Studio"
+      }
+    ]
+  },
+  "fingerprint": "743f71305fd4937c4e5e71a9aa10a9593e4bcc528941550fe738a27655f2d081"
+}
