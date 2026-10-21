@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import {mkdtemp,readFile,readdir,rm,writeFile} from 'node:fs/promises';
+import {join} from 'node:path';
+import {tmpdir} from 'node:os';
+import {updateDiscovery} from './discovery31.mjs';
+import {qualityReport,candidateSignature} from './quality33.mjs';
+import {runPipeline} from './pipeline32.mjs';
+const url='https://latestcasinobonuses.bet/slots/america-burger-bounty/';
+const initial=updateDiscovery(null,[{url,lastmod:'2026-10-20'}],'2026-10-20').manifest;
+const id=Object.keys(initial.records)[0];initial.records[id].status='fetched';initial.records[id].signature='abc';initial.records[id].candidateFile='manual.json';
+const next=updateDiscovery(initial,[{url,lastmod:'2026-10-20'}],'2026-10-21').manifest;
+assert.equal(next.records[id].status,'fetched');assert.equal(next.records[id].candidateFile,'manual.json');
+assert.equal(next.records[id].signature,'abc');
+assert.equal(updateDiscovery(next,[{url,lastmod:'2026-10-21'}],'2026-10-22').manifest.records[id].status,'changed');
+const example={source:{url},facts:{title:'A',providerId:null,releaseDate:'2026-11-19'},raw:{provider:'X'},normalization:{issues:['provider:unresolved']}};
+assert.equal(qualityReport(example,{today:'2026-10-21'}).status,'needs-review');
+assert.equal(candidateSignature(example),candidateSignature({...example,source:{...example.source,collectedAt:'tomorrow'}}));
+const dir=await mkdtemp(join(tmpdir(),'stage33-'));
+try {
+ const state=join(dir,'state.json'),out=join(dir,'out');
+ const manifest=updateDiscovery(null,[{url,lastmod:null}],'2026-10-20').manifest;
+ await writeFile(state,JSON.stringify(manifest));
+ const html='<html><head><title>America Burger Bounty</title></head><body><h1>America Burger Bounty</h1>Red Tiger Gaming</body></html>';
+ const htmlByUrl={[url]:join(dir,'game.html')};await writeFile(htmlByUrl[url],html);
+ const a=await runPipeline({statePath:state,outDir:out,htmlByUrl,write:true});assert.equal(a.written,1,JSON.stringify(a));
+ const first=JSON.parse(await readFile(state));const record=Object.values(first.records)[0];assert.ok(record.signature);assert.equal(record.status,'fetched');
+ const refreshed=updateDiscovery(first,[{url,lastmod:null}],'2026-10-21').manifest;await writeFile(state,JSON.stringify(refreshed));
+ assert.equal(Object.values(refreshed.records)[0].status,'fetched');
+ assert.equal((await readdir(out)).length,1);
+ console.log('Stage 33 tests OK (preserve state, change detection, quality, candidate write).');
+}finally{await rm(dir,{recursive:true,force:true});}

@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 2,
+  "source": {
+    "url": "https://latestcasinobonuses.bet/slots/15-golden-eggs/",
+    "host": "latestcasinobonuses.bet",
+    "adapter": "latestcasinobonuses-v1",
+    "collectedAt": "2026-10-21T11:05:58.708Z",
+    "normalization": "lcb-stage30-v1"
+  },
+  "status": "pending-review",
+  "facts": {
+    "title": "15 Golden Eggs",
+    "providerId": null,
+    "releaseDate": "2017-12-15",
+    "rtp": 93.9,
+    "volatility": "high",
+    "maxWinMultiplier": 660,
+    "reels": 5,
+    "paylines": 15,
+    "themes": [],
+    "features": []
+  },
+  "raw": {
+    "provider": "3 Oaks Gaming",
+    "releaseDate": "15.12.2017",
+    "rtp": "93.9 %",
+    "volatility": "Высокая",
+    "maxWin": "660 xB",
+    "reels": "5",
+    "paylines": "15",
+    "themes": "Джунгли , Птицы",
+    "features": "Jackpot , Win both Ways"
+  },
+  "notes": [
+    "Extracted from source HTML; not verified with game provider",
+    "Provider ID is a proposed slug, not resolved against provider directory",
+    "Themes are source labels; normalize before publishing"
+  ],
+  "normalization": {
+    "provider": {
+      "id": null,
+      "status": "unresolved",
+      "sourceLabel": "3 Oaks Gaming"
+    },
+    "unmappedThemes": [
+      "Джунгли",
+      "Птицы"
+    ],
+    "unmappedFeatures": [],
+    "issues": [
+      "provider:unresolved",
+      "themes:unmapped"
+    ]
+  }
+}

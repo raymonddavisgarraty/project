@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 2,
+  "source": {
+    "url": "https://latestcasinobonuses.bet/slots/3-big-oinkers-mr-riches/",
+    "host": "latestcasinobonuses.bet",
+    "adapter": "latestcasinobonuses-v1",
+    "collectedAt": "2026-10-21T11:09:29.955Z",
+    "normalization": "lcb-stage30-v1"
+  },
+  "status": "pending-review",
+  "facts": {
+    "title": "3 Big Oinkers Mr. Riches",
+    "providerId": null,
+    "releaseDate": "2026-10-08",
+    "rtp": 94.32,
+    "volatility": "high",
+    "maxWinMultiplier": 5500,
+    "reels": 5,
+    "paylines": 25,
+    "themes": [],
+    "features": []
+  },
+  "raw": {
+    "provider": "Koala Games",
+    "releaseDate": "08.10.2026",
+    "rtp": "94.32 %",
+    "volatility": "Высокая",
+    "maxWin": "5500 xB",
+    "reels": "5",
+    "paylines": "25",
+    "themes": "Бриллианты , Деньги , Поросята",
+    "features": "Cash Collector , Expanding wilds , Hold and Win , Jackpot , Multiplier , Nudge Feature , Reelset Changing , Stacked symbols , Symbol Collection"
+  },
+  "notes": [
+    "Extracted from source HTML; not verified with game provider",
+    "Provider ID is a proposed slug, not resolved against provider directory",
+    "Themes are source labels; normalize before publishing"
+  ],
+  "normalization": {
+    "provider": {
+      "id": null,
+      "status": "unresolved",
+      "sourceLabel": "Koala Games"
+    },
+    "unmappedThemes": [
+      "Бриллианты",
+      "Деньги",
+      "Поросята"
+    ],
+    "unmappedFeatures": [],
+    "issues": [
+      "provider:unresolved",
+      "themes:unmapped"
+    ]
+  }
+}

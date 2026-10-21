@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 2,
+  "source": {
+    "url": "https://latestcasinobonuses.bet/slots/100-wild-gobbler/",
+    "host": "latestcasinobonuses.bet",
+    "adapter": "latestcasinobonuses-v1",
+    "collectedAt": "2026-10-21T11:05:47.619Z",
+    "normalization": "lcb-stage30-v1"
+  },
+  "status": "pending-review",
+  "facts": {
+    "title": "100 Wild Gobbler",
+    "providerId": null,
+    "releaseDate": "2026-10-29",
+    "rtp": null,
+    "volatility": null,
+    "maxWinMultiplier": null,
+    "reels": 5,
+    "paylines": 100,
+    "themes": [],
+    "features": []
+  },
+  "raw": {
+    "provider": "Amusnet Interactive",
+    "releaseDate": "29.10.2026",
+    "rtp": null,
+    "volatility": null,
+    "maxWin": null,
+    "reels": "5",
+    "paylines": "100",
+    "themes": "Золото , Поросята",
+    "features": "Jackpot , Stacked symbols"
+  },
+  "notes": [
+    "Extracted from source HTML; not verified with game provider",
+    "Provider ID is a proposed slug, not resolved against provider directory",
+    "Themes are source labels; normalize before publishing"
+  ],
+  "normalization": {
+    "provider": {
+      "id": null,
+      "status": "unresolved",
+      "sourceLabel": "Amusnet Interactive"
+    },
+    "unmappedThemes": [
+      "Золото",
+      "Поросята"
+    ],
+    "unmappedFeatures": [],
+    "issues": [
+      "provider:unresolved",
+      "themes:unmapped",
+      "releaseDate:future"
+    ]
+  }
+}

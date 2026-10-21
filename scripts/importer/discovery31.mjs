@@ -49,7 +49,7 @@ export function updateDiscovery(previous, found, observedAt) {
     const old = records[id];
     const modified = Boolean(old && lastmod && old.lastmod && lastmod !== old.lastmod);
     if (!old) added++; else if (modified) changed++; else unchanged++;
-    records[id] = { url, lastmod: lastmod || old?.lastmod || null, firstSeenAt: old?.firstSeenAt || observedAt, lastSeenAt: observedAt, status: !old ? 'new' : modified ? 'changed' : old.status === 'new' ? 'new' : old.status === 'changed' ? 'changed' : old.status || 'discovered' };
+    records[id] = { ...old, url, lastmod: lastmod || old?.lastmod || null, firstSeenAt: old?.firstSeenAt || observedAt, lastSeenAt: observedAt, status: !old ? 'new' : modified ? 'changed' : old.status || 'discovered' };
   }
   return { manifest: { schemaVersion: 1, records }, stats: { discovered: found.length, added, changed, unchanged, total: Object.keys(records).length } };
 }

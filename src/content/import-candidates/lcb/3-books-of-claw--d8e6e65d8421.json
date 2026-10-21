@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 2,
+  "source": {
+    "url": "https://latestcasinobonuses.bet/slots/3-books-of-claw/",
+    "host": "latestcasinobonuses.bet",
+    "adapter": "latestcasinobonuses-v1",
+    "collectedAt": "2026-10-21T11:09:40.686Z",
+    "normalization": "lcb-stage30-v1"
+  },
+  "status": "pending-review",
+  "facts": {
+    "title": "3 Books of Claw",
+    "providerId": null,
+    "releaseDate": "2026-10-15",
+    "rtp": 95,
+    "volatility": "medium-high",
+    "maxWinMultiplier": 10000,
+    "reels": 5,
+    "paylines": 10,
+    "themes": [
+      "egypt"
+    ],
+    "features": []
+  },
+  "raw": {
+    "provider": "ClawBuster",
+    "releaseDate": "15.10.2026",
+    "rtp": "95 %",
+    "volatility": "Средне-высокая",
+    "maxWin": "10000 xB",
+    "reels": "5",
+    "paylines": "10",
+    "themes": "Древний Египет , Древняя цивилизация , Египет",
+    "features": "Expanding symbols , Multiplier , Reelset Changing , Stacked symbols , Stacked wilds , Symbol Collection"
+  },
+  "notes": [
+    "Extracted from source HTML; not verified with game provider",
+    "Provider ID is a proposed slug, not resolved against provider directory",
+    "Themes are source labels; normalize before publishing"
+  ],
+  "normalization": {
+    "provider": {
+      "id": null,
+      "status": "unresolved",
+      "sourceLabel": "ClawBuster"
+    },
+    "unmappedThemes": [
+      "Древний Египет",
+      "Древняя цивилизация"
+    ],
+    "unmappedFeatures": [],
+    "issues": [
+      "provider:unresolved",
+      "themes:unmapped"
+    ]
+  }
+}

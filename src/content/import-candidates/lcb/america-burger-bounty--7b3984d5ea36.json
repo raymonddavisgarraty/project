@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "source": {
+    "url": "https://latestcasinobonuses.bet/slots/america-burger-bounty/",
+    "host": "latestcasinobonuses.bet",
+    "adapter": "latestcasinobonuses-v1",
+    "collectedAt": "2026-10-20T15:43:39.981Z",
+    "normalization": "lcb-stage30-v1"
+  },
+  "status": "pending-review",
+  "facts": {
+    "title": "America Burger Bounty",
+    "providerId": "red-tiger-gaming",
+    "releaseDate": "2026-11-19",
+    "rtp": null,
+    "volatility": null,
+    "maxWinMultiplier": null,
+    "reels": 5,
+    "paylines": null,
+    "themes": ["america", "food"],
+    "features": []
+  },
+  "raw": {
+    "provider": "Red Tiger Gaming",
+    "releaseDate": "19.11.2026",
+    "rtp": null,
+    "volatility": null,
+    "maxWin": null,
+    "reels": "5",
+    "paylines": null,
+    "themes": "Америка , Еда",
+    "features": null
+  },
+  "notes": [
+    "Extracted from source HTML; not verified with game provider",
+    "Provider ID is a proposed slug, not resolved against provider directory",
+    "Themes are source labels; normalize before publishing"
+  ],
+  "normalization": {
+    "provider": {
+      "id": "red-tiger-gaming",
+      "status": "matched",
+      "sourceLabel": "Red Tiger Gaming"
+    },
+    "unmappedThemes": [],
+    "unmappedFeatures": [],
+    "issues": ["releaseDate:future"]
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 2,
+  "source": {
+    "url": "https://latestcasinobonuses.bet/slots/1960-elvis-guava/",
+    "host": "latestcasinobonuses.bet",
+    "adapter": "latestcasinobonuses-v1",
+    "collectedAt": "2026-10-21T11:09:19.116Z",
+    "normalization": "lcb-stage30-v1"
+  },
+  "status": "pending-review",
+  "facts": {
+    "title": "1960 Elvis Guava",
+    "providerId": null,
+    "releaseDate": "2026-01-21",
+    "rtp": 98,
+    "volatility": null,
+    "maxWinMultiplier": 500,
+    "reels": 5,
+    "paylines": 25,
+    "themes": [
+      "america"
+    ],
+    "features": []
+  },
+  "raw": {
+    "provider": "KA Gaming",
+    "releaseDate": "21.01.2026",
+    "rtp": "98 %",
+    "volatility": null,
+    "maxWin": "500 xB",
+    "reels": "5",
+    "paylines": "25",
+    "themes": "Америка , Музыка , Ретро",
+    "features": "Jackpot , Multiplier , Stacked symbols , Stacked wilds"
+  },
+  "notes": [
+    "Extracted from source HTML; not verified with game provider",
+    "Provider ID is a proposed slug, not resolved against provider directory",
+    "Themes are source labels; normalize before publishing"
+  ],
+  "normalization": {
+    "provider": {
+      "id": null,
+      "status": "unresolved",
+      "sourceLabel": "KA Gaming"
+    },
+    "unmappedThemes": [
+      "Музыка",
+      "Ретро"
+    ],
+    "unmappedFeatures": [],
+    "issues": [
+      "provider:unresolved",
+      "themes:unmapped"
+    ]
+  }
+}

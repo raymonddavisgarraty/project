@@ -3,7 +3,11 @@ import { resolveProvider } from './registry.mjs';
 const themes = new Map([
   ['америка', 'america'], ['america', 'america'], ['еда', 'food'], ['food', 'food'],
   ['фрукты', 'fruit'], ['fruits', 'fruit'], ['египет', 'egypt'], ['egypt', 'egypt'],
-  ['мифология', 'mythology'], ['mythology', 'mythology'], ['приключения', 'adventure'], ['adventure', 'adventure']
+  ['мифология', 'mythology'], ['mythology', 'mythology'], ['приключения', 'adventure'], ['adventure', 'adventure'],
+  ['животные', 'animals'], ['animals', 'animals'], ['фэнтези', 'fantasy'], ['fantasy', 'fantasy'],
+  ['классика', 'classic'], ['classic', 'classic'], ['древний египет', 'egypt'],
+  ['древняя греция', 'ancient-greece'], ['ancient greece', 'ancient-greece'],
+  ['азия', 'asia'], ['asia', 'asia'], ['восток', 'oriental'], ['сладости', 'sweets'], ['sweets', 'sweets']
 ]);
 const features = new Map([
   ['фриспины','free-spins'], ['free spins','free-spins'], ['free-spins','free-spins'],
