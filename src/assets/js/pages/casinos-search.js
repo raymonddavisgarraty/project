@@ -32,7 +32,7 @@
   }
 
   function sortCards() {
-    const sortValue = sortFilter?.value || "rating-desc";
+    const sortValue = sortFilter?.value || "title-asc";
 
     const sortedCards = [...cards].sort((a, b) => {
       if (sortValue === "new-desc") {
@@ -66,7 +66,7 @@
       params.set("withdrawal", withdrawalFilter.value);
     }
 
-    if (sortFilter?.value && sortFilter.value !== "rating-desc") {
+    if (sortFilter?.value && sortFilter.value !== "title-asc") {
       params.set("sort", sortFilter.value);
     }
 
@@ -139,7 +139,7 @@
     if (input) input.value = "";
     if (typeFilter) typeFilter.value = "";
     if (withdrawalFilter) withdrawalFilter.value = "";
-    if (sortFilter) sortFilter.value = "rating-desc";
+    if (sortFilter) sortFilter.value = "title-asc";
 
     filterCasinos();
   }

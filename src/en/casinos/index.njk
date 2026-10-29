@@ -3,8 +3,8 @@ layout: layouts/base.njk
 lang: en
 permalink: /en/casinos/
 
-metaTitle: Best Online Casino Reviews
-metaDescription: Compare online casino reviews by rating, bonuses, withdrawal speed and casino type.
+metaTitle: Casino Listings | Verification Pending
+metaDescription: Browse casino listings awaiting verified operator claims and editorial decisions.
 
 canonical: /en/casinos/
 
@@ -21,7 +21,7 @@ breadcrumbs:
     <h1>Online Casinos</h1>
 
     <p>
-      Compare casino reviews by rating, bonuses, withdrawal speed and player-focused details.
+      Browse casino names while claims about licences, offers, withdrawals and ratings undergo editorial verification.
     </p>
   </div>
 </section>
@@ -53,8 +53,7 @@ breadcrumbs:
 
         <select class="casinos-search__select" id="casino-type-filter" data-casino-type-filter>
           <option value="">All types</option>
-          <option value="crypto">Crypto</option>
-          <option value="slots">Slots</option>
+          {# Unreviewed type facets are unavailable. #}
         </select>
       </div>
 
@@ -65,8 +64,7 @@ breadcrumbs:
 
         <select class="casinos-search__select" id="casino-withdrawal-filter" data-casino-withdrawal-filter>
           <option value="">All speeds</option>
-          <option value="fast">Fast</option>
-          <option value="standard">Standard</option>
+          {# Unreviewed withdrawal facets are unavailable. #}
         </select>
       </div>
 
@@ -76,8 +74,6 @@ breadcrumbs:
         </label>
 
         <select class="casinos-search__select" id="casino-sort-filter" data-casino-sort-filter>
-          <option value="rating-desc">Highest rating</option>
-          <option value="new-desc">Newest</option>
           <option value="title-asc">Title A-Z</option>
         </select>
       </div>

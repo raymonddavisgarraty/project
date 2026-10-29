@@ -3,7 +3,7 @@
     <div class="game-rail__header">
       <div>
         <p class="game-rail__eyebrow">Provider spotlight</p>
-        <h2 class="game-rail__title" id="featured-games-title">Pragmatic Play Games</h2>
+        <h2 class="game-rail__title" id="featured-games-title">Game listings undergoing review</h2>
       </div>
 
       <div class="game-rail__actions">
@@ -42,7 +42,11 @@
 
           <span class="game-rail__info">
             <span class="game-rail__name">{{ game.title }}</span>
-            <span class="game-rail__provider">{{ game.provider }}</span>
+            {% if editorialDisplay432.game(game) %}
+              <span class="game-rail__provider">{{ game.provider }}</span>
+            {% else %}
+              <span class="game-rail__provider">Editorial verification pending</span>
+            {% endif %}
           </span>
         </a>
       {% endfor %}

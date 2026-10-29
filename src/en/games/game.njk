@@ -7,8 +7,8 @@ pagination:
 permalink: "/en/games/{{ game.slug }}/index.html"
 eleventyComputed:
   lang: en
-  metaTitle: "{{ game.seo.metaTitle }}"
-  metaDescription: "{{ game.seo.metaDescription }}"
+  metaTitle: "{{ game.hero.title }} | Editorial verification pending"
+  metaDescription: "Game information is undergoing editorial fact verification. Numerical characteristics and ratings are withheld until reviewed."
   canonical: "/en/games/{{ game.slug }}/"
   breadcrumbs:
     - label: Home
@@ -17,6 +17,7 @@ eleventyComputed:
       url: /en/games/
     - label: "{{ game.hero.title }}"
 ---
+{% if editorialDisplay432.game(game) %}
 {% include "components/game-hero/game-hero.njk" %}
 
 <section class="section">
@@ -139,3 +140,13 @@ eleventyComputed:
     </div>
   </div>
 </section>
+{% else %}
+<section class="page-hero" aria-label="Editorial verification notice">
+  <div class="container">
+    {% include "components/breadcrumbs/breadcrumbs.njk" %}
+    <h1>{{ game.hero.title }}</h1>
+    <p><strong>Editorial verification pending.</strong> This game listing has not completed its source and editorial checks. Unreviewed facts, numerical ratings, promotions and descriptive claims are intentionally withheld.</p>
+    <p><a href="/en/games/">Browse games catalogue</a></p>
+  </div>
+</section>
+{% endif %}
