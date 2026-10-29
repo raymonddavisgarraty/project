@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "casinoId": "royalspin-casino",
+  "fields": {
+    "title": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "rating": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "ratingBreakdown": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "license": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "bonus": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "bonusDetails.wager": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "bonusDetails.minDeposit": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "gamesCount": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "paymentMethods": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "payments": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "gameTypes": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "withdrawalSpeed": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "trustItems": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "type": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "isNew": {
+      "status": "unverified",
+      "evidence": []
+    }
+  },
+  "editorialReview": {
+    "status": "pending-review",
+    "reviewerId": null,
+    "reviewedAt": null
+  }
+}

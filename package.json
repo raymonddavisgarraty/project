@@ -12,7 +12,10 @@
     "test:stage412": "node scripts/test-stage412.mjs",
     "check:production": "node scripts/check-production.mjs",
     "test:stage42": "node scripts/test-stage42.mjs",
-    "check:seo": "node scripts/check-stage42.mjs"
+    "check:seo": "node scripts/check-stage42.mjs",
+    "audit:editorial": "node scripts/editorial43.mjs",
+    "check:editorial": "node scripts/editorial43.mjs --strict",
+    "test:stage43": "node scripts/test-stage43.mjs && node scripts/test-stage43-log.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"
