@@ -49,6 +49,14 @@
   <div class="casino-card__body">
     <h2 class="casino-card__title"><a href="/en/casinos/{{ casino.slug }}/">{{ casino.title }}</a></h2>
     <p class="casino-card__text">Licence, offer, payment and rating claims are awaiting editorial verification.</p>
+    {% set checkedFacts = editorialFields433.casinoRows(casino) %}
+    {% if checkedFacts.length %}
+      <p class="casino-card__text">Individually reviewed:
+        {% for fact in checkedFacts %}
+          {{ fact.label }}: {{ fact.value }}{% if not loop.last %} · {% endif %}
+        {% endfor %}
+      </p>
+    {% endif %}
     <div class="casino-card__actions">
       <a class="ui-button ui-button--ghost" href="/en/casinos/{{ casino.slug }}/">Review status</a>
     </div>

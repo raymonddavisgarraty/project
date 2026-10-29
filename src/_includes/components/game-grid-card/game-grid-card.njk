@@ -45,6 +45,14 @@
   <span class="game-grid-card__content">
     <span class="game-grid-card__title">{{ game.title }}</span>
     <span class="game-grid-card__meta">Facts and rating under editorial review</span>
+    {% set checkedFacts = editorialFields433.gameRows(game) %}
+    {% if checkedFacts.length %}
+      <span class="game-grid-card__meta">Individually reviewed:
+        {% for fact in checkedFacts %}
+          {{ fact.label }}: {{ fact.value }}{% if not loop.last %} · {% endif %}
+        {% endfor %}
+      </span>
+    {% endif %}
   </span>
 </a>
 {% endif %}

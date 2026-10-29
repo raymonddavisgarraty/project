@@ -41,6 +41,12 @@ try {
   page("/en/casinos/", ["/en/"]);
   page("/en/games/test-game/", ["/en/games/", "#facts"]);
   put("/404.html", html("/404.html", ["/en/"], "noindex, follow"));
+  const rootRedirect = '<!doctype html><html lang="en"><head><title>Language entry</title>' +
+    '<meta http-equiv="refresh" content="0; url=/en/">' +
+    '<meta name="robots" content="noindex, follow">' +
+    '<link rel="canonical" href="' + domain + '/en/">' +
+    '</head><body><a href="/en/">English homepage</a></body></html>';
+  put("/index.html", rootRedirect);
 
   const xmlStart = '<?xml version="1.0"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
   const urls = routes.map(r => '<url><loc>' + domain + r.path + '</loc></url>').join("");
@@ -49,6 +55,10 @@ try {
   const passed = auditSeo42({ outDir: root, siteUrl: domain, routes, production: true });
   assert.equal(passed.ok, true, passed.errors.join("; "));
   assert.equal(passed.sitemapEntries, 4);
+  put("/index.html", rootRedirect.replace('content="0; url=/en/"', 'content="0; url=/de/"'));
+  const wrongRoot = auditSeo42({ outDir: root, siteUrl: domain, routes, production: true });
+  assert(wrongRoot.errors.some(e => e.includes("Root redirect must immediately target /en/")));
+  put("/index.html", rootRedirect);
   assert(passed.warnings.some(w => w.includes("legacy-unverified")));
 
   const dev = auditSeo42({ outDir: root, siteUrl: domain, routes, production: false });

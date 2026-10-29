@@ -19,7 +19,8 @@
     "queue:editorial": "node scripts/run-stage431.mjs",
     "test:stage431": "node scripts/test-stage431.mjs",
     "test:stage432": "node scripts/test-stage432.mjs",
-    "check:display": "node scripts/check-stage432.mjs"
+    "check:display": "node scripts/check-stage432.mjs",
+    "test:stage433": "node scripts/test-stage433.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"

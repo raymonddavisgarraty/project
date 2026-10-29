@@ -5,6 +5,7 @@ import { pathToFileURL } from "node:url";
 import games from "../src/_data/games.js";
 import casinos from "../src/_data/casinos.js";
 import editorialDisplay432 from "../src/_data/editorialDisplay432.js";
+import editorialFields433 from "../src/_data/editorialFields433.js";
 
 function verifyBuild432({ dir = "_site" } = {}) {
   const errors = [];
@@ -26,9 +27,16 @@ function verifyBuild432({ dir = "_site" } = {}) {
     if (!html.includes("Editorial verification pending.")) errors.push(game.slug + ": no review notice");
     if (!html.includes("<h1")) errors.push(game.slug + ": no H1");
     const rtp = game.globalFacts?.rtp;
-    if (rtp != null && html.includes(rtp.toFixed(2) + "%")) errors.push(game.slug + ": unapproved RTP leaked");
+    if (rtp != null && !editorialFields433.gameFieldVerified(game, "rtp") && html.includes(rtp.toFixed(2) + "%"))
+      errors.push(game.slug + ": unapproved RTP leaked");
     const maxWin = game.globalFacts?.maxWinMultiplier;
-    if (maxWin != null && html.includes(maxWin.toLocaleString("en-US") + "x")) errors.push(game.slug + ": unapproved max win leaked");
+    if (maxWin != null && !editorialFields433.gameFieldVerified(game, "maxWinMultiplier")) {
+      const formatted = maxWin.toLocaleString("en-US");
+      if ([formatted + "x", formatted + "×", String(maxWin) + "x", String(maxWin) + "×"]
+          .some(value => html.includes(value))) {
+        errors.push(game.slug + ": unapproved max win leaked");
+      }
+    }
     if (html.includes("Editorial rating") || html.includes("Rating breakdown")) {
       errors.push(game.slug + ": unsupported editorial rating leaked");
     }
@@ -44,8 +52,14 @@ function verifyBuild432({ dir = "_site" } = {}) {
     const html = get("/en/casinos/" + casino.slug + "/index.html");
     if (editorialDisplay432.casino(casino)) continue;
     if (!html.includes("Editorial verification pending.")) errors.push(casino.slug + ": no review notice");
-    for (const claim of [casino.bonus, casino.license, casino.gamesCount, casino.paymentMethods]) {
-      if (claim && html.includes(String(claim))) errors.push(casino.slug + ": unapproved claim leaked: " + claim);
+    for (const [field, claim] of [
+      ["bonus",casino.bonus], ["license",casino.license],
+      ["gamesCount",casino.gamesCount], ["paymentMethods",casino.paymentMethods]
+    ]) {
+      if (claim && !editorialFields433.casinoFieldVerified(casino, field) &&
+          html.includes(String(claim))) {
+        errors.push(casino.slug + ": unapproved " + field + " leaked");
+      }
     }
     if (html.includes('aria-label="Rating ') || html.includes("Editorial rating")) {
       errors.push(casino.slug + ": unapproved rating leaked");
@@ -57,9 +71,24 @@ function verifyBuild432({ dir = "_site" } = {}) {
       errors.push(casino.slug + ": unapproved rating leaked into card data");
     }
   }
-  for (const raw of [home, gameIndex, casinoIndex]) {
-    if (/21[,\s]?100(?:\.0+)?x|21[,\s]?175(?:\.0+)?x|96\.48\s*%/i.test(raw)) {
-      errors.push("Unverified Sweet Bonanza numeric claim leaked into a listing");
+  // Catalogue/home protection must be dynamic: when a field is genuinely
+  // verified in Stage 43, its reviewed value is allowed; other numerics are not.
+  const listingHtml = [home, gameIndex, casinoIndex];
+  for (const game of games) {
+    if (editorialDisplay432.game(game)) continue;
+    const source = game.globalFacts;
+    const rtp = source?.rtp;
+    if (rtp != null && !editorialFields433.gameFieldVerified(game, "rtp") &&
+        listingHtml.some(html => html.includes(rtp.toFixed(2) + "%"))) {
+      errors.push(game.slug + ": unapproved RTP leaked into a listing");
+    }
+    const maxWin = source?.maxWinMultiplier;
+    if (maxWin != null && !editorialFields433.gameFieldVerified(game, "maxWinMultiplier")) {
+      const variants = [maxWin.toLocaleString("en-US") + "×",
+        maxWin.toLocaleString("en-US") + "x", String(maxWin) + "×", String(maxWin) + "x"];
+      if (listingHtml.some(html => variants.some(value => html.includes(value)))) {
+        errors.push(game.slug + ": unapproved max win leaked into a listing");
+      }
     }
   }
   return { ok: errors.length === 0, pagesChecked: 3 + games.length + casinos.length, errors };

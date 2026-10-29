@@ -117,6 +117,17 @@ eleventyComputed:
     {% include "components/breadcrumbs/breadcrumbs.njk" %}
     <h1>{{ casino.title }}</h1>
     <p><strong>Editorial verification pending.</strong> This casino listing has not completed its source and editorial checks. Unreviewed facts, numerical ratings, promotions and descriptive claims are intentionally withheld.</p>
+    {% set checkedFacts = editorialFields433.casinoRows(casino) %}
+    {% if checkedFacts.length %}
+      <section class="section" aria-labelledby="casino-verified-fields">
+        <h2 id="casino-verified-fields">Individually source-reviewed information</h2>
+        <p>These individual claims have passed source review. They do not establish operator eligibility in any jurisdiction or approve the full casino review.</p>
+        {% set rows = checkedFacts %}
+        {% include "components/info-table/info-table.njk" %}
+      </section>
+    {% else %}
+      <p>No casino characteristics have completed source review yet.</p>
+    {% endif %}
     <p><a href="/en/casinos/">Browse casinos catalogue</a></p>
   </div>
 </section>
