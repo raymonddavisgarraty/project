@@ -7,8 +7,8 @@ pagination:
 permalink: "/en/casinos/{{ casino.slug }}/index.html"
 eleventyComputed:
   lang: en
-  metaTitle: "{{ casino.title }} Review"
-  metaDescription: "{{ casino.metaDescription }}"
+  metaTitle: "{{ casino.title }} | Editorial verification pending"
+  metaDescription: "This casino listing is undergoing editorial fact verification. Bonus, licence, rating and payment claims are withheld until reviewed."
   canonical: "/en/casinos/{{ casino.slug }}/"
   breadcrumbs:
     - label: Home
@@ -17,7 +17,7 @@ eleventyComputed:
       url: /en/casinos/
     - label: "{{ casino.title }}"
 ---
-
+{% if editorialDisplay432.casino(casino) %}
 {% include "components/casino-hero/casino-hero.njk" %}
 
 <section class="section">
@@ -110,3 +110,14 @@ eleventyComputed:
     </div>
   </div>
 </section>
+
+{% else %}
+<section class="page-hero" aria-label="Editorial verification notice">
+  <div class="container">
+    {% include "components/breadcrumbs/breadcrumbs.njk" %}
+    <h1>{{ casino.title }}</h1>
+    <p><strong>Editorial verification pending.</strong> This casino listing has not completed its source and editorial checks. Unreviewed facts, numerical ratings, promotions and descriptive claims are intentionally withheld.</p>
+    <p><a href="/en/casinos/">Browse casinos catalogue</a></p>
+  </div>
+</section>
+{% endif %}

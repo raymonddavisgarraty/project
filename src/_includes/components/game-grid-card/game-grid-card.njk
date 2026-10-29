@@ -1,3 +1,4 @@
+{% if editorialDisplay432.game(game) %}
 <a
   class="game-grid-card ui-card ui-card--interactive"
   href="/en/games/{{ game.slug }}/"
@@ -34,3 +35,16 @@
     </span>
   </span>
 </a>
+{% else %}
+<a class="game-grid-card ui-card ui-card--interactive" href="/en/games/{{ game.slug }}/"
+   data-game-card data-game-title="{{ game.title | lower }}" data-game-provider=""
+   data-game-rtp="" data-game-volatility="" data-game-rating="">
+  <span class="game-grid-card__media">
+    <span class="game-grid-card__placeholder"><strong>{{ game.title }}</strong></span>
+  </span>
+  <span class="game-grid-card__content">
+    <span class="game-grid-card__title">{{ game.title }}</span>
+    <span class="game-grid-card__meta">Facts and rating under editorial review</span>
+  </span>
+</a>
+{% endif %}

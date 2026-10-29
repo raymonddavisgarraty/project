@@ -3,8 +3,8 @@ layout: layouts/base.njk
 lang: en
 permalink: /en/games/
 
-metaTitle: Best Online Slot Games Reviews
-metaDescription: Browse slot reviews by title, provider, RTP, volatility and rating.
+metaTitle: Game Listings | Verification Pending
+metaDescription: Browse game listings undergoing independent source and editorial verification.
 
 canonical: /en/games/
 
@@ -21,7 +21,7 @@ breadcrumbs:
     <h1>Slot Games</h1>
 
     <p>
-      Browse slot reviews by game title, provider, RTP, volatility and rating.
+      Browse game pages by title. Unreviewed provider details, game statistics and ratings are withheld.
     </p>
   </div>
 </section>
@@ -55,7 +55,7 @@ breadcrumbs:
           <option value="">All providers</option>
           {% set providers = [] %}
           {% for game in games %}
-            {% if game.provider not in providers %}
+            {% if editorialDisplay432.game(game) and game.provider not in providers %}
               {% set providers = providers.concat([game.provider]) %}
               <option value="{{ game.provider | lower }}">{{ game.provider }}</option>
             {% endif %}
@@ -70,9 +70,7 @@ breadcrumbs:
 
         <select class="games-search__select" id="volatility-filter" data-volatility-filter>
           <option value="">All volatility</option>
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
+          {# Dynamic values require reviewed source records. #}
         </select>
       </div>
 
@@ -83,8 +81,7 @@ breadcrumbs:
 
         <select class="games-search__select" id="sort-filter" data-sort-filter>
           <option value="title-asc">Title A-Z</option>
-          <option value="rating-desc">Highest rating</option>
-          <option value="rtp-desc">Highest RTP</option>
+          {# Rating and RTP sorting require approved data. #}
         </select>
       </div>
 
