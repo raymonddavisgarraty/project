@@ -1,0 +1,15 @@
+[
+ {"id":"america","aliases":["америка","america"]},
+ {"id":"food","aliases":["еда","food"]},
+ {"id":"fruit","aliases":["фрукты","fruits","fruit"]},
+ {"id":"egypt","aliases":["египет","egypt","древний египет"]},
+ {"id":"mythology","aliases":["мифология","mythology"]},
+ {"id":"adventure","aliases":["приключения","adventure"]},
+ {"id":"animals","aliases":["животные","animals"]},
+ {"id":"fantasy","aliases":["фэнтези","fantasy"]},
+ {"id":"classic","aliases":["классика","classic"]},
+ {"id":"ancient-greece","aliases":["древняя греция","ancient greece"]},
+ {"id":"asia","aliases":["азия","asia"]},
+ {"id":"oriental","aliases":["восток","oriental"]},
+ {"id":"sweets","aliases":["сладости","sweets"]}
+]

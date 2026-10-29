@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import {mkdtemp,mkdir,writeFile,readFile,rm} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {createHash} from 'node:crypto';
+import {prepare37,validate37,approve37} from './stage37.mjs';
+import {propose36,loadRegistries} from './registry36.mjs';
+const root=await mkdtemp(join(tmpdir(),'stage37-'));
+const candidates=join(root,'candidates'),proposals=join(root,'proposals'),drafts=join(root,'drafts'),reviews=join(root,'reviews'),file='example--123456789abc.json';
+const registries=join(root,'registries');
+try {
+ for(const d of [candidates,proposals,registries])await mkdir(d);
+ const data={status:'pending-review',schemaVersion:2,source:{url:'https://latestcasinobonuses.bet/slots/example/'},facts:{title:'Example',releaseDate:'2026-11-19',themes:[],features:[]},raw:{provider:'Red Tiger Gaming',themes:'Еда',features:'Jackpot'}};
+ const bytes=JSON.stringify(data);await writeFile(join(candidates,file),bytes);
+ const hash=createHash('sha256').update(bytes).digest('hex');
+ await writeFile(join(registries,'providers.json'),JSON.stringify([{id:'red-tiger-gaming',name:'Red Tiger Gaming',aliases:[],verified:true}]));
+ await writeFile(join(registries,'themes.json'),JSON.stringify([{id:'food',name:'Food',aliases:['Еда']}]));
+ await writeFile(join(registries,'features.json'),JSON.stringify([{id:'jackpot',name:'Jackpot',aliases:[]}]));
+ const proposal={file,candidateHash:hash,...propose36(data,await loadRegistries(registries))};
+ await writeFile(join(proposals,file),JSON.stringify(proposal));
+ const opts={filename:file,candidateDir:candidates,proposalDir:proposals,registryDir:registries,outDir:drafts};
+ await prepare37(opts);
+ const path=join(drafts,file),draft=JSON.parse(await readFile(path,'utf8'));
+ assert.equal(draft.decision,'rejected');assert.equal(draft.facts.providerId,'red-tiger-gaming');assert.deepEqual(draft.facts.themes,['food']);
+ await assert.rejects(()=>prepare37(opts),{code:'EEXIST'});
+ draft.decision='approved';draft.reviewer='Editor';draft.reason='Verified with independent source';draft.confirmedRights=true;draft.confirmedFacts=true;draft.evidence=[{url:'https://example.org/official',note:'Independent provider information'}];
+ await writeFile(path,JSON.stringify(draft));
+ await assert.rejects(()=>validate37({filename:file,draftPath:path,candidateDir:candidates,registryDir:registries}),/future|Release date invalid/);
+ assert.equal((await readFile(join(candidates,file),'utf8')),bytes);
+ console.log('Stage 37 tests OK (proposal binding, draft, no overwrite, future release block, no publish).');
+}finally{await rm(root,{recursive:true,force:true});}

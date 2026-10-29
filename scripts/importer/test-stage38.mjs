@@ -1,0 +1,34 @@
+import assert from 'node:assert/strict';
+import {mkdtemp,mkdir,writeFile,readFile,rm} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {createHash} from 'node:crypto';
+import {bridge38} from './publish38.mjs';
+const root=await mkdtemp(join(tmpdir(),'stage38-'));
+const p=(...x)=>join(root,...x);
+try {
+ for(const d of ['candidates','reviews','facts','editorial'])await mkdir(p(d));
+ const candidateFile='sample-game--123456789abc.json';
+ const candidate=JSON.stringify({schemaVersion:2,status:'pending-review',source:{url:'https://example.org/slot/sample'},facts:{title:'Sample Game'}});
+ const hash=createHash('sha256').update(candidate).digest('hex');
+ await writeFile(p('candidates',candidateFile),candidate);
+ const facts={title:'Sample Game',providerId:'verified-provider',releaseDate:'2020-01-01',reels:5,rtp:null,paylines:20,themes:['fruit'],features:[]};
+ const review={candidateHash:hash,candidateFile,decision:'approved',reviewStatus:'editorially-approved',autoPublish:false,confirmedRights:true,reviewer:'Editor',evidence:[{url:'https://example.org/official'}],facts};
+ await writeFile(p('reviews',hash+'.json'),JSON.stringify(review));
+ const staging={schemaVersion:1,status:'approved-staging',autoPublish:false,sourceCandidate:{hash,file:candidateFile,url:'https://example.org/slot/sample'},review:{reviewer:'Editor',confirmedRights:true,evidence:[{url:'https://example.org/official'}]},facts};
+ await writeFile(p(hash+'.json'),JSON.stringify(staging));
+ await writeFile(p('providers.json'),JSON.stringify([{id:'verified-provider',name:'Verified Provider',verified:true}]));
+ const e={slug:'sample-game',seo:{metaTitle:'Sample Game Review',metaDescription:'Editorial description'},hero:{title:'Sample Game',description:'Reviewed game description'},sections:{overview:{title:'Overview',text:'Original review'}},pros:[],cons:[],faq:[],author:'review-team',updatedDate:'2026-10-22'};
+ await writeFile(p('english.json'),JSON.stringify(e));
+ const opts={stagingFile:p(hash+'.json'),editorialFile:p('english.json'),slug:'sample-game',providerRegistry:p('providers.json'),factsDir:p('facts'),editorialDir:p('editorial'),candidateDir:p('candidates'),reviewDir:p('reviews')};
+ const check=await bridge38(opts);assert.equal(check.writeStatus,'dry-run');
+ const written=await bridge38({...opts,write:true});assert.equal(written.writeStatus,'created');
+ const global=JSON.parse(await readFile(p('facts','sample-game.json'),'utf8'));assert.equal(global.providerName,'Verified Provider');
+ assert.equal(global.sourceStatus,'editorially-verified');
+ await assert.rejects(()=>bridge38({...opts,write:true}),/Duplicate|exists/);
+ await writeFile(p('facts','sample-game.json'),JSON.stringify({...global,slug:'other',id:'other'}));
+ const changed={...staging,facts:{...facts,releaseDate:'2099-01-01'}};
+ await writeFile(p(hash+'.json'),JSON.stringify(changed));
+ await assert.rejects(()=>bridge38({...opts,write:false}),/Future/);
+ console.log('Stage 38 tests OK (approval binding, dry-run, explicit publishing, duplicate protection, future-release block).');
+}finally{await rm(root,{recursive:true,force:true});}
