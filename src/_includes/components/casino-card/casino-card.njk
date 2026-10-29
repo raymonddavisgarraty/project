@@ -30,15 +30,9 @@
     </div>
 
     <div class="casino-card__actions">
-      {% set affiliateId = casino.affiliateId %}
-      {% if affiliateId and partners %}
-        {% for partner in partners %}
-          {% if partner.id == affiliateId %}
-            <a class="ui-button ui-button--success" href="{{ partner.url }}" rel="nofollow sponsored noopener" target="_blank">
-              Try now
-            </a>
-          {% endif %}
-        {% endfor %}
+      {% set offer = commercial.forCasino(casino) %}
+      {% if offer and offer.playUrl %}
+        <a class="ui-button ui-button--success" href="{{ offer.playUrl }}" rel="nofollow sponsored noopener" target="_blank">Try now</a>
       {% endif %}
 
       <a class="ui-button ui-button--ghost" href="/en/casinos/{{ casino.slug }}/">

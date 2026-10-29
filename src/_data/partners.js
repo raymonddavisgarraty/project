@@ -1,23 +1,7 @@
+// Partner IDs remain for legacy editorial references. Addresses require
+// independent verification and approval before they can be displayed.
 export default [
-  {
-    id: "royalspin",
-    name: "RoyalSpin Casino",
-    url: "https://example.com/go/royalspin",
-    bonusUrl: "https://example.com/go/royalspin-bonus",
-    demoUrl: null,
-  },
-  {
-    id: "pragplay",
-    name: "Pragmatic Play Demo",
-    url: "https://example.com/go/pragmatic-play",
-    bonusUrl: null,
-    demoUrl: "https://example.com/demo/pragmatic-play",
-  },
-  {
-    id: "luckynova",
-    name: "LuckyNova Casino",
-    url: "https://example.com/go/luckynova",
-    bonusUrl: "https://example.com/go/luckynova-bonus",
-    demoUrl: null,
-  },
+  { id: "royalspin", name: "RoyalSpin Casino", status: "pending-review", globalRightsApproved: false, marketCodes: [], url: null, bonusUrl: null, demoUrl: null },
+  { id: "pragplay", name: "Pragmatic Play Demo", status: "pending-review", globalRightsApproved: false, marketCodes: [], url: null, bonusUrl: null, demoUrl: null },
+  { id: "luckynova", name: "LuckyNova Casino", status: "pending-review", globalRightsApproved: false, marketCodes: [], url: null, bonusUrl: null, demoUrl: null },
 ];

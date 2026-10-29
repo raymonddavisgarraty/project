@@ -47,21 +47,14 @@
         </div>
 
         <div class="game-hero__actions">
-          {% set affiliateId = game.monetization.affiliateId %}
-          {% if affiliateId and partners %}
-            {% for partner in partners %}
-              {% if partner.id == affiliateId %}
-                <a class="ui-button ui-button--success" href="{{ partner.url }}" rel="nofollow sponsored noopener" target="_blank">
-                  Play now
-                </a>
-
-                {% if partner.demoUrl %}
-                  <a class="ui-button ui-button--outline" href="{{ partner.demoUrl }}" rel="nofollow noopener" target="_blank">
-                    Play demo
-                  </a>
-                {% endif %}
-              {% endif %}
-            {% endfor %}
+          {% set offer = commercial.forGame(game) %}
+          {% if offer %}
+            {% if offer.playUrl %}
+              <a class="ui-button ui-button--success" href="{{ offer.playUrl }}" rel="nofollow sponsored noopener" target="_blank">Play now</a>
+            {% endif %}
+            {% if offer.demoUrl %}
+              <a class="ui-button ui-button--outline" href="{{ offer.demoUrl }}" rel="nofollow noopener" target="_blank">Play demo</a>
+            {% endif %}
           {% endif %}
 
           <a class="ui-button ui-button--ghost" href="#game-info">
