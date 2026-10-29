@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "authorId": "review-team",
+  "fields": {
+    "name": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "role": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "bio": {
+      "status": "unverified",
+      "evidence": []
+    },
+    "reviewsCount": {
+      "status": "unverified",
+      "evidence": []
+    }
+  },
+  "editorialReview": {
+    "status": "pending-review",
+    "reviewerId": null,
+    "reviewedAt": null
+  }
+}
