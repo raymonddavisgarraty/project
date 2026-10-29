@@ -1,7 +1,7 @@
-// Explicitly no country is approved for localized casino promotion by default.
-// Legal review is jurisdiction- and content-type-specific, not a translation task.
+// Locale availability and permission to advertise are separate legal decisions.
+// A locale does not indicate the visitor's country. No market is approved yet.
 export default {
-  GB: { locale: "en", publicationStatus: "pending-legal-review" },
-  DE: { locale: "de", publicationStatus: "pending-legal-review" },
-  ES: { locale: "es", publicationStatus: "pending-legal-review" },
+  GB: { locale: "en", publicationStatus: "pending-legal-review", commercialStatus: "pending-legal-review" },
+  DE: { locale: "de", publicationStatus: "pending-legal-review", commercialStatus: "pending-legal-review" },
+  ES: { locale: "es", publicationStatus: "pending-legal-review", commercialStatus: "pending-legal-review" },
 };

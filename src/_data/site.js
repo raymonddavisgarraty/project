@@ -1,14 +1,15 @@
+import { resolveSiteUrl, resolveTelegramUrl } from "../lib/site-config.js";
+
+const url = resolveSiteUrl();
 export default {
   name: "ReviewHub",
-  url: "https://example.com",
+  url,
   defaultLanguage: "en",
   languages: ["en", "de", "es"],
-  social: {
-    telegram: "https://t.me/yourchannel",
-  },
+  social: { telegram: resolveTelegramUrl() },
   organization: {
     name: "ReviewHub",
-    url: "https://example.com",
+    url,
     logo: "/assets/images/logo.svg",
   },
 };

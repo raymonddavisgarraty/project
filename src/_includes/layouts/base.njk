@@ -31,9 +31,18 @@
   <link rel="stylesheet" href="/assets/css/main.css">
 
   {% if jsonLd %}
-    <script type="application/ld+json">
-      {{ jsonLd | dump | safe }}
-    </script>
+    {% if jsonLd['@type'] == 'WebSite' %}
+      {% set resolvedJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: site.name,
+        url: canonical | absoluteUrl(site.url),
+        inLanguage: lang or site.defaultLanguage
+      } %}
+      <script type="application/ld+json">{{ resolvedJsonLd | dump | safe }}</script>
+    {% else %}
+      <script type="application/ld+json">{{ jsonLd | dump | safe }}</script>
+    {% endif %}
   {% endif %}
 </head>
 <body>

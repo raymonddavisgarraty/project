@@ -4,51 +4,27 @@
     <strong class="cta-panel__rating-value">★ {{ rating }} / 5</strong>
   </div>
 
-  {% if affiliateId and partners %}
-    {% for partner in partners %}
-      {% if partner.id == affiliateId %}
-        <a
-          class="ui-button ui-button--success"
-          href="{{ partner.url }}"
-          rel="nofollow sponsored noopener"
-          target="_blank"
-        >
-          Try now
-        </a>
+  {% if game %}
+    {% set offer = commercial.forGame(game) %}
+  {% elif casino %}
+    {% set offer = commercial.forCasino(casino) %}
+  {% else %}
+    {% set offer = null %}
+  {% endif %}
 
-        {% if partner.demoUrl %}
-          <a
-            class="ui-button ui-button--secondary"
-            href="{{ partner.demoUrl }}"
-            rel="nofollow noopener"
-            target="_blank"
-          >
-            Play demo
-          </a>
-        {% endif %}
-
-        {% if partner.bonusUrl %}
-          <a
-            class="ui-button ui-button--secondary"
-            href="{{ partner.bonusUrl }}"
-            rel="nofollow sponsored noopener"
-            target="_blank"
-          >
-            Get bonus
-          </a>
-        {% endif %}
-      {% endif %}
-    {% endfor %}
+  {% if offer %}
+    {% if offer.playUrl %}
+      <a class="ui-button ui-button--success" href="{{ offer.playUrl }}" rel="nofollow sponsored noopener" target="_blank">Try now</a>
+    {% endif %}
+    {% if offer.demoUrl %}
+      <a class="ui-button ui-button--secondary" href="{{ offer.demoUrl }}" rel="nofollow noopener" target="_blank">Play demo</a>
+    {% endif %}
+    {% if offer.bonusUrl %}
+      <a class="ui-button ui-button--secondary" href="{{ offer.bonusUrl }}" rel="nofollow sponsored noopener" target="_blank">Get bonus</a>
+    {% endif %}
   {% endif %}
 
   {% if site.social.telegram %}
-    <a
-      class="ui-button ui-button--outline"
-      href="{{ site.social.telegram }}"
-      rel="noopener"
-      target="_blank"
-    >
-      Join Telegram channel
-    </a>
+    <a class="ui-button ui-button--outline" href="{{ site.social.telegram }}" rel="noopener" target="_blank">Join Telegram channel</a>
   {% endif %}
 </aside>

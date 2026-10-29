@@ -12,7 +12,6 @@ jsonLd:
   "@context": "https://schema.org"
   "@type": "WebSite"
   name: "ReviewHub"
-  url: "https://example.com/en/"
   inLanguage: "en"
 ---
 
@@ -35,81 +34,6 @@ jsonLd:
       {% for item in casinos %}
         {% set itemUrl = "/en/casinos/" + item.slug + "/" %}
         {% include "components/listing-card/listing-card.njk" %}
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-<section class="home-section" aria-labelledby="bonuses-title">
-  <div class="container">
-    <div class="home-section__header">
-      <div>
-        <p class="home-section__eyebrow">Promotions</p>
-        <h2 class="home-section__title" id="bonuses-title">Top Casino Bonuses</h2>
-      </div>
-
-      <a class="home-section__link" href="/en/bonuses/">View all</a>
-    </div>
-
-    <div class="home-section__grid">
-      {% for item in homeSections.bonuses %}
-        {% set variant = "bonus" %}
-        {% set href = item.url %}
-        {% set title = item.title %}
-        {% set text = item.text %}
-        {% set badge = "Bonus" %}
-        {% set meta = "Compare offer" %}
-        {% include "components/entity-card/entity-card.njk" %}
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-<section class="home-section" aria-labelledby="providers-title">
-  <div class="container">
-    <div class="home-section__header">
-      <div>
-        <p class="home-section__eyebrow">Studios</p>
-        <h2 class="home-section__title" id="providers-title">Top Game Providers</h2>
-      </div>
-
-      <a class="home-section__link" href="/en/providers/">View all</a>
-    </div>
-
-    <div class="home-section__grid">
-      {% for item in homeSections.providers %}
-        {% set variant = "provider" %}
-        {% set href = item.url %}
-        {% set title = item.title %}
-        {% set text = item.text %}
-        {% set badge = "Provider" %}
-        {% set meta = "View provider" %}
-        {% include "components/entity-card/entity-card.njk" %}
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-<section class="home-section" aria-labelledby="articles-title">
-  <div class="container">
-    <div class="home-section__header">
-      <div>
-        <p class="home-section__eyebrow">Guides</p>
-        <h2 class="home-section__title" id="articles-title">Latest Articles</h2>
-      </div>
-
-      <a class="home-section__link" href="/en/articles/">View all</a>
-    </div>
-
-    <div class="home-section__grid">
-      {% for item in homeSections.articles %}
-        {% set variant = "article" %}
-        {% set href = item.url %}
-        {% set title = item.title %}
-        {% set text = item.text %}
-        {% set badge = "Article" %}
-        {% set meta = "Read guide" %}
-        {% include "components/entity-card/entity-card.njk" %}
       {% endfor %}
     </div>
   </div>
