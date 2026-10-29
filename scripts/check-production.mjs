@@ -1,5 +1,5 @@
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
-import { join, resolve } from "node:path";
+import { join, resolve, relative, isAbsolute } from "node:path";
 import { pathToFileURL } from "node:url";
 import { resolveSiteUrl, resolveTelegramUrl } from "../src/lib/site-config.js";
 import publication from "../src/_data/publication.js";
@@ -46,7 +46,8 @@ export function checkProduction({ outDir = "_site", env = process.env } = {}) {
         errors.push(label + ": unsafe internal href " + href); continue;
       }
       const outputFile = resolve(out, "." + candidate, "index.html");
-      if (!outputFile.startsWith(out + "/") || !existsSync(outputFile)) {
+      const rel = relative(out, outputFile);
+      if (rel.startsWith("..") || isAbsolute(rel) || !existsSync(outputFile)) {
         errors.push(label + ": broken internal link " + href);
       }
     }
