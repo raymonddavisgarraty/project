@@ -146,6 +146,17 @@ eleventyComputed:
     {% include "components/breadcrumbs/breadcrumbs.njk" %}
     <h1>{{ game.hero.title }}</h1>
     <p><strong>Editorial verification pending.</strong> This game listing has not completed its source and editorial checks. Unreviewed facts, numerical ratings, promotions and descriptive claims are intentionally withheld.</p>
+    {% set checkedFacts = editorialFields433.gameRows(game) %}
+    {% if checkedFacts.length %}
+      <section class="section" aria-labelledby="game-verified-fields">
+        <h2 id="game-verified-fields">Individually source-reviewed facts</h2>
+        <p>Only the characteristics listed below have completed claim-level review. This full game review is not yet approved.</p>
+        {% set rows = checkedFacts %}
+        {% include "components/info-table/info-table.njk" %}
+      </section>
+    {% else %}
+      <p>No game characteristics have completed source review yet.</p>
+    {% endif %}
     <p><a href="/en/games/">Browse games catalogue</a></p>
   </div>
 </section>

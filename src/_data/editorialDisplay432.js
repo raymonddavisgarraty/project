@@ -1,7 +1,5 @@
-import { auditCurrentRepository43 } from "../../scripts/editorial43.mjs";
+import audit from "../lib/editorial-audit433.js";
 import { createEditorialDisplay432 } from "../lib/editorial-display432.mjs";
 
-// Global Eleventy data is evaluated before page templates. There is no
-// configuration switch or development-mode bypass for unreviewed claims.
-const audit = auditCurrentRepository43();
+// A full-page approval is separate from individual source-verified facts.
 export default createEditorialDisplay432(audit);

@@ -77,8 +77,36 @@ export function auditSeo42({ outDir = "_site", siteUrl, routes = [], production 
     } else if (!/^Disallow:\s*\/\s*$/mi.test(robots)) errors.push("Development robots must disallow");
   }
 
-  const all = new Set([...paths, "/404.html"]), pages = new Map();
+  // The root is a non-indexable language entrypoint, NOT another canonical
+  // content page. It must exist for the Eleventy dev server and must never
+  // appear in sitemap.xml.
+  const all = new Set([...paths, "/", "/404.html"]), pages = new Map();
+  const redirectFile = join(out, "index.html");
+  if (!existsSync(redirectFile)) {
+    errors.push("Missing root language redirect index.html");
+  } else {
+    const html = read(redirectFile);
+    pages.set("/", html);
+    const refresh = tags(html, "meta").find(t =>
+      (attr(t, "http-equiv") || "").toLowerCase() === "refresh") || "";
+    const content = (attr(refresh, "content") || "").trim();
+    if (!/^0\s*;\s*url\s*=\s*\/en\/\s*$/i.test(content)) {
+      errors.push("Root redirect must immediately target /en/");
+    }
+    const canonical = attr(tags(html, "link").find(t =>
+      (attr(t, "rel") || "").split(/\s+/).includes("canonical")) || "", "href");
+    if (canonical !== new URL("/en/", origin).href) {
+      errors.push("Root redirect must canonicalize to /en/");
+    }
+    const robots = attr(findTag(html, "meta", "name", "robots"), "content") || "";
+    if (!/\bnoindex\b/i.test(robots)) errors.push("Root redirect must be noindex");
+    if (!tags(html, "a").some(t => attr(t, "href") === "/en/")) {
+      errors.push("Root redirect requires a working fallback link to /en/");
+    }
+  }
   for (const path of all) {
+    // Root is a redirect entrypoint, not a content page. Validated above.
+    if (path === "/") continue;
     const file = outputPath(out, path);
     if (!file || !existsSync(file)) { errors.push("Missing page " + path); continue; }
     const html = read(file);
