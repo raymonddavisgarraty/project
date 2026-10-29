@@ -15,7 +15,9 @@
     "check:seo": "node scripts/check-stage42.mjs",
     "audit:editorial": "node scripts/editorial43.mjs",
     "check:editorial": "node scripts/editorial43.mjs --strict",
-    "test:stage43": "node scripts/test-stage43.mjs && node scripts/test-stage43-log.mjs"
+    "test:stage43": "node scripts/test-stage43.mjs && node scripts/test-stage43-log.mjs",
+    "queue:editorial": "node scripts/run-stage431.mjs",
+    "test:stage431": "node scripts/test-stage431.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"

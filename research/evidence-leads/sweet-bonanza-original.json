@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "status": "research-leads-only",
+  "entity": {
+    "type": "game",
+    "id": "sweet-bonanza"
+  },
+  "observedOn": "2026-10-29",
+  "approvalGranted": false,
+  "autoPublish": false,
+  "scope": "Original 2019 Sweet Bonanza slot only; not Sweet Bonanza 1000, POP, or 2500",
+  "sources": [
+    {
+      "sourceId": "official-launch-2019",
+      "publisher": "Pragmatic Play",
+      "type": "first-party-announcement",
+      "url": "https://www.pragmaticplay.com/en/news/pragmatic-play-launches-sweet-bonanza/",
+      "publishedOn": "2019-06-25",
+      "observedOn": "2026-10-29",
+      "reviewStatus": "candidate-needs-human-check"
+    },
+    {
+      "sourceId": "official-game-page",
+      "publisher": "Pragmatic Play",
+      "type": "first-party-product-page",
+      "url": "https://www.pragmaticplay.com/en/games/sweet-bonanza-slot/",
+      "observedOn": "2026-10-29",
+      "reviewStatus": "candidate-needs-human-check"
+    }
+  ],
+  "claims": [
+    {
+      "field": "maxWinMultiplier",
+      "projectValue": 21100,
+      "candidateValue": 21175,
+      "assessment": "potential-conflict",
+      "sourceIds": [
+        "official-launch-2019"
+      ],
+      "notes": "Official 2019 launch describes potential wins up to 21,175x; repository contains 21,100x. Confirm exact original edition, bet basis and approved rules before proposing a correction. Do not auto-change."
+    },
+    {
+      "field": "rtp",
+      "projectValue": 96.48,
+      "candidateValue": null,
+      "assessment": "not-confirmed-by-these-official-pages",
+      "sourceIds": [
+        "official-launch-2019",
+        "official-game-page"
+      ],
+      "notes": "Reviewed official launch and game overview do not establish exact 96.48% RTP or every operator configuration. Obtain official game-rules/math documentation for the applicable edition, and document RTP variants."
+    },
+    {
+      "field": "providerName",
+      "projectValue": "Pragmatic Play",
+      "candidateValue": "Pragmatic Play",
+      "assessment": "primary-source-candidate-match",
+      "sourceIds": [
+        "official-launch-2019",
+        "official-game-page"
+      ],
+      "notes": "Provider publishes its own original-game launch and product pages. Reviewer must confirm edition mapping and capture evidence."
+    },
+    {
+      "field": "providerId",
+      "projectValue": "pragmatic-play",
+      "candidateValue": null,
+      "assessment": "internal-registry-identity",
+      "sourceIds": [
+        "official-launch-2019"
+      ],
+      "notes": "Internal normalized registry slug does not appear as an external identifier; manually bind provider name and registry record."
+    },
+    {
+      "field": "reels",
+      "projectValue": 6,
+      "candidateValue": 6,
+      "assessment": "primary-source-candidate-match",
+      "sourceIds": [
+        "official-launch-2019"
+      ],
+      "notes": "2019 provider launch describes a 6x5 tumbling slot."
+    },
+    {
+      "field": "releaseYear",
+      "projectValue": 2019,
+      "candidateValue": 2019,
+      "assessment": "primary-source-candidate-match",
+      "sourceIds": [
+        "official-launch-2019"
+      ],
+      "notes": "Original provider release announcement dated 25 June 2019. Distinguish announcement and operator launch."
+    },
+    {
+      "field": "volatility",
+      "projectValue": "high",
+      "candidateValue": "high",
+      "assessment": "primary-source-candidate-match",
+      "sourceIds": [
+        "official-launch-2019"
+      ],
+      "notes": "Provider calls original game high volatility; edition context requires editor review."
+    },
+    {
+      "field": "paylineType",
+      "projectValue": "pays-anywhere",
+      "candidateValue": "pays-anywhere",
+      "assessment": "primary-source-candidate-match",
+      "sourceIds": [
+        "official-game-page"
+      ],
+      "notes": "Official game page describes matching 8–12+ symbols anywhere on tumbling reels; reviewer confirms internal normalization."
+    },
+    {
+      "field": "hitFrequency",
+      "projectValue": "medium",
+      "candidateValue": null,
+      "assessment": "not-confirmed-by-these-official-pages",
+      "sourceIds": [],
+      "notes": "No hit-frequency metric obtained from these first-party sources. Do not infer from volatility."
+    }
+  ],
+  "nextHumanAction": "Inspect first-party rules/math for the original edition and RTP variants, independently resolve max-win discrepancy, record exact sources, reviewer decision and correction proposal.",
+  "notApprovals": "Research lead only, not approved provenance and no permission to deploy."
+}
