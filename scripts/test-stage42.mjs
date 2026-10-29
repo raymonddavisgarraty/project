@@ -1,9 +1,15 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
+import { mkdtempSync, mkdirSync, writeFileSync, rmSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
 import { buildRoutes42 } from "../src/lib/routes42.js";
 import { auditSeo42 } from "./seo42.mjs";
+
+// Regression: the real homepage template must expose its own semantic H1.
+// The built-page SEO audit separately checks the final rendered HTML.
+const homepageTemplate = readFileSync("src/en/index.njk", "utf8");
+assert.equal((homepageTemplate.match(/<h1\b/g) || []).length, 1, "Home must have exactly one explicit H1");
+assert.match(homepageTemplate, /<h1\b[^>]*>Casino and Slot Game Reviews<\/h1>/);
 
 const routes = buildRoutes42({
   games: [{ id: "test-game", slug: "test-game", globalFacts: { sourceStatus: "legacy-unverified" } }],
