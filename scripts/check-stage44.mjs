@@ -7,7 +7,7 @@ import casinos from "../src/_data/casinos.js";
 import catalogue from "../src/_data/gameCatalog44.js";
 
 
-function inspectBreadcrumb(html, entityId, expectedTitle, errors) {
+export function inspectBreadcrumb(html, entityId, expectedTitle, errors) {
   const breadcrumb = html.match(/<nav\b[^>]*aria-label=["']Breadcrumb["'][^>]*>([\s\S]*?)<\/nav>/i);
   if (!breadcrumb) {
     errors.push(entityId + ": missing breadcrumb");
