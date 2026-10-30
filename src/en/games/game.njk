@@ -10,13 +10,14 @@ eleventyComputed:
   metaTitle: "{{ game.hero.title }} | Editorial verification pending"
   metaDescription: "Game information is undergoing editorial fact verification. Numerical characteristics and ratings are withheld until reviewed."
   canonical: "/en/games/{{ game.slug }}/"
-  breadcrumbs:
-    - label: Home
-      url: /en/
-    - label: Games
-      url: /en/games/
-    - label: "{{ game.hero.title }}"
 ---
+{# Build breadcrumbs in the per-game Nunjucks context. Nested frontmatter
+   computed arrays may retain the title from the first pagination entry. #}
+{% set breadcrumbs = [
+  { label: "Home", url: "/en/" },
+  { label: "Games", url: "/en/games/" },
+  { label: game.hero.title }
+] %}
 {% if editorialDisplay432.game(game) %}
 {% include "components/game-hero/game-hero.njk" %}
 
