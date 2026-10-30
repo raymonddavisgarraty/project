@@ -10,13 +10,14 @@ eleventyComputed:
   metaTitle: "{{ casino.title }} | Editorial verification pending"
   metaDescription: "This casino listing is undergoing editorial fact verification. Bonus, licence, rating and payment claims are withheld until reviewed."
   canonical: "/en/casinos/{{ casino.slug }}/"
-  breadcrumbs:
-    - label: Home
-      url: /en/
-    - label: Casinos
-      url: /en/casinos/
-    - label: "{{ casino.title }}"
 ---
+{# Compute the current breadcrumb for each paginated casino, not once for the
+   entire collection as can happen with nested frontmatter data. #}
+{% set breadcrumbs = [
+  { label: "Home", url: "/en/" },
+  { label: "Casinos", url: "/en/casinos/" },
+  { label: casino.title }
+] %}
 {% if editorialDisplay432.casino(casino) %}
 {% include "components/casino-hero/casino-hero.njk" %}
 

@@ -1,0 +1,46 @@
+{% set links44 = gameNavigation44.forGame(game) %}
+{% if links44.curated.length or links44.fromProvider.length %}
+<section class="section game-context" aria-label="More game pages" data-game-context>
+  <div class="container">
+    <div class="game-context__heading">
+      <h2>Browse more games</h2>
+      <p>Links below lead to existing catalogue pages. They are not ratings, recommendations or claims that the games are similar.</p>
+    </div>
+
+    {% if links44.curated.length %}
+      <div class="game-context__group">
+        <h3>Other game pages</h3>
+        <ul class="game-context__grid" data-game-context-curated>
+          {% for target in links44.curated %}
+            <li class="game-context__item">
+              <a href="{{ target.url }}" class="game-context__link">{{ target.title }}</a>
+              {% if target.reviewStatus == "editorial-verification-pending" %}
+                <span class="game-context__status">Facts awaiting editorial review</span>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    {% if links44.fromProvider.length %}
+      <div class="game-context__group">
+        <h3>More games from the same provider</h3>
+        <p class="game-context__note">Provider identity has been individually checked for both linked games. Their full reviews may still be pending.</p>
+        <ul class="game-context__grid" data-game-context-provider>
+          {% for target in links44.fromProvider %}
+            <li class="game-context__item">
+              <a href="{{ target.url }}" class="game-context__link">{{ target.title }}</a>
+              {% if target.reviewStatus == "editorial-verification-pending" %}
+                <span class="game-context__status">Facts awaiting editorial review</span>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    <p class="game-context__all"><a href="/en/games/">Browse the full games catalogue</a></p>
+  </div>
+</section>
+{% endif %}
