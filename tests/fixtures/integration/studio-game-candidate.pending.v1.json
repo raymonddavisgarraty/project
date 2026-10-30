@@ -1,0 +1,79 @@
+{
+  "contractVersion": 1,
+  "kind": "seo-platform-candidate-package",
+  "packageId": "synthetic-studio-demo-v1",
+  "revision": 1,
+  "createdAt": "2026-10-29T14:00:00Z",
+  "entityType": "game",
+  "entityId": "synthetic-demo-game",
+  "locale": "en",
+  "status": "pending-editorial-review",
+  "sampleOnly": true,
+  "publicationApproved": false,
+  "autoPublish": false,
+  "proposedFacts": {
+    "title": "Synthetic Demo Game (Not for Publication)",
+    "providerId": "pragmatic-play",
+    "releaseDate": null,
+    "rtp": null,
+    "volatility": null,
+    "maxWinMultiplier": null,
+    "reels": 5,
+    "paylines": null,
+    "themes": [],
+    "features": []
+  },
+  "sourceSnapshots": [
+    {
+      "sourceId": "synthetic-source-1",
+      "url": "https://example.org/fictional-only",
+      "observedAt": "2026-10-29T14:00:00Z",
+      "sha256": "cce6da1057c425e1a75dba38e8f41b8475121a23c4843515a3f090cbe65deef3",
+      "sourceType": "third-party",
+      "rightsStatus": "pending-review"
+    }
+  ],
+  "claims": [
+    {
+      "field": "title",
+      "value": "Synthetic Demo Game (Not for Publication)",
+      "sourceIds": [
+        "synthetic-source-1"
+      ],
+      "verificationStatus": "unverified"
+    },
+    {
+      "field": "providerId",
+      "value": "pragmatic-play",
+      "sourceIds": [
+        "synthetic-source-1"
+      ],
+      "verificationStatus": "unverified"
+    },
+    {
+      "field": "reels",
+      "value": 5,
+      "sourceIds": [
+        "synthetic-source-1"
+      ],
+      "verificationStatus": "unverified"
+    }
+  ],
+  "editorialBrief": {
+    "intent": "informational game review",
+    "proposedSections": [
+      "overview",
+      "mechanics",
+      "faq"
+    ],
+    "notes": "Synthetic test only. The producer, reels and game identity are fictional, unverified and not approved."
+  },
+  "relatedEntityCandidates": [
+    {
+      "relation": "related-to-game",
+      "targetEntityId": "the-big-dog-house",
+      "reason": "Synthetic example checking that relation candidates cannot become public links",
+      "status": "proposed"
+    }
+  ]
+}

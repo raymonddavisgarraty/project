@@ -16,3 +16,5 @@ Required final artifacts:
 9. Studio development brief, interface versioning/migration rules, ownership matrix and known limitations.
 
 Rule: Studio outputs are candidates. A passed quality check is not a human editorial approval; reviewed related-entity candidates are not live links; public files are never changed automatically.
+
+Stage 42 interim checkpoint: docs/integration/studio-platform-contract-v1.md and its game-only JSON schema/test fixture are PROVISIONAL Platform-side interface definitions. They are not the final handoff, not direct Stage 34 intake, and need review after Stage 43–45 acceptance.

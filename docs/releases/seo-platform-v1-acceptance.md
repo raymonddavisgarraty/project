@@ -26,7 +26,7 @@ Technically ready to integrate is NOT a claim of public launch, legal permission
 - Stage 34–40 baseline exists on main. Stage 38 explicit publish and review/hash/exclusive-create semantics are protected.
 - Stage 41.2: implementation in draft PR #1, NOT merged. Production origin validation, placeholder checks and centrally gated CTA are present. Run acceptance, not a reimplementation.
 - UX/IA checkpoint: separate draft PR #2 relative to main; reconcile deliberately with the stacked technical branches.
-- Stage 42: draft PR #3. Validate exact crawlable routes, canonical, sitemap, 404, robots, non-JS links and indexing rules. Determine the versioned Studio package contract after Stage 42 acceptance.
+- Stage 42: draft PR #3. Validate exact crawlable routes, canonical, sitemap, 404, robots, non-JS links and indexing rules. An initial draft of the Platform-owned offline EN game package contract is documented at docs/integration/studio-platform-contract-v1.md, with read-only Stage 33/36 checks only. Stage 34 intake is NOT compatible with arbitrary source hosts without a separately reviewed adapter.
 - Stage 43: draft PR #4, remediation #5, partial-claim display #6–#7. Last user-reported editorial audit had 55 unverified claims and 66 blockers. No production permission.
 - Stage 44: UI and links in draft PRs #8–#10. Original approved pilot content and controlled package test remain open deliverables, not already complete.
 - Stage 45: telemetry, consent/privacy design, monitoring, performance and v1.0 gate remain TODO.
