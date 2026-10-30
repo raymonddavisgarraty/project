@@ -18,3 +18,9 @@ Required final artifacts:
 Rule: Studio outputs are candidates. A passed quality check is not a human editorial approval; reviewed related-entity candidates are not live links; public files are never changed automatically.
 
 Stage 42 interim checkpoint: docs/integration/studio-platform-contract-v1.md and its game-only JSON schema/test fixture are PROVISIONAL Platform-side interface definitions. They are not the final handoff, not direct Stage 34 intake, and need review after Stage 43–45 acceptance.
+
+## Additional future handoff deliverable — independent published catalogue
+
+The complete post-Stage-45 Integration Handoff Package must explicitly include BOTH versioned directions: (1) Studio → Platform research candidate intake; (2) Platform → approved published catalogue for Eleventy, future Telegram Bot and other readers. The outbound package requires sanitization, stable IDs distinct from slugs, approved relations and canonical URLs, revisions, market/channel restrictions, revocation/cache strategy and privacy/offer tests. The architecture is recorded at docs/architecture-checkpoint/adr-three-product-published-catalogue.md and the outbound RFC at docs/integration/published-catalogue-contract-v1.draft.md.
+
+No public export, Bot, Studio or final handoff is delivered by this checkpoint.

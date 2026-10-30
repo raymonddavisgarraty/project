@@ -64,3 +64,8 @@ Local untracked files were explicitly observed: data/editorial/, stage-41-2-base
 
 Review the Stage 42 contract and the documented Stage 34 source-host incompatibility; validate the package read-only, then complete a human-reviewed content pilot and Stage 45 before release/handoff. Keep the stacked PR chain intact until actual dependency-by-dependency acceptance.
 
+## Three-product architectural supplement (documentation only)
+
+The checkpoint acknowledges an independent future Telegram Bot, future Studio, and the SEO Platform as the single authority for approved published data. No Studio/Bot code, public exporter, canonical route or production gate is added. The future publisher-owned catalogue must not expose raw evidence or affiliate URLs and must enforce rights + market + channel permissions. See docs/architecture-checkpoint/adr-three-product-published-catalogue.md and docs/integration/published-catalogue-contract-v1.draft.md.
+
+Stage 41.2 remains locally technically accepted but not merged or production-cleared; Stage 43 reports 55 unverified claims, 66 blockers, productionReleaseAllowed=false.

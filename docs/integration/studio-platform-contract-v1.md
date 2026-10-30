@@ -4,6 +4,10 @@ Status: DRAFT PLATFORM-SIDE CONTRACT, pending formal approval. No Content Intell
 
 Governing documents: SEO Platform Master Development Brief v1.0 and Product UX / IA / Integration Blueprint v1.0, dated 29 October 2026.
 
+## Direction clarification for the three-product ecosystem
+
+This contract is for INBOUND, internal, pending editorial candidates only. It must never feed the public site or Telegram Bot directly. A separate OUTBOUND, publisher-owned approved catalogue is specified as a non-implemented RFC at docs/integration/published-catalogue-contract-v1.draft.md. Do not treat valid research data as a published snapshot or as a commercial rights decision.
+
 ## Boundaries
 
 Studio (future Stage 46, separate product) may supply proposed facts, research evidence, a content brief, and relation candidates. The Platform must independently verify the package and then route it through human editorial validation. Quality checks, readiness labels, a valid JSON schema or a normalized provider ID do not mean approved, released or compliant. Published Eleventy pages never depend on Studio at runtime.
