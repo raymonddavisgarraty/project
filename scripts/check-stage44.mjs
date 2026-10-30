@@ -35,6 +35,27 @@ export function verifyNavigation44({outDir="_site"}={}) {
     return readFileSync(filename,"utf8");
   };
   const catalogHtml=read("en/games/index.html");
+  // A static count is available before JS initializes; the same node becomes
+  // a live status after client-side filtering. Keep it in the action group.
+  const actions = catalogHtml.match(/<div\s+class="games-search__actions"[^>]*>([\s\S]*?)<\/div>/i);
+  if (!actions) {
+    errors.push("Games catalogue is missing its actions row");
+  } else {
+    const count = actions[1].match(/<p\b[^>]*\bdata-games-count\b[^>]*>([\s\S]*?)<\/p>/i);
+    if (!count) {
+      errors.push("Game result count is missing from the actions group");
+    } else {
+      const countOpening = count[0].slice(0, count[0].indexOf(">"));
+      if (!/\brole="status"/.test(countOpening) ||
+          !/\baria-live="polite"/.test(countOpening)) {
+        errors.push("Game result count must be an accessible live status");
+      }
+      const expected = games.length + " game" + (games.length === 1 ? "" : "s") + " found";
+      if (count[1].trim() !== expected) {
+        errors.push("Server-rendered result count does not match the game catalogue");
+      }
+    }
+  }
   if(!catalogue.providers.length && !/<select\b[^>]*\bid="provider-filter"[^>]*\bdisabled\b[^>]*>/i.test(catalogHtml))
     errors.push("Empty provider facet should be disabled");
   if(!catalogue.volatilities.length && !/<select\b[^>]*\bid="volatility-filter"[^>]*\bdisabled\b[^>]*>/i.test(catalogHtml))
