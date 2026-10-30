@@ -9,6 +9,7 @@ import editorialDisplay432 from "../src/_data/editorialDisplay432.js";
 import audit from "../src/lib/editorial-audit433.js";
 import navigation from "../src/_data/gameNavigation44.js";
 import catalogue from "../src/_data/gameCatalog44.js";
+import { inspectBreadcrumb } from "./check-stage44.mjs";
 
 const game = (id, slug = id, relatedGames = [], provider = "provider-a") => ({
   id, slug, title: "Title: " + id, relatedGames,
@@ -133,4 +134,26 @@ assert(search.includes("gameCatalog44.providers"));
 assert(search.includes("gameCatalog44.volatilities"));
 assert(search.includes("disabled aria-describedby"));
 assert(readFileSync("src/assets/css/pages/games-search.css","utf8").includes('[data-game-card][hidden]'));
+// Regression: Eleventy pagination must calculate each page's current breadcrumb
+// in the item template, not cache the first item's name in computed frontmatter.
+const gameTemplate = readFileSync("src/en/games/game.njk", "utf8");
+const casinoTemplate = readFileSync("src/en/casinos/casino.njk", "utf8");
+assert(gameTemplate.includes("label: game.hero.title"));
+assert(casinoTemplate.includes("label: casino.title"));
+assert(!/^\s{2}breadcrumbs:\s*$/m.test(gameTemplate.split("---")[1]));
+assert(!/^\s{2}breadcrumbs:\s*$/m.test(casinoTemplate.split("---")[1]));
+
+const sampleCrumb = label =>
+  '<nav class="breadcrumbs" aria-label="Breadcrumb">' +
+  '<ol><li><span aria-current="page">' + label + '</span></li></ol></nav>';
+const breadcrumbErrors = [];
+inspectBreadcrumb(sampleCrumb("The Big Dog House"), "the-big-dog-house", "The Big Dog House", breadcrumbErrors);
+inspectBreadcrumb(sampleCrumb("RoyalSpin Casino"), "royalspin-casino", "RoyalSpin Casino", breadcrumbErrors);
+assert.deepEqual(breadcrumbErrors, []);
+inspectBreadcrumb(sampleCrumb("Sweet Bonanza"), "the-big-dog-house", "The Big Dog House", breadcrumbErrors);
+assert(breadcrumbErrors.some(error => error.includes("breadcrumb mismatch")));
+breadcrumbErrors.length = 0;
+inspectBreadcrumb('<nav aria-label="Breadcrumb"></nav>', "the-big-dog-house", "The Big Dog House", breadcrumbErrors);
+assert(breadcrumbErrors.some(error => error.includes("missing current-page breadcrumb")));
+
 console.log("Stage 44.1 tests OK (real-route links, safe navigation, verified provider gating, catalog facets, accessibility and existing data).");
