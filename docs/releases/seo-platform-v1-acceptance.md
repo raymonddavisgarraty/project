@@ -21,6 +21,14 @@ SEO Review Platform is a public, static Eleventy 3.x / Nunjucks / HTML5 / CSS / 
 
 Technically ready to integrate is NOT a claim of public launch, legal permission, verified user claims or successful indexation.
 
+## Three-product architecture addendum — 2026-10-30
+
+SEO Platform remains the producer of approved public information; future Content Intelligence Studio is an independent research-only candidate producer, while a future independent Telegram Bot consumes a versioned sanitized PUBLISHED catalogue. Neither app is implemented inside the Eleventy repository.
+
+Reference contracts are intentionally separate: docs/integration/studio-platform-contract-v1.md is an INBOUND pending-candidate (research) draft; docs/integration/published-catalogue-contract-v1.draft.md is an OUTBOUND approved-public-snapshot RFC, NOT implemented. The authority/identity/commercial decisions are recorded in docs/architecture-checkpoint/adr-three-product-published-catalogue.md.
+
+No change to Stage 41–45 roadmap. Stage 44–45 must evaluate safe public catalogue export and field-level redaction, canonical/relation integrity, revocations, market/channel-approved offers and consumer compatibility, subject to actual editorial and production approvals. Studio MVP still begins only after Stage 45 handoff (Stage 46); the Telegram Bot can be a separate subsequent MVP once the approved catalogue is stable.
+
 ## Stage order and actual GitHub status
 
 - Stage 34–40 baseline exists on main. Stage 38 explicit publish and review/hash/exclusive-create semantics are protected.
