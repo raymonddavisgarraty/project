@@ -3,7 +3,29 @@ import { resolve, join } from "node:path";
 import { pathToFileURL } from "node:url";
 import games from "../src/_data/games.js";
 import navigation from "../src/_data/gameNavigation44.js";
+import casinos from "../src/_data/casinos.js";
 import catalogue from "../src/_data/gameCatalog44.js";
+
+
+function inspectBreadcrumb(html, entityId, expectedTitle, errors) {
+  const breadcrumb = html.match(/<nav\b[^>]*aria-label=["']Breadcrumb["'][^>]*>([\s\S]*?)<\/nav>/i);
+  if (!breadcrumb) {
+    errors.push(entityId + ": missing breadcrumb");
+    return;
+  }
+  const current = breadcrumb[1].match(/<span\b[^>]*aria-current=["']page["'][^>]*>([\s\S]*?)<\/span>/i);
+  if (!current) {
+    errors.push(entityId + ": missing current-page breadcrumb");
+    return;
+  }
+  const title = current[1].replace(/<[^>]*>/g, "").trim()
+    .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"').replace(/&#39;|&#x27;/gi, "'");
+  if (title !== expectedTitle) {
+    errors.push(entityId + ": breadcrumb mismatch (got " + title +
+      ", expected " + expectedTitle + ")");
+  }
+}
 
 export function verifyNavigation44({outDir="_site"}={}) {
   const out=resolve(outDir),errors=[];
@@ -20,25 +42,7 @@ export function verifyNavigation44({outDir="_site"}={}) {
   for(const game of games){
     const links=navigation.forGame(game);
     const html=read("en/games/"+game.slug+"/index.html");
-    // Paginated frontmatter can accidentally carry another game's breadcrumb.
-    // Assert the rendered current-page label matches the actual game, not
-    // merely that a breadcrumb component is present.
-    const breadcrumb = html.match(/<nav\b[^>]*aria-label=["']Breadcrumb["'][^>]*>([\s\S]*?)<\/nav>/i);
-    if (!breadcrumb) {
-      errors.push(game.id+": missing game breadcrumb");
-    } else {
-      const current = breadcrumb[1].match(/<span\b[^>]*aria-current=["']page["'][^>]*>([\s\S]*?)<\/span>/i);
-      if (!current) {
-        errors.push(game.id+": missing current-page breadcrumb");
-      } else {
-        const title = current[1].replace(/<[^>]*>/g,"").trim()
-          .replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">")
-          .replace(/&quot;/g,'"').replace(/&#39;|&#x27;/gi,"'");
-        if (title !== game.title) {
-          errors.push(game.id+": breadcrumb mismatch (got "+title+", expected "+game.title+")");
-        }
-      }
-    }
+    inspectBreadcrumb(html, game.id, game.title, errors);
     const hasLinks=links.curated.length+links.fromProvider.length>0;
     if(hasLinks && !html.includes("data-game-context"))
       errors.push(game.id+": missing contextual game navigation component");
@@ -64,7 +68,11 @@ export function verifyNavigation44({outDir="_site"}={}) {
     if(html.includes('href="/en/providers/'))
       errors.push(game.id+": link to unpublished provider profile");
   }
-  return {ok:errors.length===0,gamesChecked:games.length,errors};
+  for (const casino of casinos) {
+    const html=read("en/casinos/"+casino.slug+"/index.html");
+    inspectBreadcrumb(html, casino.slug, casino.title, errors);
+  }
+  return {ok:errors.length===0,gamesChecked:games.length,casinosChecked:casinos.length,errors};
 }
 if(process.argv[1] && import.meta.url===pathToFileURL(resolve(process.argv[1])).href){
   const result=verifyNavigation44();
