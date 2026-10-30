@@ -4,6 +4,8 @@
 
 .games-search__panel {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
     gap: 16px;
     margin-bottom: 28px;
     padding: 18px;
@@ -15,6 +17,7 @@
 
 .games-search__field {
     position: relative;
+    min-width: 0;
 }
 
 .games-search__label {
@@ -26,6 +29,8 @@
 
 .games-search__input,
 .games-search__select {
+    display: block;
+    box-sizing: border-box;
     width: 100%;
     min-height: 52px;
     border: 1px solid var(--color-border);
@@ -60,13 +65,19 @@
 }
 
 .games-search__actions {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
     gap: 10px;
-    align-items: end;
+    min-width: 0;
 }
 
 .games-search__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-width: 0;
     min-height: 52px;
     padding: 12px 18px;
     border: 0;
@@ -88,9 +99,15 @@
 }
 
 .games-search__count {
+    display: inline-flex;
+    align-items: center;
+    grid-column: 1 / -1;
+    min-height: 24px;
     margin: 0;
     color: var(--color-muted);
     font-weight: 800;
+    line-height: 1.4;
+    font-variant-numeric: tabular-nums;
 }
 
 .games-search__grid {
@@ -114,6 +131,24 @@
 }
 
 @media (min-width: 620px) {
+    .games-search__panel {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .games-search__actions {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .games-search__count {
+        grid-column: auto;
+        min-height: 52px;
+        margin-inline-start: 4px;
+        white-space: nowrap;
+    }
+
     .games-search__grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
@@ -121,8 +156,9 @@
 
 @media (min-width: 900px) {
     .games-search__panel {
-        grid-template-columns: minmax(260px, 1.4fr) minmax(160px, 0.7fr) minmax(160px, 0.7fr) minmax(160px, 0.7fr);
-        align-items: end;
+        /* All four controls start at the same vertical position, even if
+           disabled facets have explanatory text underneath them. */
+        grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
     }
 
     .games-search__actions {
