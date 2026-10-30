@@ -26,7 +26,8 @@
     "test:stage442": "node scripts/test-stage442.mjs",
     "check:catalogue": "node scripts/check-stage442.mjs",
     "test:stage443": "node scripts/test-stage443.mjs",
-    "check:review-pages": "node scripts/check-stage443.mjs"
+    "check:review-pages": "node scripts/check-stage443.mjs",
+    "check:v1-boundaries": "node scripts/check-v1-boundaries.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"
