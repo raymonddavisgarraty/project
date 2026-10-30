@@ -38,6 +38,7 @@ breadcrumbs:
 
         <input
           id="games-search"
+          aria-controls="games-results"
           class="games-search__input"
           type="search"
           placeholder="Search by game title..."
@@ -104,11 +105,11 @@ breadcrumbs:
       </div>
     </div>
 
-    <p class="games-search__empty" data-games-empty>
+    <p class="games-search__empty" data-games-empty role="status">
       No games found. Try another search or reset filters.
     </p>
 
-    <div class="games-search__grid" data-games-grid>
+    <div class="games-search__grid" id="games-results" data-games-grid>
       {% for game in games %}
         {% include "components/game-grid-card/game-grid-card.njk" %}
       {% endfor %}
@@ -116,4 +117,5 @@ breadcrumbs:
   </div>
 </section>
 
+<script src="/assets/js/pages/catalog-search442.js" defer></script>
 <script src="/assets/js/pages/games-search.js" defer></script>

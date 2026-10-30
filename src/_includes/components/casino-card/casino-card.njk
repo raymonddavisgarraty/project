@@ -44,7 +44,8 @@
 </article>
 {% else %}
 <article class="casino-card ui-card" data-casino-card
-  data-casino-title="{{ casino.title | lower }}" data-casino-type=""
+  data-casino-title="{{ casino.title | lower }}"
+  data-casino-type="{% if editorialFields433.casinoFieldVerified(casino, 'type') %}{{ casino.type | lower }}{% endif %}"
   data-casino-withdrawal="" data-casino-rating="" data-casino-new="">
   <div class="casino-card__body">
     <h2 class="casino-card__title"><a href="/en/casinos/{{ casino.slug }}/">{{ casino.title }}</a></h2>

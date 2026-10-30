@@ -38,6 +38,7 @@ breadcrumbs:
 
         <input
           id="casinos-search"
+          aria-controls="casinos-results"
           class="casinos-search__input"
           type="search"
           placeholder="Search casino..."
@@ -51,10 +52,16 @@ breadcrumbs:
           Type
         </label>
 
-        <select class="casinos-search__select" id="casino-type-filter" data-casino-type-filter>
+        <select class="casinos-search__select" id="casino-type-filter" data-casino-type-filter
+          {% if not casinoCatalog442.types.length %}disabled aria-describedby="casino-type-note"{% endif %}>
           <option value="">All types</option>
-          {# Unreviewed type facets are unavailable. #}
+          {% for item in casinoCatalog442.types %}
+            <option value="{{ item.value }}">{{ item.label }}</option>
+          {% endfor %}
         </select>
+        {% if not casinoCatalog442.types.length %}
+          <p class="casinos-search__note" id="casino-type-note">Type filtering becomes available when individual values are reviewed.</p>
+        {% endif %}
       </div>
 
       <div class="casinos-search__field">
@@ -62,10 +69,11 @@ breadcrumbs:
           Withdrawal
         </label>
 
-        <select class="casinos-search__select" id="casino-withdrawal-filter" data-casino-withdrawal-filter>
+        <select class="casinos-search__select" id="casino-withdrawal-filter" data-casino-withdrawal-filter
+          disabled aria-describedby="casino-withdrawal-note">
           <option value="">All speeds</option>
-          {# Unreviewed withdrawal facets are unavailable. #}
         </select>
+        <p class="casinos-search__note" id="casino-withdrawal-note">Withdrawal claims are not approved for filtering.</p>
       </div>
 
       <div class="casinos-search__field">
@@ -83,15 +91,15 @@ breadcrumbs:
           Reset
         </button>
 
-        <p class="casinos-search__count" data-casinos-count></p>
+        <p class="casinos-search__count" role="status" aria-live="polite" aria-atomic="true" data-casinos-count>{{ casinos.length }} casino{% if casinos.length != 1 %}s{% endif %} found</p>
       </div>
     </div>
 
-    <p class="casinos-search__empty" data-casinos-empty>
+    <p class="casinos-search__empty" data-casinos-empty role="status">
       No casinos found. Try another search or reset filters.
     </p>
 
-    <div class="casinos-search__grid" data-casinos-grid>
+    <div class="casinos-search__grid" id="casinos-results" data-casinos-grid>
       {% for casino in casinos %}
         {% include "components/casino-card/casino-card.njk" %}
       {% endfor %}
@@ -99,4 +107,5 @@ breadcrumbs:
   </div>
 </section>
 
+<script src="/assets/js/pages/catalog-search442.js" defer></script>
 <script src="/assets/js/pages/casinos-search.js" defer></script>
