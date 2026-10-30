@@ -156,4 +156,32 @@ breadcrumbErrors.length = 0;
 inspectBreadcrumb('<nav aria-label="Breadcrumb"></nav>', "the-big-dog-house", "The Big Dog House", breadcrumbErrors);
 assert(breadcrumbErrors.some(error => error.includes("missing current-page breadcrumb")));
 
+// Layout regression: explanatory notes must not push Sort by down at
+// desktop widths; the result count must align vertically with the buttons.
+const gamesCss = readFileSync("src/assets/css/pages/games-search.css", "utf8");
+const ruleBlocks = selector => gamesCss.split(selector + " {")
+  .slice(1).map(chunk => chunk.split("}")[0]);
+const panelRules = ruleBlocks(".games-search__panel");
+assert.equal(panelRules.length, 3, "Expected mobile/tablet/desktop panel rules");
+assert.match(panelRules[0], /align-items:\s*start\s*;/);
+assert.match(panelRules[0], /grid-template-columns:\s*minmax\(0,\s*1fr\)/);
+assert.match(panelRules[1], /repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+assert.match(panelRules[2], /minmax\(0,\s*1\.4fr\)\s+repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
+assert(!panelRules.some(rule => /align-items:\s*end\s*;/.test(rule)));
+const actionsRules = ruleBlocks(".games-search__actions");
+assert.equal(actionsRules.length, 3, "Expected mobile/tablet/desktop action rules");
+assert.match(actionsRules[0], /align-items:\s*center\s*;/);
+assert.match(actionsRules[0], /grid-template-columns:\s*minmax\(0,\s*1fr\)\s+auto\s*;/);
+assert.match(actionsRules[1], /align-items:\s*center\s*;/);
+const countRules = ruleBlocks(".games-search__count");
+assert.equal(countRules.length, 2, "Expected mobile and tablet count rules");
+assert.match(countRules[0], /display:\s*inline-flex\s*;/);
+assert.match(countRules[0], /align-items:\s*center\s*;/);
+assert.match(countRules[0], /grid-column:\s*1\s*\/\s*-1\s*;/);
+assert.match(countRules[1], /min-height:\s*52px\s*;/);
+assert.match(countRules[1], /white-space:\s*nowrap\s*;/);
+const catalogueMarkup = readFileSync("src/en/games/index.njk", "utf8");
+assert.match(catalogueMarkup, /class="games-search__count"[^>]*role="status"[^>]*aria-live="polite"/);
+assert.match(catalogueMarkup, /data-games-count>[\s\S]*games\.length/);
+
 console.log("Stage 44.1 tests OK (real-route links, safe navigation, verified provider gating, catalog facets, accessibility and existing data).");
