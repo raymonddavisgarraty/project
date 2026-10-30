@@ -183,13 +183,23 @@
   function chooseRandomGame() {
     const visibleCards = getVisibleCards();
 
-    if (!visibleCards.length) {
+    if (!visibleCards.length || !randomButton) {
       return;
     }
 
     cards.forEach((card) => {
       card.classList.remove("is-random-highlight");
     });
+
+    // Avoid moving highlights and repeated scrolling for reduced-motion users.
+    const reducedMotion = typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) {
+      const chosen = visibleCards[Math.floor(Math.random() * visibleCards.length)];
+      chosen.classList.add("is-random-highlight");
+      chosen.focus();
+      return;
+    }
 
     randomButton.disabled = true;
 

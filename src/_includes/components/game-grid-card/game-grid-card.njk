@@ -37,8 +37,11 @@
 </a>
 {% else %}
 <a class="game-grid-card ui-card ui-card--interactive" href="/en/games/{{ game.slug }}/"
-   data-game-card data-game-title="{{ game.title | lower }}" data-game-provider=""
-   data-game-rtp="" data-game-volatility="" data-game-rating="">
+   data-game-card data-game-title="{{ game.title | lower }}"
+   data-game-provider="{% if editorialFields433.gameFieldVerified(game, 'providerName') %}{{ game.globalFacts.providerName | lower }}{% endif %}"
+   data-game-rtp=""
+   data-game-volatility="{% if editorialFields433.gameFieldVerified(game, 'volatility') %}{{ game.globalFacts.volatility | lower }}{% endif %}"
+   data-game-rating="">
   <span class="game-grid-card__media">
     <span class="game-grid-card__placeholder"><strong>{{ game.title }}</strong></span>
   </span>

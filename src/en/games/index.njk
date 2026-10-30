@@ -40,7 +40,7 @@ breadcrumbs:
           id="games-search"
           class="games-search__input"
           type="search"
-          placeholder="Search game or provider..."
+          placeholder="Search by game title..."
           autocomplete="off"
           data-games-search-input
         >
@@ -51,16 +51,16 @@ breadcrumbs:
           Provider
         </label>
 
-        <select class="games-search__select" id="provider-filter" data-provider-filter>
+        <select class="games-search__select" id="provider-filter" data-provider-filter
+          {% if not gameCatalog44.providers.length %}disabled aria-describedby="provider-filter-note"{% endif %}>
           <option value="">All providers</option>
-          {% set providers = [] %}
-          {% for game in games %}
-            {% if editorialDisplay432.game(game) and game.provider not in providers %}
-              {% set providers = providers.concat([game.provider]) %}
-              <option value="{{ game.provider | lower }}">{{ game.provider }}</option>
-            {% endif %}
+          {% for provider in gameCatalog44.providers %}
+            <option value="{{ provider.value }}">{{ provider.label }}</option>
           {% endfor %}
         </select>
+        {% if not gameCatalog44.providers.length %}
+          <p class="games-search__note" id="provider-filter-note">Provider filters become available when source-reviewed values exist.</p>
+        {% endif %}
       </div>
 
       <div class="games-search__field">
@@ -68,10 +68,16 @@ breadcrumbs:
           Volatility
         </label>
 
-        <select class="games-search__select" id="volatility-filter" data-volatility-filter>
+        <select class="games-search__select" id="volatility-filter" data-volatility-filter
+          {% if not gameCatalog44.volatilities.length %}disabled aria-describedby="volatility-filter-note"{% endif %}>
           <option value="">All volatility</option>
-          {# Dynamic values require reviewed source records. #}
+          {% for volatility in gameCatalog44.volatilities %}
+            <option value="{{ volatility.value }}">{{ volatility.label }}</option>
+          {% endfor %}
         </select>
+        {% if not gameCatalog44.volatilities.length %}
+          <p class="games-search__note" id="volatility-filter-note">Volatility filters become available after independent field review.</p>
+        {% endif %}
       </div>
 
       <div class="games-search__field">
@@ -87,7 +93,7 @@ breadcrumbs:
 
       <div class="games-search__actions">
         <button class="games-search__button" data-random-game type="button">
-          Random Game
+          Random game page
         </button>
 
         <button class="games-search__button games-search__button--secondary" data-reset-filters type="button">
