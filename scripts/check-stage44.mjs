@@ -23,11 +23,11 @@ export function verifyNavigation44({outDir="_site"}={}) {
     // Paginated frontmatter can accidentally carry another game's breadcrumb.
     // Assert the rendered current-page label matches the actual game, not
     // merely that a breadcrumb component is present.
-    const breadcrumb = html.match(/<nav\\b[^>]*aria-label=["']Breadcrumb["'][^>]*>([\\s\\S]*?)<\\/nav>/i);
+    const breadcrumb = html.match(/<nav\b[^>]*aria-label=["']Breadcrumb["'][^>]*>([\s\S]*?)<\/nav>/i);
     if (!breadcrumb) {
       errors.push(game.id+": missing game breadcrumb");
     } else {
-      const current = breadcrumb[1].match(/<span\\b[^>]*aria-current=["']page["'][^>]*>([\\s\\S]*?)<\\/span>/i);
+      const current = breadcrumb[1].match(/<span\b[^>]*aria-current=["']page["'][^>]*>([\s\S]*?)<\/span>/i);
       if (!current) {
         errors.push(game.id+": missing current-page breadcrumb");
       } else {
