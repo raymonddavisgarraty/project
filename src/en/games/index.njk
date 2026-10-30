@@ -100,7 +100,7 @@ breadcrumbs:
           Reset
         </button>
 
-        <p class="games-search__count" data-games-count></p>
+        <p class="games-search__count" role="status" aria-live="polite" aria-atomic="true" data-games-count>{{ games.length }} game{% if games.length != 1 %}s{% endif %} found</p>
       </div>
     </div>
 
