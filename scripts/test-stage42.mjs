@@ -11,6 +11,8 @@ const homepageTemplate = readFileSync("src/en/index.njk", "utf8");
 assert.equal((homepageTemplate.match(/<h1\b/g) || []).length, 1, "Home must have exactly one explicit H1");
 assert.match(homepageTemplate, /<h1\b[^>]*>Casino and Slot Game Reviews<\/h1>/);
 
+// This legacy synthetic test deliberately passes routes as a fully
+// indexed fixture. The real runtime supplies indexability42 only.
 const routes = buildRoutes42({
   games: [{ id: "test-game", slug: "test-game", globalFacts: { sourceStatus: "legacy-unverified" } }],
 });
@@ -52,27 +54,27 @@ try {
   const urls = routes.map(r => '<url><loc>' + domain + r.path + '</loc></url>').join("");
   put("/sitemap.xml", xmlStart + urls + "</urlset>");
   put("/robots.txt", "User-agent: *\nAllow: /\n\nSitemap: " + domain + "/sitemap.xml\n");
-  const passed = auditSeo42({ outDir: root, siteUrl: domain, routes, production: true });
+  const passed = auditSeo42({ outDir: root, siteUrl: domain, routes, indexableRoutes: routes, production: true });
   assert.equal(passed.ok, true, passed.errors.join("; "));
   assert.equal(passed.sitemapEntries, 4);
   put("/index.html", rootRedirect.replace('content="0; url=/en/"', 'content="0; url=/de/"'));
-  const wrongRoot = auditSeo42({ outDir: root, siteUrl: domain, routes, production: true });
+  const wrongRoot = auditSeo42({ outDir: root, siteUrl: domain, routes, indexableRoutes: routes, production: true });
   assert(wrongRoot.errors.some(e => e.includes("Root redirect must immediately target /en/")));
   put("/index.html", rootRedirect);
   assert(passed.warnings.some(w => w.includes("legacy-unverified")));
 
-  const dev = auditSeo42({ outDir: root, siteUrl: domain, routes, production: false });
+  const dev = auditSeo42({ outDir: root, siteUrl: domain, routes, indexableRoutes: routes, production: false });
   assert(dev.errors.some(e => e.includes("Development robots")));
 
   page("/en/games/", ["/en/games/missing/"]);
-  const broken = auditSeo42({ outDir: root, siteUrl: domain, routes, production: true });
+  const broken = auditSeo42({ outDir: root, siteUrl: domain, routes, indexableRoutes: routes, production: true });
   assert(broken.errors.some(e => e.includes("broken internal link")));
   assert(broken.errors.some(e => e.includes("orphan public page")));
   page("/en/games/", ["/en/games/test-game/"]);
 
   put("/sitemap.xml", xmlStart + urls +
     '<url><loc>' + domain + '/en/unpublished/</loc></url></urlset>');
-  const leak = auditSeo42({ outDir: root, siteUrl: domain, routes, production: true });
+  const leak = auditSeo42({ outDir: root, siteUrl: domain, routes, indexableRoutes: routes, production: true });
   assert(leak.errors.some(e => e.includes("Unexpected sitemap URL")));
   console.log("Stage 42 tests OK (routes, sitemap, robots, canonical, links, 404, orphan, leak).");
 } finally {

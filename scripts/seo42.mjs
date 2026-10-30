@@ -30,8 +30,14 @@ function anchorFound(html, hash) {
   return !id || [...html.matchAll(/\bid\s*=\s*(['"])(.*?)\1/gi)].some(m => m[2] === id);
 }
 
-export function auditSeo42({ outDir = "_site", siteUrl, routes = [], production = false } = {}) {
+export function auditSeo42({
+  outDir = "_site", siteUrl, routes = [], indexableRoutes = [], production = false,
+} = {}) {
   const errors = [], warnings = [];
+  if (!Array.isArray(routes) || !Array.isArray(indexableRoutes)) {
+    return { ok: false, pages: 0, sitemapEntries: 0,
+      errors: ["Routes and indexableRoutes must be arrays"], warnings };
+  }
   let origin;
   try {
     origin = new URL(siteUrl);
@@ -53,7 +59,22 @@ export function auditSeo42({ outDir = "_site", siteUrl, routes = [], production 
     if (route.auditStatus && route.auditStatus !== "editorially-verified")
       warnings.push(route.path + ": editorial verification outstanding (" + route.auditStatus + ")");
   }
-  const expected = new Set([...paths].map(p => new URL(p, origin).href));
+  // Build routes and approved indexable routes are DISTINCT concepts.
+  // A preview page may exist for local QA without appearing in sitemap.xml.
+  const indexablePaths = new Set();
+  for (const release of indexableRoutes) {
+    const path = release?.path;
+    if (typeof path !== "string" || !paths.has(path)) {
+      errors.push("Indexable URL must be an existing generated route: " + String(path));
+      continue;
+    }
+    if (indexablePaths.has(path)) errors.push("Duplicate indexable route: " + path);
+    indexablePaths.add(path);
+  }
+  const expected = new Set([...indexablePaths].map(p => new URL(p, origin).href));
+  if (production && !indexablePaths.size) {
+    errors.push("Production has no independently approved indexable routes");
+  }
   const sitemapFile = join(out, "sitemap.xml");
   if (!existsSync(sitemapFile)) errors.push("Missing sitemap.xml");
   else {
@@ -122,7 +143,10 @@ export function auditSeo42({ outDir = "_site", siteUrl, routes = [], production 
     if (!/<h1\b[^>]*>[\s\S]*?<\/h1>/i.test(html)) errors.push(path + ": missing h1");
     const robots = attr(findTag(html, "meta", "name", "robots"), "content") || "";
     if (path === "/404.html" && !/\bnoindex\b/i.test(robots)) errors.push("404 must be noindex");
-    if (path !== "/404.html" && /\bnoindex\b/i.test(robots)) errors.push(path + ": sitemap includes noindex");
+    if (path !== "/404.html" && indexablePaths.has(path) && /\bnoindex\b/i.test(robots))
+      errors.push(path + ": sitemap includes noindex");
+    if (path !== "/404.html" && !indexablePaths.has(path) && !/\bnoindex\b/i.test(robots))
+      errors.push(path + ": unapproved generated page must be noindex");
     for (const alt of tags(html, "link").filter(t => attr(t, "rel") === "alternate" && attr(t, "hreflang"))) {
       if (!expected.has(attr(alt, "href"))) errors.push(path + ": missing hreflang target");
     }
