@@ -6,7 +6,13 @@
 
   <title>{{ metaTitle }}</title>
   <meta name="description" content="{{ metaDescription }}">
-  <meta name="robots" content="{{ robots or 'index, follow' }}">
+  {# Only an independently approved, revision-bound release may be indexed.
+     Generated preview pages remain useful for QA but always noindex. #}
+  {% set effectiveRobots = "noindex, follow" %}
+  {% if indexability42.allows(canonical) %}
+    {% set effectiveRobots = robots or "index, follow" %}
+  {% endif %}
+  <meta name="robots" content="{{ effectiveRobots }}">
 
   <link rel="canonical" href="{{ canonical | absoluteUrl(site.url) }}">
   {# Only render alternate URLs explicitly supplied for published translations. #}

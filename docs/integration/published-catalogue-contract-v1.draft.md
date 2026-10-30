@@ -101,3 +101,9 @@ Stage 45: deterministic export, privacy/no-secret scans, 404/canonical consisten
 After Stage 45: publish the Integration Handoff Package, covering this outgoing contract as well as the separate inbound Studio contract. Studio app and Bot app remain separate projects.
 
 **No exporter implementation, no new public URL, no new data model migration, and no Bot/Studio application is permitted by this checkpoint alone.**
+
+## Stage 42.2 guard shared with future catalogue decisions
+
+A newly introduced indexability42 allowlist separates generated QA pages from approved indexable public routes. This is *not* the outbound published JSON catalogue, nor sufficient by itself to authorize consumer data export. Both indexability and the future public JSON catalogue must derive from the same independently reviewed revision/market/publication authority, but keep separate field- and channel-specific privacy/commercial allowlists.
+
+At this checkpoint no approved source revisions, market information permissions or human indexation records exist. Therefore sitemap entries = 0 and all generated review/directory pages are noindex; the public JSON catalogue remains unimplemented. Never use publishedRoutes alone as evidence that a record may appear in Telegram.

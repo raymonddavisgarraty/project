@@ -29,7 +29,8 @@
     "check:review-pages": "node scripts/check-stage443.mjs",
     "check:v1-boundaries": "node scripts/check-v1-boundaries.mjs",
     "test:integration-contract": "node scripts/integration/test-contract-v1.mjs",
-    "check:integration-contract": "node scripts/integration/check-contract-v1.mjs"
+    "check:integration-contract": "node scripts/integration/check-contract-v1.mjs",
+    "test:stage422": "node scripts/test-stage422.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"

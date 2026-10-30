@@ -53,6 +53,12 @@ PR #3 through #10 form a stacked chain. The latest checkpoint branch is based on
 
 Unresolved decisions include actual domain/hosting, legal markets, whether release is information-only, approved evidence/ratings, pilot keyword clusters, privacy analytics and commercial policy. Unknown means no permission, not guessed defaults.
 
+## Stage 42.2 indexability correction — draft for local acceptance
+
+Stage 42.2 adds a **separate approved indexation allowlist**; generated development routes can no longer imply SEO publication. Currently zero approved public-information releases exist; the sitemap is intentionally empty and all local HTML content pages are marked noindex while remaining browsable. The SEO audit validates all generated links but only allowlisted sitemap URLs, and production now fails if no independently approved indexable route exists. See README-STAGE-42.2.md.
+
+This does NOT mean source facts are now verified or that the future outgoing JSON catalogue exists. The Stage 43 audit remains blocked and external commercial permissions remain denied. A real release requires revision-bound human content approvals and separately confirmed legal/public-information scope.
+
 ## Contract timing / release gates
 
 After Stage 42: agree a versioned OFFLINE data package interface including entity IDs, locale, source references, claim statuses, revisions/hash semantics, candidate links, validation errors and manual decisions. The Blueprint example is conceptual, not the currently supported importer CLI schema.
