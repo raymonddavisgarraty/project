@@ -1,0 +1,144 @@
+{# Stage 44.3 — safe, informative pre-release detail UI.
+   Inputs from calling page: previewType, previewName, previewKindLabel,
+   previewStateText, previewFactsTitle, previewRows, previewSnapshot,
+   previewCatalogUrl, previewCatalogText. No unverified product copy. #}
+<section class="review-preview" data-review-preview="{{ previewType }}">
+  <div class="review-preview__hero">
+    <div class="container">
+      {% include "components/breadcrumbs/breadcrumbs.njk" %}
+      <div class="review-preview__hero-grid">
+        <div class="review-preview__intro">
+          <p class="review-preview__eyebrow">{{ previewKindLabel }} directory <span aria-hidden="true">/</span> Editorial review</p>
+          <h1 class="review-preview__title">{{ previewName }}</h1>
+          <p class="review-preview__lead"><strong>{{ previewStateText }}</strong> This listing has not completed its source and editorial checks. Unreviewed facts, numerical ratings, promotions and descriptive claims are intentionally withheld.</p>
+          <div class="review-preview__actions">
+            <a class="review-preview__action review-preview__action--primary" href="#verified-details">Check available facts</a>
+            <a class="review-preview__action review-preview__action--secondary" href="{{ previewCatalogUrl }}">{{ previewCatalogText }}</a>
+          </div>
+        </div>
+        <aside class="review-preview__status" aria-label="Editorial verification status" data-review-status>
+          <span class="review-preview__status-label"><span class="review-preview__status-dot" aria-hidden="true"></span> Verification in progress</span>
+          <strong class="review-preview__status-title">Source checks are underway</strong>
+          <dl class="review-preview__summary">
+            <div>
+              <dt>Individual claims checked</dt>
+              <dd>{{ previewSnapshot.checkedClaims }} / {{ previewSnapshot.claimCount }}</dd>
+            </div>
+            <div>
+              <dt>Full editorial review</dt>
+              <dd>Pending</dd>
+            </div>
+            <div>
+              <dt>Rating and offers</dt>
+              <dd>Withheld</dd>
+            </div>
+          </dl>
+          <p class="review-preview__status-footnote">These counts describe our internal evidence checks, not a quality score or endorsement.</p>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <div class="container review-preview__layout">
+    <article class="review-preview__main" aria-label="{{ previewKindLabel }} verification details">
+      <section class="review-preview__section" id="verified-details" aria-labelledby="verified-details-title" data-review-facts>
+        <div class="review-preview__section-heading">
+          <span class="review-preview__section-number" aria-hidden="true">01</span>
+          <div>
+            <h2 id="verified-details-title">{{ previewFactsTitle }}</h2>
+            <p>Only individually checked source claims can appear here. A checked field does not mean the complete review is ready.</p>
+          </div>
+        </div>
+        {% if previewRows.length %}
+          <div class="review-preview__facts-table">
+            {% set rows = previewRows %}
+            {% include "components/info-table/info-table.njk" %}
+          </div>
+        {% else %}
+          <div class="review-preview__empty" data-review-facts-empty>
+            <span class="review-preview__empty-symbol" aria-hidden="true">—</span>
+            <div>
+              <strong>No {{ previewType }} characteristics have completed source review yet.</strong>
+              <p>Values will be added individually when their evidence and editorial decision are documented. We do not substitute estimates or data from other products.</p>
+            </div>
+          </div>
+        {% endif %}
+      </section>
+
+      <section class="review-preview__section" id="review-checklist" aria-labelledby="review-checklist-title" data-review-checklist>
+        <div class="review-preview__section-heading">
+          <span class="review-preview__section-number" aria-hidden="true">02</span>
+          <div>
+            <h2 id="review-checklist-title">What we check before publishing</h2>
+            <p>Each category requires evidence relevant to the exact product, version and market where applicable.</p>
+          </div>
+        </div>
+        <div class="review-preview__check-grid">
+          {% for criterion in previewSnapshot.sections %}
+          <section class="review-preview__check-card">
+            <div class="review-preview__check-top">
+              <span class="review-preview__check-index" aria-hidden="true">{{ loop.index }}</span>
+              {% if criterion.state == "claims-checked" %}
+                <span class="review-preview__check-state review-preview__check-state--checked">Listed claims checked</span>
+              {% else %}
+                <span class="review-preview__check-state">Checks pending</span>
+              {% endif %}
+            </div>
+            <h3>{{ criterion.title }}</h3>
+            <p>{{ criterion.description }}</p>
+            <p class="review-preview__check-count">{{ criterion.checkedCount }} / {{ criterion.totalCount }} recorded claims checked</p>
+          </section>
+          {% endfor %}
+        </div>
+      </section>
+
+      <section class="review-preview__section" id="editorial-process" aria-labelledby="editorial-process-title" data-review-process>
+        <div class="review-preview__section-heading">
+          <span class="review-preview__section-number" aria-hidden="true">03</span>
+          <div>
+            <h2 id="editorial-process-title">How this review is prepared</h2>
+            <p>Claims and editorial judgments follow separate checks. Until those checks are complete, the original review is not displayed as a verified assessment.</p>
+          </div>
+        </div>
+        <ol class="review-preview__steps">
+          <li>
+            <strong>Identify the exact subject</strong>
+            <span>Confirm the product, operator or game edition before collecting material facts.</span>
+          </li>
+          <li>
+            <strong>Compare authoritative sources</strong>
+            <span>Record precise values, sources and observed dates; investigate conflicts instead of guessing.</span>
+          </li>
+          <li>
+            <strong>Complete editorial assessment</strong>
+            <span>Review the text and methodology, then record an accountable approval decision.</span>
+          </li>
+          <li>
+            <strong>Determine release eligibility</strong>
+            <span>Publication remains restricted until the evidence, editorial and applicable market requirements are satisfied.</span>
+          </li>
+        </ol>
+      </section>
+      <div class="review-preview__return">
+        <p>Looking for another listing?</p>
+        <a href="{{ previewCatalogUrl }}">{{ previewCatalogText }}</a>
+      </div>
+    </article>
+
+    <aside class="review-preview__sidebar" aria-label="On-page navigation">
+      <nav class="review-preview__toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol>
+          <li><a href="#verified-details">Source-reviewed facts</a></li>
+          <li><a href="#review-checklist">Verification checklist</a></li>
+          <li><a href="#editorial-process">Editorial process</a></li>
+        </ol>
+      </nav>
+      <div class="review-preview__aside-note">
+        <h2>Why are details missing?</h2>
+        <p>Unconfirmed figures and ratings can mislead readers. The full review stays withheld until appropriate sources and editorial decisions are recorded.</p>
+        <p>This directory entry is not a recommendation to play or use an operator.</p>
+      </div>
+    </aside>
+  </div>
+</section>
