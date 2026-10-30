@@ -4,6 +4,8 @@
 
 .casinos-search__panel {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
     gap: 16px;
     margin-bottom: 28px;
     padding: 18px;
@@ -15,6 +17,7 @@
 
 .casinos-search__field {
     position: relative;
+    min-width: 0;
 }
 
 .casinos-search__label {
@@ -26,6 +29,8 @@
 
 .casinos-search__input,
 .casinos-search__select {
+    display: block;
+    box-sizing: border-box;
     width: 100%;
     min-height: 52px;
     border: 1px solid var(--color-border);
@@ -61,12 +66,16 @@
 
 .casinos-search__actions {
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
-    align-items: end;
+    gap: 10px 16px;
+    min-width: 0;
 }
 
 .casinos-search__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     min-height: 52px;
     padding: 12px 18px;
     border: 0;
@@ -88,9 +97,15 @@
 }
 
 .casinos-search__count {
+    display: inline-flex;
+    align-items: center;
+    min-height: 52px;
     margin: 0;
     color: var(--color-muted);
     font-weight: 800;
+    line-height: 1.4;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
 }
 
 .casinos-search__grid {
@@ -112,10 +127,26 @@
     display: block;
 }
 
-@media (min-width: 900px) {
+/* Keep native [hidden] stronger than the CSS grid display. */
+.casinos-search [data-casino-card][hidden] {
+    display: none !important;
+}
+
+.casinos-search__note {
+    margin: 8px 0 0;
+    color: var(--color-muted);
+    line-height: 1.45;
+    font-size: 0.85rem;
+}
+
+.casinos-search__select:disabled {
+    opacity: 0.75;
+    cursor: not-allowed;
+}
+
+@media (min-width: 620px) {
     .casinos-search__panel {
-        grid-template-columns: minmax(260px, 1.4fr) minmax(160px, 0.7fr) minmax(160px, 0.7fr) minmax(160px, 0.7fr);
-        align-items: end;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .casinos-search__actions {
@@ -124,5 +155,11 @@
 
     .casinos-search__grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 900px) {
+    .casinos-search__panel {
+        grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
     }
 }

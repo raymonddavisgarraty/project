@@ -22,7 +22,9 @@
     "check:display": "node scripts/check-stage432.mjs",
     "test:stage433": "node scripts/test-stage433.mjs",
     "test:stage44": "node scripts/test-stage44.mjs",
-    "check:navigation": "node scripts/check-stage44.mjs"
+    "check:navigation": "node scripts/check-stage44.mjs",
+    "test:stage442": "node scripts/test-stage442.mjs",
+    "check:catalogue": "node scripts/check-stage442.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"
