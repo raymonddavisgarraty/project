@@ -8,6 +8,8 @@ import {loadRegistries,propose36} from "../importer/registry36.mjs";
 const fixturePath="tests/fixtures/integration/studio-game-candidate.pending.v1.json";
 const sample=JSON.parse(readFileSync(fixturePath,"utf8"));
 const snapshot=readFileSync("tests/fixtures/integration/synthetic-source-snapshot.txt");
+// Snapshot bytes must stay LF on Windows and Unix; Git enforces eol=lf.
+assert(!snapshot.includes(13),"Synthetic source fixture was checked out with CRLF; .gitattributes must enforce LF");
 const cloned=()=>structuredClone(sample);
 const fixedNow={now:"2026-10-30T00:00:00Z"};
 

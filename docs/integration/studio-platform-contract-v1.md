@@ -73,3 +73,7 @@ The sample report must indicate validated-proposal-only, stage34DirectImportComp
 ## Next gate
 
 After Stage 43/44: test one genuinely sourced, independently reviewed package through a purpose-built intake adapter, with no live write. Complete the original content pilot and human decisions. After Stage 45: freeze and deliver Integration Handoff Package, including this contract's migration plan, all supported entity types, failures, fixtures, analytics and privacy. Only then start Studio MVP in another chat.
+
+### Cross-platform fixture reproducibility (Stage 42.2 follow-up)
+
+`tests/fixtures/integration/synthetic-source-snapshot.txt` is a **synthetic, line-ending-sensitive** SHA-256 fixture. `.gitattributes` pins its working-tree line endings to LF (`text eol=lf`) on Windows, macOS and Linux. The fixture content and declared digest are deliberately updated together so existing checkouts refresh the file when switching branches. The test hashes the **actual bytes** and rejects CRLF, rather than normalizing text inside the validator or weakening its checksum. This is not a real evidence snapshot or publication approval.
