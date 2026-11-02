@@ -2,7 +2,7 @@
 // and unsigned Studio suggestions are never read here.
 const validSlug = s => typeof s === "string" && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(s);
 export function buildRoutes42({ games = [], casinos = [] } = {}) {
-  const routes = [], seen = new Set(), ids = new Set();
+  const routes = [], seen = new Set(), ids = new Set(), casinoIds = new Set();
   const add = (path, type, extra = {}) => {
     if (seen.has(path)) throw new Error("Duplicate public route: " + path);
     seen.add(path); routes.push({ path, type, ...extra });
@@ -20,9 +20,14 @@ export function buildRoutes42({ games = [], casinos = [] } = {}) {
     });
   }
   for (const casino of casinos) {
-    if (!validSlug(casino.slug)) throw new Error("Invalid published casino slug");
+    // Do not silently turn a localized URL slug into a durable entity key.
+    if (!validSlug(casino.slug) || !validSlug(casino.id))
+      throw new Error("Invalid published casino identity: explicit stable ID and slug required");
+    if (casinoIds.has(casino.id))
+      throw new Error("Duplicate published casino ID: " + casino.id);
+    casinoIds.add(casino.id);
     add("/en/casinos/" + casino.slug + "/", "casino", {
-      entityId: casino.id || casino.slug, auditStatus: "claims-awaiting-audit",
+      entityId: casino.id, auditStatus: "claims-awaiting-audit",
     });
   }
   return routes;
