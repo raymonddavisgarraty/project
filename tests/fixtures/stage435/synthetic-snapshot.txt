@@ -1,0 +1,2 @@
+Synthetic source snapshot for integrity tests only.
+It is not an official game document and verifies no gameplay facts.

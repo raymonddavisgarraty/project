@@ -10,3 +10,5 @@ Thumbs.db
 
 data/editorial/review-log43/
 data/editorial/reports/stage431/
+# Research source snapshots may contain copyrighted/private evidence; never commit.
+data/editorial/evidence-snapshots/

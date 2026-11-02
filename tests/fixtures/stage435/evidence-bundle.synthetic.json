@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "kind": "research-source-snapshot-bundle",
+  "bundleId": "synthetic-sweet-bonanza-435",
+  "entityType": "game",
+  "entityId": "sweet-bonanza",
+  "edition": "original-sweet-bonanza-2019",
+  "createdAt": "2026-10-30T11:00:00Z",
+  "sampleOnly": true,
+  "status": "pending-source-review",
+  "editorialApproved": false,
+  "publicationApproved": false,
+  "autoPublish": false,
+  "snapshotRecords": [
+    {
+      "sourceId": "synthetic-fixture",
+      "sourceUrl": "https://example.org/nonreal/source-snapshot-test",
+      "sourceType": "synthetic-test",
+      "fileName": "synthetic-snapshot.txt",
+      "mimeType": "text/plain",
+      "observedAt": "2026-10-30T10:00:00Z",
+      "byteLength": 120,
+      "sha256": "b3117e3e1b95c9ef36203375b683d6933f2cd4b43505757ccd5da592c47480d3",
+      "documentRevision": null,
+      "authenticityStatus": "unverified",
+      "rightsStatus": "pending-review",
+      "reviewStatus": "candidate-only"
+    }
+  ],
+  "claimLeads": [],
+  "notes": "Synthetic byte-integrity exercise only. No game facts are represented, source authenticity and retention rights remain unverified."
+}

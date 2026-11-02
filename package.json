@@ -34,7 +34,9 @@
     "test:stage423": "node scripts/test-stage423.mjs",
     "check:entities": "node scripts/check-stage423.mjs",
     "test:stage434": "node scripts/test-stage434.mjs",
-    "check:evidence-pilot": "node scripts/check-stage434.mjs"
+    "check:evidence-pilot": "node scripts/check-stage434.mjs",
+    "test:stage435": "node scripts/test-stage435.mjs",
+    "check:snapshot-integrity": "node scripts/check-stage435.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"

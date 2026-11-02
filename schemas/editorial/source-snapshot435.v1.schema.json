@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:seo-platform:editorial:private-source-snapshot:435-v1",
+  "title": "Stage 43.5 private research source snapshot manifest v1",
+  "description": "Only private pending-research integrity metadata; checksums are not source-authenticity/rights/approval decisions. Cross-reference checks are in source-snapshot435.mjs.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "kind": {
+      "const": "research-source-snapshot-bundle"
+    },
+    "bundleId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "entityType": {
+      "const": "game"
+    },
+    "entityId": {
+      "const": "sweet-bonanza"
+    },
+    "edition": {
+      "const": "original-sweet-bonanza-2019"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,3})?Z$"
+    },
+    "sampleOnly": {
+      "type": "boolean"
+    },
+    "status": {
+      "const": "pending-source-review"
+    },
+    "editorialApproved": {
+      "const": false
+    },
+    "publicationApproved": {
+      "const": false
+    },
+    "autoPublish": {
+      "const": false
+    },
+    "snapshotRecords": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "sourceId": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "sourceUrl": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          },
+          "sourceType": {
+            "enum": [
+              "first-party-announcement",
+              "first-party-game-page",
+              "unverified-third-party-rulebook-copy",
+              "synthetic-test"
+            ]
+          },
+          "fileName": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*\\.(?:txt|html|pdf)$"
+          },
+          "mimeType": {
+            "enum": [
+              "text/plain",
+              "text/html",
+              "application/pdf"
+            ]
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,3})?Z$"
+          },
+          "byteLength": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 8388608
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "documentRevision": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "minLength": 2,
+                "maxLength": 100
+              }
+            ]
+          },
+          "authenticityStatus": {
+            "const": "unverified"
+          },
+          "rightsStatus": {
+            "const": "pending-review"
+          },
+          "reviewStatus": {
+            "const": "candidate-only"
+          }
+        },
+        "required": [
+          "sourceId",
+          "sourceUrl",
+          "sourceType",
+          "fileName",
+          "mimeType",
+          "observedAt",
+          "byteLength",
+          "sha256",
+          "documentRevision",
+          "authenticityStatus",
+          "rightsStatus",
+          "reviewStatus"
+        ]
+      }
+    },
+    "claimLeads": {
+      "type": "array",
+      "maxItems": 30,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "field": {
+            "enum": [
+              "providerId",
+              "providerName",
+              "rtp",
+              "volatility",
+              "reels",
+              "paylines",
+              "paylineType",
+              "releaseYear",
+              "maxWinMultiplier",
+              "hitFrequency"
+            ]
+          },
+          "sourceId": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "candidateValue": {},
+          "qualifier": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "status": {
+            "const": "candidate-only"
+          }
+        },
+        "required": [
+          "field",
+          "sourceId",
+          "candidateValue",
+          "qualifier",
+          "status"
+        ]
+      }
+    },
+    "notes": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 1200
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "kind",
+    "bundleId",
+    "entityType",
+    "entityId",
+    "edition",
+    "createdAt",
+    "sampleOnly",
+    "status",
+    "editorialApproved",
+    "publicationApproved",
+    "autoPublish",
+    "snapshotRecords",
+    "claimLeads",
+    "notes"
+  ]
+}
