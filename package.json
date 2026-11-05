@@ -52,7 +52,8 @@
     "test:content-workflow": "node scripts/test-content-workflow-v1.mjs",
     "check:content-workflow": "node scripts/check-content-workflow-v1.mjs",
     "test:pilot-copy": "node scripts/test-sweet-bonanza-copy-v1.mjs",
-    "test:local-editorial-preview": "node scripts/test-local-editorial-preview.mjs"
+    "test:local-editorial-preview": "node scripts/test-local-editorial-preview.mjs",
+    "test:pilot-cleanup": "node scripts/test-pilot-cleanup.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"

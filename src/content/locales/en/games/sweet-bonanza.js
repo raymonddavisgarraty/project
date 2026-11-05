@@ -1,7 +1,7 @@
 // Original informational copy candidate, 2026-11-05.
 // EDITORIAL REVIEW ONLY: Stage 43 provenance and publication flags are unchanged.
-// The legacy numerical rating and commercial identifiers below remain behind
-// the full-review/publication guard; they are NOT approved disclosures.
+// Unsupported scores, affiliate IDs and purportedly similar-game recommendations
+// are intentionally omitted from this pilot's source module.
 export default {
   slug: "sweet-bonanza",
 
@@ -27,15 +27,8 @@ export default {
     },
   },
 
-  // Legacy rating retained as unapproved source data, never a published score.
-  // Reevaluate after a documented rating method or remove before final release.
-  rating: {
-    overall: 4.7,
-    gameplay: 4.7,
-    bonusFeatures: 4.8,
-    mobile: 4.7,
-    design: 4.6,
-  },
+  // No rating until we have a transparent, reviewed methodology.
+  rating: null,
 
   sections: {
     overview: {
@@ -107,15 +100,14 @@ export default {
     },
   ],
 
-  // Curated game navigation remains an unapproved internal QA relationship.
-  relatedGames: ["the-big-dog-house"],
+  // Do not recommend games as similar without an editorial relation review.
+  relatedGames: [],
   author: "review-team",
   updatedDate: "2026-11-05",
 
-  // Retained only for backwards-compatible internal representation.
-  // Default-deny commercial policy prevents any unapproved external CTA.
+  // Information-only pilot: no affiliate identifier or outbound offer.
   monetization: {
-    affiliateId: "pragplay",
+    affiliateId: null,
   },
 
   // Research leads, NOT approved source provenance or permission to publish.
