@@ -7,17 +7,18 @@ pagination:
 permalink: "/en/casinos/{{ casino.slug }}/index.html"
 eleventyComputed:
   lang: en
-  metaTitle: "{{ casino.title }} Review"
-  metaDescription: "{{ casino.metaDescription }}"
+  metaTitle: "{{ casino.title }} | Editorial verification pending"
+  metaDescription: "This casino listing is undergoing editorial fact verification. Bonus, licence, rating and payment claims are withheld until reviewed."
   canonical: "/en/casinos/{{ casino.slug }}/"
-  breadcrumbs:
-    - label: Home
-      url: /en/
-    - label: Casinos
-      url: /en/casinos/
-    - label: "{{ casino.title }}"
 ---
-
+{# Compute the current breadcrumb for each paginated casino, not once for the
+   entire collection as can happen with nested frontmatter data. #}
+{% set breadcrumbs = [
+  { label: "Home", url: "/en/" },
+  { label: "Casinos", url: "/en/casinos/" },
+  { label: casino.title }
+] %}
+{% if editorialDisplay432.casino(casino) %}
 {% include "components/casino-hero/casino-hero.njk" %}
 
 <section class="section">
@@ -110,3 +111,17 @@ eleventyComputed:
     </div>
   </div>
 </section>
+
+{% else %}
+{# No claim or endorsement is inferred from this catalogue identity. #}
+{% set previewType = "casino" %}
+{% set previewName = casino.title %}
+{% set previewKindLabel = "Casino" %}
+{% set previewStateText = "Editorial verification pending." %}
+{% set previewFactsTitle = "Individually source-reviewed information" %}
+{% set previewRows = editorialFields433.casinoRows(casino) %}
+{% set previewSnapshot = reviewPreview443.forCasino(casino) %}
+{% set previewCatalogUrl = "/en/casinos/" %}
+{% set previewCatalogText = "Browse casinos catalogue" %}
+{% include "components/review-preview/review-preview.njk" %}
+{% endif %}

@@ -1,3 +1,4 @@
+{% if editorialDisplay432.casino(item) %}
 <article class="listing-card ui-card ui-card--interactive compact-card">
   <div class="listing-card__content">
     <p class="listing-card__meta">{{ item.provider or item.bonus }}</p>
@@ -19,3 +20,13 @@
     </div>
   </div>
 </article>
+{% else %}
+<article class="listing-card ui-card compact-card">
+  <div class="listing-card__content">
+    <p class="listing-card__meta">Editorial verification pending</p>
+    <h2 class="listing-card__title"><a href="{{ itemUrl }}">{{ item.title }}</a></h2>
+    <p class="listing-card__text">This listing is undergoing source checks; claims and ratings are withheld.</p>
+    <div class="listing-card__footer"><a class="ui-button ui-button--ghost" href="{{ itemUrl }}">View status</a></div>
+  </div>
+</article>
+{% endif %}

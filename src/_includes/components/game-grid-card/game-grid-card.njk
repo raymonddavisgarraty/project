@@ -1,3 +1,4 @@
+{% if editorialDisplay432.game(game) %}
 <a
   class="game-grid-card ui-card ui-card--interactive"
   href="/en/games/{{ game.slug }}/"
@@ -34,3 +35,27 @@
     </span>
   </span>
 </a>
+{% else %}
+<a class="game-grid-card ui-card ui-card--interactive" href="/en/games/{{ game.slug }}/"
+   data-game-card data-game-title="{{ game.title | lower }}"
+   data-game-provider="{% if editorialFields433.gameFieldVerified(game, 'providerName') %}{{ game.globalFacts.providerName | lower }}{% endif %}"
+   data-game-rtp=""
+   data-game-volatility="{% if editorialFields433.gameFieldVerified(game, 'volatility') %}{{ game.globalFacts.volatility | lower }}{% endif %}"
+   data-game-rating="">
+  <span class="game-grid-card__media">
+    <span class="game-grid-card__placeholder"><strong>{{ game.title }}</strong></span>
+  </span>
+  <span class="game-grid-card__content">
+    <span class="game-grid-card__title">{{ game.title }}</span>
+    <span class="game-grid-card__meta">Facts and rating under editorial review</span>
+    {% set checkedFacts = editorialFields433.gameRows(game) %}
+    {% if checkedFacts.length %}
+      <span class="game-grid-card__meta">Individually reviewed:
+        {% for fact in checkedFacts %}
+          {{ fact.label }}: {{ fact.value }}{% if not loop.last %} · {% endif %}
+        {% endfor %}
+      </span>
+    {% endif %}
+  </span>
+</a>
+{% endif %}

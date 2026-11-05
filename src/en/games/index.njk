@@ -3,8 +3,8 @@ layout: layouts/base.njk
 lang: en
 permalink: /en/games/
 
-metaTitle: Best Online Slot Games Reviews
-metaDescription: Browse slot reviews by title, provider, RTP, volatility and rating.
+metaTitle: Game Listings | Verification Pending
+metaDescription: Browse game listings undergoing independent source and editorial verification.
 
 canonical: /en/games/
 
@@ -21,13 +21,16 @@ breadcrumbs:
     <h1>Slot Games</h1>
 
     <p>
-      Browse slot reviews by game title, provider, RTP, volatility and rating.
+      Browse game pages by title. Unreviewed provider details, game statistics and ratings are withheld.
     </p>
   </div>
 </section>
 
 <section class="games-search" data-games-search>
   <div class="container">
+    <noscript>
+      <p class="catalog-nojs-notice">Search and filters require JavaScript. All games listings remain available below.</p>
+    </noscript>
     <div class="games-search__panel">
       <div class="games-search__field games-search__field--wide">
         <label class="games-search__label" for="games-search">
@@ -38,9 +41,10 @@ breadcrumbs:
 
         <input
           id="games-search"
+          aria-controls="games-results"
           class="games-search__input"
           type="search"
-          placeholder="Search game or provider..."
+          placeholder="Search by game title..."
           autocomplete="off"
           data-games-search-input
         >
@@ -51,16 +55,16 @@ breadcrumbs:
           Provider
         </label>
 
-        <select class="games-search__select" id="provider-filter" data-provider-filter>
+        <select class="games-search__select" id="provider-filter" data-provider-filter
+          {% if not gameCatalog44.providers.length %}disabled aria-describedby="provider-filter-note"{% endif %}>
           <option value="">All providers</option>
-          {% set providers = [] %}
-          {% for game in games %}
-            {% if game.provider not in providers %}
-              {% set providers = providers.concat([game.provider]) %}
-              <option value="{{ game.provider | lower }}">{{ game.provider }}</option>
-            {% endif %}
+          {% for provider in gameCatalog44.providers %}
+            <option value="{{ provider.value }}">{{ provider.label }}</option>
           {% endfor %}
         </select>
+        {% if not gameCatalog44.providers.length %}
+          <p class="games-search__note" id="provider-filter-note">Provider filters become available when source-reviewed values exist.</p>
+        {% endif %}
       </div>
 
       <div class="games-search__field">
@@ -68,12 +72,16 @@ breadcrumbs:
           Volatility
         </label>
 
-        <select class="games-search__select" id="volatility-filter" data-volatility-filter>
+        <select class="games-search__select" id="volatility-filter" data-volatility-filter
+          {% if not gameCatalog44.volatilities.length %}disabled aria-describedby="volatility-filter-note"{% endif %}>
           <option value="">All volatility</option>
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
+          {% for volatility in gameCatalog44.volatilities %}
+            <option value="{{ volatility.value }}">{{ volatility.label }}</option>
+          {% endfor %}
         </select>
+        {% if not gameCatalog44.volatilities.length %}
+          <p class="games-search__note" id="volatility-filter-note">Volatility filters become available after independent field review.</p>
+        {% endif %}
       </div>
 
       <div class="games-search__field">
@@ -83,29 +91,28 @@ breadcrumbs:
 
         <select class="games-search__select" id="sort-filter" data-sort-filter>
           <option value="title-asc">Title A-Z</option>
-          <option value="rating-desc">Highest rating</option>
-          <option value="rtp-desc">Highest RTP</option>
+          {# Rating and RTP sorting require approved data. #}
         </select>
       </div>
 
       <div class="games-search__actions">
         <button class="games-search__button" data-random-game type="button">
-          Random Game
+          Highlight a random game
         </button>
 
         <button class="games-search__button games-search__button--secondary" data-reset-filters type="button">
           Reset
         </button>
 
-        <p class="games-search__count" data-games-count></p>
+        <p class="games-search__count" role="status" aria-live="polite" aria-atomic="true" data-games-count>{{ games.length }} game{% if games.length != 1 %}s{% endif %} found</p>
       </div>
     </div>
 
-    <p class="games-search__empty" data-games-empty>
+    <p class="games-search__empty" data-games-empty role="status">
       No games found. Try another search or reset filters.
     </p>
 
-    <div class="games-search__grid" data-games-grid>
+    <div class="games-search__grid" id="games-results" data-games-grid>
       {% for game in games %}
         {% include "components/game-grid-card/game-grid-card.njk" %}
       {% endfor %}
@@ -113,4 +120,5 @@ breadcrumbs:
   </div>
 </section>
 
+<script src="/assets/js/pages/catalog-search442.js" defer></script>
 <script src="/assets/js/pages/games-search.js" defer></script>

@@ -172,30 +172,47 @@
     background: #ffffff;
 }
 
+/* Small visual indicators with large keyboard/pointer hit areas.
+   Lighthouse Desktop flagged the old 9px buttons as undersized. */
 .home-banners__dots {
     display: flex;
-    gap: 7px;
-    padding: 8px;
+    gap: 4px;
+    padding: 4px;
     border-radius: 999px;
     background: rgba(2, 6, 23, 0.32);
 }
 
 .home-banners__dot {
-    width: 9px;
-    height: 9px;
+    display: grid;
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+    place-items: center;
     padding: 0;
     border: 0;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.45);
+    background: transparent;
     cursor: pointer;
-    transition:
-        width 180ms ease,
-        background-color 180ms ease;
 }
 
-.home-banners__dot--active {
-    width: 26px;
+.home-banners__dot::before {
+    content: "";
+    display: block;
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.45);
+    transition: width 180ms ease, background-color 180ms ease;
+}
+
+.home-banners__dot--active::before {
+    width: 20px;
     background: #ffffff;
+}
+
+.home-banners__dot:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: -2px;
 }
 
 @media (max-width: 620px) {

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "status": "pending-review",
+  "methodologyId": null,
+  "review": {
+    "status": "pending-review",
+    "reviewerId": null,
+    "reviewedAt": null
+  },
+  "notes": "No approved methodology or empirical scoring evidence has been recorded. Do not infer approval from numeric ratings."
+}

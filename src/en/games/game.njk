@@ -7,16 +7,18 @@ pagination:
 permalink: "/en/games/{{ game.slug }}/index.html"
 eleventyComputed:
   lang: en
-  metaTitle: "{{ game.seo.metaTitle }}"
-  metaDescription: "{{ game.seo.metaDescription }}"
+  metaTitle: "{{ game.hero.title }} | Editorial verification pending"
+  metaDescription: "Game information is undergoing editorial fact verification. Numerical characteristics and ratings are withheld until reviewed."
   canonical: "/en/games/{{ game.slug }}/"
-  breadcrumbs:
-    - label: Home
-      url: /en/
-    - label: Games
-      url: /en/games/
-    - label: "{{ game.hero.title }}"
 ---
+{# Build breadcrumbs in the per-game Nunjucks context. Nested frontmatter
+   computed arrays may retain the title from the first pagination entry. #}
+{% set breadcrumbs = [
+  { label: "Home", url: "/en/" },
+  { label: "Games", url: "/en/games/" },
+  { label: game.hero.title }
+] %}
+{% if editorialDisplay432.game(game) %}
 {% include "components/game-hero/game-hero.njk" %}
 
 <section class="section">
@@ -139,3 +141,19 @@ eleventyComputed:
     </div>
   </div>
 </section>
+{% else %}
+{# Page-specific identity is safe; all factual values come from Stage 43.3. #}
+{% set previewType = "game" %}
+{% set previewName = game.hero.title %}
+{% set previewKindLabel = "Game" %}
+{% set previewStateText = "Editorial verification pending." %}
+{% set previewFactsTitle = "Individually source-reviewed facts" %}
+{% set previewRows = editorialFields433.gameRows(game) %}
+{% set previewSnapshot = reviewPreview443.forGame(game) %}
+{% set previewCatalogUrl = "/en/games/" %}
+{% set previewCatalogText = "Browse games catalogue" %}
+{% include "components/review-preview/review-preview.njk" %}
+{% endif %}
+
+{# Shared contextual navigation for both full and pending-review layouts. #}
+{% include "components/game-context/game-context.njk" %}

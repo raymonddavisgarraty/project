@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "dossierId": "sweet-bonanza-original-434",
+  "status": "research-only",
+  "gameId": "sweet-bonanza",
+  "edition": "original-sweet-bonanza-2019",
+  "observedOn": "2026-11-02",
+  "editorialApproved": false,
+  "publicationApproved": false,
+  "autoPublish": false,
+  "baselineFacts": {
+    "providerId": "pragmatic-play",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.48,
+    "volatility": "high",
+    "reels": 6,
+    "paylines": null,
+    "paylineType": "pays-anywhere",
+    "releaseYear": 2019,
+    "maxWinMultiplier": 21100,
+    "hitFrequency": "medium"
+  },
+  "sources": [
+    {
+      "sourceId": "pragmatic-2019-launch",
+      "sourceType": "first-party-announcement",
+      "url": "https://www.pragmaticplay.com/en/news/pragmatic-play-launches-sweet-bonanza/",
+      "publishedOn": "2019-06-25",
+      "observedOn": "2026-11-02",
+      "snapshotSha256": null,
+      "reviewStatus": "research-lead-only",
+      "rightsStatus": "not-reviewed",
+      "note": "2019 producer announcement, not a game math sheet or operator-specific configuration."
+    },
+    {
+      "sourceId": "pragmatic-game-page",
+      "sourceType": "first-party-game-page",
+      "url": "https://www.pragmaticplay.com/en/games/sweet-bonanza-slot/",
+      "publishedOn": null,
+      "observedOn": "2026-11-02",
+      "snapshotSha256": null,
+      "reviewStatus": "research-lead-only",
+      "rightsStatus": "not-reviewed",
+      "note": "Producer's product overview; mechanics are described but exact RTP is not established."
+    },
+    {
+      "sourceId": "mirrored-rules-pdf",
+      "sourceType": "unverified-third-party-rulebook-copy",
+      "url": "https://yesplay.bet/assets/documents/pragmatic-play-Sweet-Bonanza-rules.pdf",
+      "publishedOn": null,
+      "observedOn": "2026-11-02",
+      "snapshotSha256": null,
+      "reviewStatus": "research-lead-only",
+      "rightsStatus": "not-reviewed",
+      "note": "Third-party PDF that appears to reproduce game rules; publisher issuance, edition, jurisdiction, checksum and reuse rights are not authenticated. DO NOT treat as authoritative."
+    }
+  ],
+  "observations": [
+    {
+      "field": "providerName",
+      "sourceId": "pragmatic-2019-launch",
+      "candidateValue": "Pragmatic Play",
+      "qualifier": "publisher-identity",
+      "note": "Producer announces the original game under its own name. Registry binding still requires review."
+    },
+    {
+      "field": "reels",
+      "sourceId": "pragmatic-2019-launch",
+      "candidateValue": 6,
+      "qualifier": "layout-six-by-five",
+      "note": "2019 announcement describes 6 columns by 5 rows."
+    },
+    {
+      "field": "releaseYear",
+      "sourceId": "pragmatic-2019-launch",
+      "candidateValue": 2019,
+      "qualifier": "announcement-year-only",
+      "note": "Announcement date is 25 June 2019, not proof of exact commercial availability."
+    },
+    {
+      "field": "volatility",
+      "sourceId": "pragmatic-2019-launch",
+      "candidateValue": "high",
+      "qualifier": "producer-description",
+      "note": "The 2019 announcement describes the original release as high-volatility."
+    },
+    {
+      "field": "volatility",
+      "sourceId": "mirrored-rules-pdf",
+      "candidateValue": "medium",
+      "qualifier": "unverified-rules-description",
+      "note": "Third-party-hosted rules page labels volatility medium; edition and authenticity unresolved."
+    },
+    {
+      "field": "paylineType",
+      "sourceId": "pragmatic-game-page",
+      "candidateValue": "pays-anywhere",
+      "qualifier": "internal-normalization-proposal",
+      "note": "Official overview describes matching 8–12+ symbols anywhere; internal taxonomy label requires reviewer confirmation."
+    },
+    {
+      "field": "maxWinMultiplier",
+      "sourceId": "pragmatic-2019-launch",
+      "candidateValue": 21175,
+      "qualifier": "producer-announced-maximum",
+      "note": "Publisher's 2019 announcement gives up to 21,175x; current legacy data says 21,100x."
+    },
+    {
+      "field": "rtp",
+      "sourceId": "mirrored-rules-pdf",
+      "candidateValue": 96.51,
+      "qualifier": "unverified-theoretical-rtp",
+      "note": "Third-party-hosted rules PDF gives theoretical 96.51%; edition/operator configuration unconfirmed."
+    },
+    {
+      "field": "rtp",
+      "sourceId": "mirrored-rules-pdf",
+      "candidateValue": 96.48,
+      "qualifier": "unverified-minimum-rtp",
+      "note": "Same unverified copy gives minimum 96.48%; not evidence that 96.48% is the default or sole RTP."
+    }
+  ],
+  "questions": [
+    "Obtain publisher-hosted original game rules / certified math sheet (not merely a third-party mirror), capturing the exact edition, revision and jurisdiction.",
+    "Resolve maximum win 21,100x vs producer-announced 21,175x; distinguish bet conventions and operator/version-specific caps.",
+    "Establish whether the third-party PDF really applies to this original edition and why it uses medium instead of the publisher's high-volatility description.",
+    "Verify RTP variants and whether 96.48% is a minimum setting rather than the default; do not infer from secondary operator pages.",
+    "Request an independent source or remove the unsupported hitFrequency field after human review.",
+    "Review editorial prose, SEO titles, FAQ, author identity and rating methodology; recorded approvals must bind to reviewed revisions."
+  ],
+  "disclaimer": "Sources and values are research leads only. No immutable source snapshot is stored or independently approved; no claims, rights, public offers, URLs or publication permissions are granted."
+}

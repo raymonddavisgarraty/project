@@ -7,6 +7,12 @@
     return;
   }
 
+  function getScrollBehavior() {
+    return typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? "auto" : "smooth";
+  }
+
   function getScrollAmount() {
     return Math.max(rail.clientWidth * 0.8, 240);
   }
@@ -21,14 +27,14 @@
   prevButton.addEventListener("click", () => {
     rail.scrollBy({
       left: -getScrollAmount(),
-      behavior: "smooth",
+      behavior: getScrollBehavior(),
     });
   });
 
   nextButton.addEventListener("click", () => {
     rail.scrollBy({
       left: getScrollAmount(),
-      behavior: "smooth",
+      behavior: getScrollBehavior(),
     });
   });
 

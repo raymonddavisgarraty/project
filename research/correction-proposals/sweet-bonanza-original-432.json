@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "proposalId": "sweet-bonanza-original-432",
+  "entityType": "game",
+  "entityId": "sweet-bonanza",
+  "createdOn": "2026-10-29",
+  "status": "research-proposal-pending-review",
+  "sourceEdition": "Original Sweet Bonanza (2019)",
+  "authoritativeReviewCompleted": false,
+  "approvalGranted": false,
+  "autoPublish": false,
+  "sourceCandidates": [
+    {
+      "sourceId": "official-launch-2019",
+      "publisher": "Pragmatic Play",
+      "url": "https://www.pragmaticplay.com/en/news/pragmatic-play-launches-sweet-bonanza/",
+      "publishedOn": "2019-06-25",
+      "reviewedOn": "2026-10-29",
+      "kind": "publisher-announcement",
+      "snapshotHash": null
+    },
+    {
+      "sourceId": "official-game-overview",
+      "publisher": "Pragmatic Play",
+      "url": "https://www.pragmaticplay.com/en/games/sweet-bonanza-slot/",
+      "reviewedOn": "2026-10-29",
+      "kind": "current-game-overview",
+      "snapshotHash": null
+    }
+  ],
+  "decisions": [
+    {
+      "field": "maxWinMultiplier",
+      "repositoryValue": 21100,
+      "candidateValue": 21175,
+      "assessment": "official-announcement-differs-from-repository",
+      "recommendedAction": "check-specific-game-rules-and-edition",
+      "note": "Manufacturer launch news specifies potential win up to 21,175 times the original bet. Confirm that claim against the original game's rules and jurisdiction before modifying 21,100."
+    },
+    {
+      "field": "rtp",
+      "repositoryValue": 96.48,
+      "candidateValue": null,
+      "assessment": "not-verified-by-these-sources",
+      "recommendedAction": "obtain-official-rtp-math-and-configuration",
+      "note": "The current product page and 2019 announcement do not establish exact 96.48 percent RTP or operator-selectable variations."
+    },
+    {
+      "field": "reels",
+      "repositoryValue": 6,
+      "candidateValue": 6,
+      "assessment": "corroborated-by-launch-article",
+      "recommendedAction": "confirm-original-edition-and-review",
+      "note": "Provider launch describes a 6-by-5 grid; human editorial evidence still pending."
+    },
+    {
+      "field": "releaseYear",
+      "repositoryValue": 2019,
+      "candidateValue": 2019,
+      "assessment": "corroborated-by-launch-date",
+      "recommendedAction": "review-release-evidence",
+      "note": "Provider announcement dated June 25, 2019."
+    },
+    {
+      "field": "volatility",
+      "repositoryValue": "high",
+      "candidateValue": "high",
+      "assessment": "corroborated-by-launch-statement",
+      "recommendedAction": "confirm-rules-and-review",
+      "note": "Publisher describes original slot as high volatility."
+    },
+    {
+      "field": "paylineType",
+      "repositoryValue": "pays-anywhere",
+      "candidateValue": "pays-anywhere",
+      "assessment": "corroborated-as-a-mechanic-not-an-external-code",
+      "recommendedAction": "verify-internal-normalization",
+      "note": "Official product page describes 8 to 12+ matching symbols anywhere; mapped code is internal, not the provider's label."
+    }
+  ],
+  "pending": [
+    "Original game rules and maths sheet",
+    "RTP configurations by version and operator",
+    "Potential max-win value discrepancy",
+    "Hit frequency methodology",
+    "All English article/FAQ claims",
+    "Rating methodology and rating evidence"
+  ],
+  "correctionFileTouched": false,
+  "publicationFileTouched": false,
+  "integrityNote": "A source URL and prose summary are not an approved provenance record. No snapshot is stored, and no editor has approved any candidate values."
+}

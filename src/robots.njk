@@ -1,0 +1,12 @@
+---
+permalink: "/robots.txt"
+eleventyExcludeFromCollections: true
+---
+User-agent: *
+{% if buildMode.production %}
+Allow: /
+
+Sitemap: {{ "/sitemap.xml" | absoluteUrl(site.url) }}
+{% else %}
+Disallow: /
+{% endif %}

@@ -7,3 +7,12 @@ _site/
 Thumbs.db
 
 .vscode/settings.json
+
+data/editorial/review-log43/
+data/editorial/reports/stage431/
+# Research source snapshots may contain copyrighted/private evidence; never commit.
+data/editorial/evidence-snapshots/
+
+# All locally reviewed editorial data belongs to the owner, not the public repository.
+# Includes source captures, reports, drafts, approvals and internal review notes.
+data/editorial/

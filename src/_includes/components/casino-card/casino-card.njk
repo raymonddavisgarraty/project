@@ -1,3 +1,4 @@
+{% if editorialDisplay432.casino(casino) %}
 <article
   class="casino-card ui-card ui-card--interactive"
   data-casino-card
@@ -30,15 +31,9 @@
     </div>
 
     <div class="casino-card__actions">
-      {% set affiliateId = casino.affiliateId %}
-      {% if affiliateId and partners %}
-        {% for partner in partners %}
-          {% if partner.id == affiliateId %}
-            <a class="ui-button ui-button--success" href="{{ partner.url }}" rel="nofollow sponsored noopener" target="_blank">
-              Try now
-            </a>
-          {% endif %}
-        {% endfor %}
+      {% set offer = commercial.forCasino(casino) %}
+      {% if offer and offer.playUrl %}
+        <a class="ui-button ui-button--success" href="{{ offer.playUrl }}" rel="nofollow sponsored noopener" target="_blank">Try now</a>
       {% endif %}
 
       <a class="ui-button ui-button--ghost" href="/en/casinos/{{ casino.slug }}/">
@@ -47,3 +42,25 @@
     </div>
   </div>
 </article>
+{% else %}
+<article class="casino-card ui-card" data-casino-card
+  data-casino-title="{{ casino.title | lower }}"
+  data-casino-type="{% if editorialFields433.casinoFieldVerified(casino, 'type') %}{{ casino.type | lower }}{% endif %}"
+  data-casino-withdrawal="" data-casino-rating="" data-casino-new="">
+  <div class="casino-card__body">
+    <h2 class="casino-card__title"><a href="/en/casinos/{{ casino.slug }}/">{{ casino.title }}</a></h2>
+    <p class="casino-card__text">Licence, offer, payment and rating claims are awaiting editorial verification.</p>
+    {% set checkedFacts = editorialFields433.casinoRows(casino) %}
+    {% if checkedFacts.length %}
+      <p class="casino-card__text">Individually reviewed:
+        {% for fact in checkedFacts %}
+          {{ fact.label }}: {{ fact.value }}{% if not loop.last %} · {% endif %}
+        {% endfor %}
+      </p>
+    {% endif %}
+    <div class="casino-card__actions">
+      <a class="ui-button ui-button--ghost" href="/en/casinos/{{ casino.slug }}/">Review status</a>
+    </div>
+  </div>
+</article>
+{% endif %}

@@ -62,3 +62,22 @@
     flex-wrap: wrap;
     gap: 10px;
 }
+/* Equal-height catalogue cards, readable even with long provisional labels. */
+.casino-card {
+    min-width: 0;
+    height: 100%;
+}
+.casino-card__body {
+    height: 100%;
+    align-content: start;
+}
+.casino-card__title {
+    overflow-wrap: anywhere;
+}
+.casino-card__actions {
+    margin-top: auto;
+}
+.casino-card__actions a:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+}

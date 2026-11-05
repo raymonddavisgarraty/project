@@ -1,5 +1,6 @@
 export default [
   {
+    id: "royalspin-casino", // immutable entity ID; independent of localized display/URL slug
     title: "RoyalSpin Casino",
     slug: "royalspin-casino",
     metaDescription:
@@ -69,6 +70,7 @@ export default [
     ],
   },
   {
+    id: "luckynova-casino", // immutable entity ID; independent of localized display/URL slug
     title: "LuckyNova Casino",
     slug: "luckynova-casino",
     metaDescription:

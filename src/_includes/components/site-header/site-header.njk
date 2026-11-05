@@ -1,7 +1,7 @@
 <header class="site-header" data-site-header>
   <div class="container site-header__inner">
-    <a class="site-header__logo" href="/en/" aria-label="{{ site.name }} home">
-      <span class="site-header__logo-mark">R</span>
+    <a class="site-header__logo" href="/en/">
+      <span class="site-header__logo-mark" aria-hidden="true">R</span>
       <span>{{ site.name }}</span>
     </a>
 
@@ -21,52 +21,18 @@
           <a class="site-header__link" href="/en/">Home</a>
         </li>
 
-        <li class="site-header__item">
-          <button class="site-header__link site-header__dropdown-toggle" type="button" aria-expanded="false" data-dropdown-toggle>
-            Games
-          </button>
-
-          <div class="site-header__dropdown">
-  <a href="/en/games/">All games</a>
-  <a href="/en/games/?sort=rating-desc">Popular slots</a>
-  <a href="/en/games/?sort=rtp-desc">High RTP slots</a>
-  <a href="/en/games/?volatility=high">High volatility</a>
-  <a href="/en/games/?provider=pragmatic%20play">Pragmatic Play</a>
-</div>
-        </li>
-
-        <li class="site-header__item">
-          <button class="site-header__link site-header__dropdown-toggle" type="button" aria-expanded="false" data-dropdown-toggle>
-            Casinos
-          </button>
-
-          <div class="site-header__dropdown">
-  <a href="/en/casinos/">All casinos</a>
-  <a href="/en/casinos/?sort=new-desc">New casinos</a>
-  <a href="/en/casinos/?type=crypto">Crypto casinos</a>
-  <a href="/en/casinos/?withdrawal=fast">Fast withdrawal</a>
-</div>
-        </li>
-
         <li>
-          <a class="site-header__link" href="/en/providers/">Providers</a>
+          <a class="site-header__link" href="/en/games/">Games</a>
         </li>
-
         <li>
-          <a class="site-header__link" href="/en/bonuses/">Bonuses</a>
-        </li>
-
-        <li>
-          <a class="site-header__link" href="/en/articles/">Articles</a>
+          <a class="site-header__link" href="/en/casinos/">Casinos</a>
         </li>
       </ul>
 
       <div class="site-header__tools">
         <a class="site-header__search" href="/en/games/">Search</a>
 
-        <button class="site-header__language" type="button">
-          EN
-        </button>
+        <span class="site-header__language" aria-label="Current language: English">EN</span>
 
      <label class="switch" aria-label="Theme switch">
   <input class="switch__input" type="checkbox" role="switch" data-theme-toggle>
@@ -96,7 +62,7 @@
   <span class="switch__sr">Dark Mode</span>
 </label>
 
-        <a class="site-header__cta" href="/en/casinos/">Top casinos</a>
+        <a class="site-header__cta" href="/en/casinos/">Casino listings</a>
       </div>
     </nav>
   </div>
