@@ -38,7 +38,8 @@
     "test:stage451": "node scripts/test-stage451.mjs",
     "test:stage452": "node scripts/test-stage452.mjs",
     "test:editorial-workbench": "node scripts/test-editorial-workbench444.mjs",
-    "report:editorial-workbench": "node scripts/editorial-workbench444.mjs"
+    "report:editorial-workbench": "node scripts/editorial-workbench444.mjs",
+    "test:stage453": "node scripts/test-stage453.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"

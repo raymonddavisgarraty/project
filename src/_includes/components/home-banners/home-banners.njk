@@ -10,14 +10,17 @@
             {% if not loop.first %}hidden{% endif %}
           >
             {% if slide.image %}
-              <img
-                class="home-banners__image"
-                src="{{ slide.image }}"
-                alt="{{ slide.alt }}"
-                width="1000"
-                height="560"
-                {% if loop.first %}loading="eager"{% else %}loading="lazy"{% endif %}
-              >
+              <picture>
+                {% if slide.imageAvif %}<source srcset="{{ slide.imageAvif }}" type="image/avif">{% endif %}
+                <img
+                  class="home-banners__image"
+                  src="{{ slide.image }}"
+                  alt="{{ slide.alt }}"
+                  width="1000"
+                  height="560"
+                  {% if loop.first %}loading="eager" fetchpriority="high"{% else %}loading="lazy" decoding="async"{% endif %}
+                >
+              </picture>
             {% endif %}
 
             <span class="home-banners__shade"></span>
@@ -72,14 +75,18 @@
       {% for widget in homeBanners.widgets %}
         <a class="home-banners__widget" href="{{ widget.url }}">
           {% if widget.image %}
-            <img
-              class="home-banners__widget-image"
-              src="{{ widget.image }}"
-              alt="{{ widget.alt }}"
-              width="420"
-              height="260"
-              loading="lazy"
-            >
+            <picture>
+              {% if widget.imageAvif %}<source srcset="{{ widget.imageAvif }}" type="image/avif">{% endif %}
+              <img
+                class="home-banners__widget-image"
+                src="{{ widget.image }}"
+                alt="{{ widget.alt }}"
+                width="420"
+                height="260"
+                loading="lazy"
+                decoding="async"
+              >
+            </picture>
           {% endif %}
 
           <span class="home-banners__widget-shade"></span>
