@@ -153,6 +153,11 @@ eleventyComputed:
 {% set previewCatalogUrl = "/en/games/" %}
 {% set previewCatalogText = "Browse games catalogue" %}
 {% include "components/review-preview/review-preview.njk" %}
+{# Opt-in, non-production local inspection of the original editorial draft. #}
+{% set pilotDraft = localEditorialPilot.forGame(game) %}
+{% if pilotDraft %}
+{% include "components/local-editorial-pilot/local-editorial-pilot.njk" %}
+{% endif %}
 {% endif %}
 
 {# Shared contextual navigation for both full and pending-review layouts. #}
