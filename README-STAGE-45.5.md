@@ -41,3 +41,29 @@ npm run check:display
 Retest **/en/games/** in a Chrome **Guest profile** with extensions disabled, inspect the logo's computed accessible name and CSP issues in DevTools. Also measure **/en/**, **/en/casinos/** and one detail page in matching conditions. Do not claim accessibility compliance from this one fix or from 100-point lab score.
 
 No content approvals, release/indexability decisions, private editorial data, commercial links, analytics or Content Intelligence Studio changes.
+
+## Homepage Lighthouse follow-up — /en/
+
+The user also supplied separate Lighthouse 13.5.0 reports for the **homepage** (`http://localhost:8080/en/`), Mobile and Desktop, on Nov 5, 2026. Do not confuse them with prior `/en/games/` reports.
+
+| Category / lab metric | Mobile | Desktop |
+|---|---:|---:|
+| Performance | 99 | 100 |
+| Accessibility | 100 | 96 |
+| Best Practices | 96 | 96 |
+| SEO | 69 | 69 |
+| FCP | 1.4 s | 0.3 s |
+| LCP | 2.0 s | 0.5 s |
+| CLS | 0 | 0 |
+| TBT | 30 ms | 0 ms |
+
+Findings:
+- Mobile LCP is `banner-1.avif`. Its HTML request is discoverable, `loading=eager` and `fetchpriority=high`, confirming the Stage 45.3 delivery markup.
+- Desktop Accessibility 96: the banner pagination buttons `.home-banners__dot` were 9px targets with insufficient spacing. This PR makes their actual hit area 30×30px while retaining small visual dots and focus visibility. The same old-run audits flag the logo label mismatch, which the earlier commit in this branch also fixes.
+- ~793 KiB reported unused JavaScript consists entirely of four `chrome-extension://` resources, not the site.
+- ~54–55 KiB unused CSS (~75% of the shared bundle), and the render-blocking stylesheet are genuine route-specific opportunities, but lab Performance is already 99–100. Measure across routes before further CSS splitting.
+- Image-size diagnostics suggest approximately 23 KiB potential mobile savings for a sidebar image and a game cover; low priority. No image change in this PR.
+- Best Practices 96 contains a generic Content Security Policy inspector issue whose origin is not established. Recheck with Chrome Guest profile and extensions disabled. SEO 69 results principally from intentionally blocked indexing.
+- The mobile report contains a `PROTOCOL_TIMEOUT` gathering a full-page screenshot. Reported lab metrics are present, but repeat the test for confirmation.
+
+Acceptance: run `npm run build`, `npm run test:stage455`, `npm run test:stage454`, `npm run test:stage453`, and `npm run check:seo`; then remeasure `/en/` with Chrome Guest profile. No production or editorial release is authorized by these Lighthouse results.
