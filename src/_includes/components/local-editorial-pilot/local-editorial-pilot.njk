@@ -1,0 +1,36 @@
+{# Opt-in local editorial copy display. Never a verified source, score or publication. #}
+<section class="section" id="editorial-pilot-draft" data-local-editorial-draft="sweet-bonanza">
+  <div class="container">
+    <article class="detail-content" aria-labelledby="editorial-pilot-title">
+      <p><strong>Local editorial preview — UNVERIFIED DRAFT</strong></p>
+      <p>This copy is for editorial review only. It has not passed full source, edition, rights or market verification. It is not a published recommendation, a game-rating or a promotion.</p>
+      <h2 id="editorial-pilot-title">{{ pilotDraft.heading }}</h2>
+      <p>{{ pilotDraft.intro }}</p>
+      {% for block in pilotDraft.sections %}
+        <h3>{{ block.heading }}</h3>
+        <p>{{ block.body }}</p>
+      {% endfor %}
+      {% if pilotDraft.features %}
+        <h3>{{ pilotDraft.features.heading }}</h3>
+        <ul>
+          {% for item in pilotDraft.features.items %}<li>{{ item }}</li>{% endfor %}
+        </ul>
+      {% endif %}
+      {% if pilotDraft.questions.length %}
+        <h3>FAQ — draft answers</h3>
+        {% for item in pilotDraft.questions %}
+          <h4>{{ item.question }}</h4>
+          <p>{{ item.answer }}</p>
+        {% endfor %}
+      {% endif %}
+      <h3>Developer references for editorial verification</h3>
+      <p>Research leads, not approved evidence for a particular game's mathematical configuration.</p>
+      <ul>
+        {% for href in pilotDraft.researchLinks %}
+          <li><a href="{{ href }}" rel="noopener noreferrer">{{ href }}</a></li>
+        {% endfor %}
+      </ul>
+      <p><strong>No RTP percentage, editorial rating, casino bonus or affiliate link is approved by this draft.</strong></p>
+    </article>
+  </div>
+</section>
