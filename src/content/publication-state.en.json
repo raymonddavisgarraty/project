@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "locale": "en",
+  "items": [
+    {
+      "type": "game",
+      "id": "sweet-bonanza",
+      "status": "draft"
+    },
+    {
+      "type": "game",
+      "id": "the-big-dog-house",
+      "status": "draft"
+    },
+    {
+      "type": "casino",
+      "id": "royalspin-casino",
+      "status": "draft"
+    },
+    {
+      "type": "casino",
+      "id": "luckynova-casino",
+      "status": "draft"
+    }
+  ]
+}
