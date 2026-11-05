@@ -1,5 +1,6 @@
 import { assertProductionEditorial43 } from "./scripts/editorial43.mjs";
 import indexability42 from "./src/_data/indexability42.js";
+import { writeStylesheet454 } from "./src/lib/css-bundle454.mjs";
 
 export default function (eleventyConfig) {
   // Production must fail closed until every rendered claim has reviewed evidence.
@@ -11,6 +12,10 @@ export default function (eleventyConfig) {
       indexability42.approvedRouteCount === 0) {
     throw new Error("Stage 42.2: production build blocked — no independently approved indexable release routes.");
   }
+  // CSS bundle is generated after each build/watch pass.
+  eleventyConfig.on("eleventy.after", ({ directories }) => {
+    writeStylesheet454(directories.output);
+  });
   eleventyConfig.addPassthroughCopy({
     "src/assets": "assets",
   });
