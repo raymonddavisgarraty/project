@@ -44,7 +44,8 @@
     "test:stage455": "node scripts/test-stage455.mjs",
     "test:stage435": "node scripts/test-stage435.mjs",
     "check:snapshot-integrity": "node scripts/check-stage435.mjs",
-    "verify:integration": "npm run build && npm run test:stage435 && npm run check:snapshot-integrity && npm run test:stage434 && npm run test:editorial-workbench && npm run test:stage451 && npm run test:stage452 && npm run test:stage453 && npm run test:stage454 && npm run test:stage455 && npm run check:seo && npm run check:navigation && npm run check:display && npm run check:catalogue && npm run check:review-pages && npm run check:entities && npm run test:integration-contract"
+    "verify:integration": "npm run build && npm run test:stage435 && npm run check:snapshot-integrity && npm run test:stage434 && npm run test:editorial-workbench && npm run test:stage451 && npm run test:stage452 && npm run test:stage453 && npm run test:stage454 && npm run test:stage455 && npm run check:seo && npm run check:navigation && npm run check:display && npm run check:catalogue && npm run check:review-pages && npm run check:entities && npm run test:integration-contract",
+    "test:release-preflight": "node scripts/test-release-scope-preflight-v1.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"
