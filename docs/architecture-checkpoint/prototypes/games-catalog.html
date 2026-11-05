@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Game catalogue — Architecture wireframe (not published)</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="wireframe.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to main content</a>
+<header class="site-header"><div class="container header-inner">
+<a class="brand" href="home.html"><span>R</span>ReviewHub / prototype</a>
+<nav aria-label="Prototype navigation" class="primary-nav"><a href="home.html">Home</a><a href="games-catalog.html" aria-current="page">Games</a><a href="game-detail.html">Example review</a></nav>
+</div></header>
+<div class="status-banner"><div class="container"><strong>Wireframe only.</strong> Illustrative layout, no working filters or commercial links. Not production content.</div></div>
+<main id="content"><div class="container breadcrumbs"><nav aria-label="Breadcrumb"><ol><li><a href="home.html">Home</a></li><li aria-current="page">Games</li></ol></nav></div>
+<section class="hero"><div class="container"><p class="eyebrow">Published catalogue</p><h1>Slot game reviews</h1>
+<p class="lead">Browse real entries, then read the evidence caveat and editorial review on each detail page. Do not confuse publication with verification.</p>
+</div></section>
+<section class="section"><div class="container catalog-shell">
+<aside class="card catalog-filter" aria-label="Proposed catalogue filters"><h2>Search &amp; filter</h2>
+<p class="small muted">UI layout only; controls disabled until progressive enhancement is implemented.</p>
+<fieldset disabled><label for="catalog-search">Title or provider</label><input id="catalog-search" placeholder="Search…" type="search">
+<label for="catalog-provider">Provider</label><select id="catalog-provider"><option>All providers</option><option>Pragmatic Play</option></select>
+<label for="catalog-volatility">Volatility</label><select id="catalog-volatility"><option>Any verification status</option><option>High</option></select>
+<label for="catalog-sort">Sort by</label><select id="catalog-sort"><option>Title A–Z</option><option>RTP (verified only)</option></select>
+</fieldset></aside>
+<div><div class="section-head"><div><h2>Games currently available in the build</h2><p class="small">2 entries · no indexed filter combinations</p></div></div>
+<div class="catalog-cards">
+<article class="card game-tile"><div class="placeholder" aria-hidden="true">Cover</div><div><h3><a href="game-detail.html">Sweet Bonanza</a></h3><p class="small">Pragmatic Play</p><span class="badge warn">Facts pending audit</span></div></article>
+<article class="card game-tile"><div class="placeholder" aria-hidden="true">Cover</div><div><h3>The Big Dog House</h3><p class="small">Pragmatic Play</p><span class="badge warn">Facts pending audit</span></div></article>
+</div><p class="small muted">Server-rendered HTML links will remain the baseline. Real pagination appears only when enough approved pages exist; this two-item catalogue has no fake page 2.</p>
+</div></div></section></main>
+<footer><div class="container"><p><strong>ReviewHub architecture prototype</strong> — separate from Eleventy production templates.</p>
+<p>No gambling operators, advertising offers, or facts are endorsed by this wireframe.</p></div></footer>
+</body>
+</html>
