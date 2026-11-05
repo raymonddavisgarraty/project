@@ -72,6 +72,9 @@ const bad=[
  ["extra state field",o=>o.states[0].affiliateUrl="https://bad.example"],
  ["duplicated source",o=>o.games.push({...o.games[0]})],
  ["bad generatedAt",o=>o.generatedAt="invalid"],
+ ["nonexistent calendar day",o=>o.generatedAt="2026-02-30T12:00:00Z"],
+ ["millisecond-form timestamp rejected",o=>o.generatedAt="2026-11-05T12:00:00.000Z"],
+ ["invalid reviewedAt calendar day",o=>o.states[0].reviewedAt="2026-02-30T10:00:00Z"],
  ["revocation duplicate",o=>o.revoked=[{type:"game",id:game.id},{type:"game",id:game.id}]],
 ];
 for(const [name,change] of bad){

@@ -24,3 +24,7 @@ The output is always `kind: seo-platform-published-catalogue-v1-preview`, `previ
 
 The Bot must never read this offline rehearsal as a released catalogue. The existing Studio inbound pending-candidate schema is a different direction and remains separate.
 
+
+## 2026-11-05 timestamp regression fix
+
+Whole-second UTC timestamps (e.g. `2026-11-05T12:00:00Z`) are canonical in the contract; JavaScript's `Date#toISOString()` appends `.000Z`. The validator compares normalized whole-second UTC to prevent false rejection of valid records. Negative tests reject impossible days and millisecond-bearing strings. This change does not modify public-release permissions.

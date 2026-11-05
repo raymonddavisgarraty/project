@@ -21,8 +21,10 @@ function safeCopy(v,max) {
   return typeof v==="string" && v.trim().length>0 && v.length<=max &&
     !/[<>]/.test(v) ? v.trim():null;
 }
+// Node Date#toISOString() always includes milliseconds; contract timestamps
+// use whole seconds. Compare normalized whole-second UTC, never raw ISO strings.
 const date=v=>typeof v==="string" && TIME.test(v) &&
-  Number.isFinite(Date.parse(v)) && new Date(v).toISOString()===v;
+  Number.isFinite(Date.parse(v)) && new Date(v).toISOString().slice(0,19)+"Z"===v;
 
 export function previewPublishedCatalogueV1({
   indexability, states=[], games=[], casinos=[], revisionHashes={},
