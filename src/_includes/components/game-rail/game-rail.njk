@@ -42,8 +42,8 @@
 
           <span class="game-rail__info">
             <span class="game-rail__name">{{ game.title }}</span>
-            {% if editorialDisplay432.game(game) %}
-              <span class="game-rail__provider">{{ game.provider }}</span>
+            {% if editorialDisplay432.game(game) and editorialFields433.gameFieldVerified(game, 'providerName') %}
+              <span class="game-rail__provider">{{ game.globalFacts.providerName }}</span>
             {% else %}
               <span class="game-rail__provider">Editorial verification pending</span>
             {% endif %}

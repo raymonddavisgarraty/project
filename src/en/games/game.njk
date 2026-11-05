@@ -63,20 +63,16 @@ eleventyComputed:
 
       <h2 id="game-info">Game information</h2>
 
-      {% set rows = [
-        { label: "Provider", value: game.facts.provider },
-        { label: "RTP", value: game.facts.rtp },
-        { label: "Volatility", value: game.facts.volatility },
-        { label: "Reels", value: game.facts.reels },
-        { label: "Paylines", value: game.facts.paylines },
-        { label: "Release year", value: game.facts.releaseYear },
-        { label: "Last updated", value: game.updatedDate }
-      ] %}
-
+      {# Only Stage 43.3 individually reviewed facts may enter the information table. #}
+      {% set rows = editorialFields433.gameRows(game) %}
       {% if game.rating and game.rating.overall is defined %}
         {% set rows = [{ label: "Rating", value: game.rating.overall + " / 5" }].concat(rows) %}
       {% endif %}
-      {% include "components/info-table/info-table.njk" %}
+      {% if rows.length %}
+        {% include "components/info-table/info-table.njk" %}
+      {% else %}
+        <p>Edition-specific numerical details have not been independently verified.</p>
+      {% endif %}
 
       {% if game.rating and game.rating.gameplay is defined %}
         {% set ratings = [

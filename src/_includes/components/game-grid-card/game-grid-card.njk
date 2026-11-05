@@ -4,9 +4,9 @@
   href="/en/games/{{ game.slug }}/"
   data-game-card
   data-game-title="{{ game.title | lower }}"
-  data-game-provider="{{ game.provider | lower }}"
-  data-game-rtp="{{ game.rtp }}"
-  data-game-volatility="{{ game.volatility | lower }}"
+  data-game-provider="{% if editorialFields433.gameFieldVerified(game, 'providerName') %}{{ game.globalFacts.providerName | lower }}{% endif %}"
+  data-game-rtp="{% if editorialFields433.gameFieldVerified(game, 'rtp') %}{{ game.rtp }}{% endif %}"
+  data-game-volatility="{% if editorialFields433.gameFieldVerified(game, 'volatility') %}{{ game.globalFacts.volatility | lower }}{% endif %}"
   data-game-rating="{% if game.rating and game.rating.overall is defined %}{{ game.rating.overall }}{% endif %}"
 >
   <span class="game-grid-card__media">
@@ -29,12 +29,18 @@
 
   <span class="game-grid-card__content">
     <span class="game-grid-card__title">{{ game.title }}</span>
-    <span class="game-grid-card__provider">{{ game.provider }}</span>
-    <span class="game-grid-card__meta">
-      {% if game.rating and game.rating.overall is defined %}★ {{ game.rating.overall }}{% endif %}
-      {% if game.rtp %} · {{ game.rtp }}{% endif %}
-      {% if game.volatility %} · {{ game.volatility }}{% endif %}
-    </span>
+    {% if editorialFields433.gameFieldVerified(game, 'providerName') %}
+      <span class="game-grid-card__provider">{{ game.globalFacts.providerName }}</span>
+    {% endif %}
+    {% if game.rating and game.rating.overall is defined %}
+      <span class="game-grid-card__meta">★ {{ game.rating.overall }}</span>
+    {% endif %}
+    {% if editorialFields433.gameFieldVerified(game, 'rtp') %}
+      <span class="game-grid-card__meta">RTP {{ game.rtp }}</span>
+    {% endif %}
+    {% if editorialFields433.gameFieldVerified(game, 'volatility') %}
+      <span class="game-grid-card__meta">{{ game.volatility }} volatility</span>
+    {% endif %}
   </span>
 </a>
 {% else %}

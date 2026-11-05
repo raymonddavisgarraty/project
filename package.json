@@ -55,7 +55,8 @@
     "test:local-editorial-preview": "node scripts/test-local-editorial-preview.mjs",
     "test:pilot-cleanup": "node scripts/test-pilot-cleanup.mjs",
     "test:published-catalogue": "node scripts/test-published-catalogue-v1-preview.mjs",
-    "check:published-catalogue": "node scripts/check-published-catalogue-v1-preview.mjs"
+    "check:published-catalogue": "node scripts/check-published-catalogue-v1-preview.mjs",
+    "test:approved-game-display": "node scripts/test-approved-game-display.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"
