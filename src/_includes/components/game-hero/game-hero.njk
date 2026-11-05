@@ -4,7 +4,7 @@
 
     <div class="game-hero__card">
       <div class="game-hero__content">
-        <p class="game-hero__eyebrow">{{ game.facts.provider }}</p>
+        <p class="game-hero__eyebrow">Original game information</p>
 
         <h1 class="game-hero__title">{{ game.seo.h1 }}</h1>
 
@@ -19,34 +19,19 @@
         </div>
         {% endif %}
 
-        <div class="game-hero__facts">
-          <span>{{ game.facts.provider }}</span>
-          <span>RTP {{ game.facts.rtp }}</span>
-          <span>{{ game.facts.volatility }} volatility</span>
-          <span>Max win {{ game.facts.maxWin }}</span>
+        {# No source JSON facts are displayed without field-level editorial verification.
+           Unknown, disputed or null values are omitted rather than guessed. #}
+        {% set approvedFacts = editorialFields433.gameRows(game) %}
+        {% if approvedFacts.length %}
+        <div class="game-hero__stats" aria-label="Verified game characteristics">
+          {% for fact in approvedFacts %}
+          <div>
+            <span>{{ fact.label }}</span>
+            <strong>{{ fact.value }}</strong>
+          </div>
+          {% endfor %}
         </div>
-
-        <div class="game-hero__stats">
-          <div>
-            <span>RTP</span>
-            <strong>{{ game.facts.rtp }}</strong>
-          </div>
-
-          <div>
-            <span>Volatility</span>
-            <strong>{{ game.facts.volatility }}</strong>
-          </div>
-
-          <div>
-            <span>Max win</span>
-            <strong>{{ game.facts.maxWin }}</strong>
-          </div>
-
-          <div>
-            <span>Hit frequency</span>
-            <strong>{{ game.facts.hitFrequency }}</strong>
-          </div>
-        </div>
+        {% endif %}
 
         <div class="game-hero__actions">
           {% set offer = commercial.forGame(game) %}
