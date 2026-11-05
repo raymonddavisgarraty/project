@@ -1,6 +1,6 @@
 // Stage 44.4: offline render. Static template contains no audit data.
 import {readFileSync} from "node:fs";
-const TEMPLATE=readFileSync(new URL("./editorial-workbench444-template.html",import.meta.url),"utf8");
+const TEMPLATE=readFileSync(new URL("../../private-templates/editorial-workbench444.template.txt",import.meta.url),"utf8");
 function escapeHtml(v){return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");}
 function renderEditorialWorkbench444({audit,queue}={}){
  if(!audit||audit.schemaVersion!==1||!Array.isArray(audit.items)||!Array.isArray(audit.blockers)||
