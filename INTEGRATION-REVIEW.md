@@ -37,3 +37,7 @@ Open `http://localhost:8080/en/` and test desktop/mobile, menu, hero controls, n
 2. Human evidence review for Sweet Bonanza and other unpublished game/casino claims, keeping differences in RTP/maximum win/volatility unresolved until authentic edition-specific records exist.
 3. Real production deployment requirements: hosting/CDN cache headers, CSP, privacy/analytics, uptime monitoring, locale and jurisdiction approvals.
 4. Editorial Workbench remains private and read-only; future Studio and Telegram integration are out of scope here.
+
+## Additional privacy hardening (post-Windows acceptance)
+
+The entire local `data/editorial/` folder is gitignored, not only its `evidence-snapshots/`, `review-log43/` and `reports/stage431/` subfolders. The original checkout contains additional untracked private editorial records. This is a Git metadata-only safeguard: it does not delete local files, change the generated website, alter any editorial decision, or add private content to Git. Existing clean integration tests were executed on the prior commit `9af77e7`; this additional ignore-only commit should be checked with `git check-ignore -v data/editorial/<local-file>` on a workstation with a real untracked record, or `git check-ignore -v --no-index data/editorial/safety-probe.txt` without touching a file.
