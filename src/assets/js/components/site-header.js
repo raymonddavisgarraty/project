@@ -1,41 +1,29 @@
+// Stage 45.1: mobile menu enhancement. Primary links remain real anchors.
 (() => {
   const header = document.querySelector("[data-site-header]");
-
-  if (!header) {
-    return;
-  }
+  if (!header) return;
 
   const menu = header.querySelector("[data-site-menu]");
-  const menuToggle = header.querySelector("[data-menu-toggle]");
-  const dropdownToggles = Array.from(
-    header.querySelectorAll("[data-dropdown-toggle]"),
-  );
+  const toggle = header.querySelector("[data-menu-toggle]");
+  if (!menu || !toggle) return;
 
-  menuToggle?.addEventListener("click", () => {
-    const isOpen = menu.classList.toggle("is-open");
-    menuToggle.setAttribute("aria-expanded", String(isOpen));
-  });
+  function setOpen(open) {
+    menu.classList.toggle("is-open", open);
+    toggle.setAttribute("aria-expanded", String(open));
+  }
 
-  dropdownToggles.forEach((toggle) => {
-    toggle.addEventListener("click", () => {
-      const item = toggle.closest(".site-header__item");
-      const isOpen = item.classList.toggle("is-open");
-
-      toggle.setAttribute("aria-expanded", String(isOpen));
-    });
+  toggle.addEventListener("click", () => {
+    setOpen(toggle.getAttribute("aria-expanded") !== "true");
   });
 
   document.addEventListener("click", (event) => {
-    if (header.contains(event.target)) {
-      return;
+    if (!header.contains(event.target)) setOpen(false);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+      setOpen(false);
+      toggle.focus();
     }
-
-    menu?.classList.remove("is-open");
-    menuToggle?.setAttribute("aria-expanded", "false");
-
-    dropdownToggles.forEach((toggle) => {
-      toggle.closest(".site-header__item")?.classList.remove("is-open");
-      toggle.setAttribute("aria-expanded", "false");
-    });
   });
 })();

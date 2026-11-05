@@ -1,0 +1,26 @@
+/* Used only when scripting is disabled: ensure primary navigation stays reachable. */
+.site-header__toggle,
+.switch,
+.home-banners__controls,
+.game-rail__arrow { display: none !important; }
+.site-header__inner { flex-wrap: wrap; }
+.site-header__nav {
+  position: static;
+  display: grid;
+  flex: 0 0 100%;
+  gap: 18px;
+  padding: 12px 0;
+  border: 0;
+  background: transparent;
+}
+@media (min-width: 980px) {
+  .site-header__inner { flex-wrap: nowrap; }
+  .site-header__nav {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 0;
+  }
+}

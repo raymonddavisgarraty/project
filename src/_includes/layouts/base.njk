@@ -35,6 +35,9 @@
   <meta name="twitter:description" content="{{ metaDescription }}">
 
   <link rel="stylesheet" href="/assets/css/main.css">
+  {# Mobile navigation remains available when scripts are disabled. #}
+  <noscript><link rel="stylesheet" href="/assets/css/components/no-js-header.css"></noscript>
+  <noscript><link rel="stylesheet" href="/assets/css/components/no-js-catalogs.css"></noscript>
 
   {% if jsonLd %}
     {% if jsonLd['@type'] == 'WebSite' %}
