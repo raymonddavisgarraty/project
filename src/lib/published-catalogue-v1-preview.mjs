@@ -30,7 +30,8 @@ export function previewPublishedCatalogueV1({
 }={}) {
   const errors=[],entries=[], tombstones=[], entities=names();
   if(!Array.isArray(states)||!Array.isArray(games)||!Array.isArray(casinos)||
-     !Array.isArray(revoked)||!exact(revisionHashes,Object.keys(revisionHashes))||
+     !Array.isArray(revoked)||revisionHashes===null||typeof revisionHashes!=="object"||
+     Array.isArray(revisionHashes)||
      !date(generatedAt)) errors.push("Invalid catalogue inputs");
   const allowed=indexability?.routes;
   if(!Array.isArray(allowed) || !Number.isInteger(indexability?.approvedRouteCount) ||
@@ -69,7 +70,7 @@ export function previewPublishedCatalogueV1({
   const paths=new Set(),keys=new Set();
   if(Array.isArray(allowed))for(const route of allowed){
     if(!route||typeof route.path!=="string"||paths.has(route.path)||
-       !indexability?.allows?.(route.path)){errors.push("Invalid or duplicate approved route");continue;}
+       !(typeof indexability?.allows==="function" && indexability.allows(route.path))){errors.push("Invalid or duplicate approved route");continue;}
     paths.add(route.path);
     if(!["game","casino"].includes(route.type))continue;
     const key=route.type+":"+route.entityId, e=sources.get(key), status=stateMap.get(key);
@@ -79,7 +80,7 @@ export function previewPublishedCatalogueV1({
        !ID.test(route.entityId||"")||
        route.path!=="/en/"+(route.type==="game"?"games":"casinos")+"/"+e.slug+"/"||
        !SHA.test(status.contentSha256||"")||
-       revisionHashes[route.path]!==status.contentSha256||
+       revisionHashes?.[route.path]!==status.contentSha256||
        status.informationRightsApproved!==true||
        !ID.test(status.reviewedBy||"")||!date(status.reviewedAt)||
        (route.type==="game" && (e.globalFacts?.id!==e.id||

@@ -57,6 +57,8 @@ const bad=[
  ["local origin",o=>o.siteOrigin="https://localhost"],
  ["missing origin",o=>o.siteOrigin=null],
  ["mismatch revision",o=>o.revisionHashes[path]="b".repeat(64)],
+ ["null revision map",o=>o.revisionHashes=null],
+ ["invalid authority callback",o=>o.indexability={routes:[route],approvedRouteCount:1,allows:"untrusted"}],
  ["no published status",o=>o.states[0].status="review"],
  ["no rights",o=>o.states[0].informationRightsApproved=false],
  ["missing content sha",o=>o.states[0].contentSha256=null],
