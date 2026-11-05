@@ -101,10 +101,14 @@ assert.equal(games.length,2);
 assert.equal(navigation.routeCount,2);
 for (const g of games) {
   const related = navigation.forGame(g);
-  assert.equal(related.curated.length,1,"Real editorial cross-reference missing: "+g.id);
-  assert.equal(related.curated[0].id === g.id,false);
+  // The Sweet Bonanza pilot must not assert unreviewed similarity.
+  const expected = g.id === "sweet-bonanza" ? 0 : 1;
+  assert.equal(related.curated.length,expected,"Unexpected QA navigation for "+g.id);
+  if (related.curated.length) {
+    assert.equal(related.curated[0].id === g.id,false);
+    assert.equal(related.curated[0].reviewStatus,"editorial-verification-pending");
+  }
   assert.equal(related.fromProvider.length,0,"Unverified provider association leaked");
-  assert.equal(related.curated[0].reviewStatus,"editorial-verification-pending");
 }
 assert.equal(catalogue.providers.length,0);
 assert.equal(catalogue.volatilities.length,0);

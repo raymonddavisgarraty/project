@@ -1,8 +1,10 @@
 <aside class="cta-panel ui-card" aria-label="Review actions">
+  {% if rating is defined and rating != null %}
   <div class="cta-panel__rating">
     <span class="cta-panel__rating-label">Rating</span>
     <strong class="cta-panel__rating-value">★ {{ rating }} / 5</strong>
   </div>
+  {% endif %}
 
   {% if game %}
     {% set offer = commercial.forGame(game) %}

@@ -14,7 +14,8 @@ assert.equal(real.ok,true,real.errors.join("; "));
 assert.equal(real.counts.games,2);
 assert.equal(real.counts.casinos,2);
 assert.equal(real.counts.providers,6);
-assert.equal(real.counts.identityRelations,2);
+// Sweet Bonanza's unreviewed "similar game" link has been removed.
+assert.equal(real.counts.identityRelations,1);
 assert.equal(real.publicExportApproved,false);
 assert.equal(real.publicationApproved,false);
 assert.equal(real.counts.verifiedPublishedEntities,0);

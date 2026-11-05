@@ -65,7 +65,6 @@ eleventyComputed:
 
       {% set rows = [
         { label: "Provider", value: game.facts.provider },
-        { label: "Rating", value: game.rating.overall + " / 5" },
         { label: "RTP", value: game.facts.rtp },
         { label: "Volatility", value: game.facts.volatility },
         { label: "Reels", value: game.facts.reels },
@@ -74,6 +73,9 @@ eleventyComputed:
         { label: "Last updated", value: game.updatedDate }
       ] %}
 
+      {% if game.rating and game.rating.overall is defined %}
+        {% set rows = [{ label: "Rating", value: game.rating.overall + " / 5" }].concat(rows) %}
+      {% endif %}
       {% include "components/info-table/info-table.njk" %}
 
       {% if game.rating and game.rating.gameplay is defined %}
@@ -129,9 +131,10 @@ eleventyComputed:
     </article>
 
     <div class="detail-sidebar">
-      {% set affiliateId = game.monetization.affiliateId %}
-      {% set rating = game.rating.overall %}
-      {% include "components/cta-panel/cta-panel.njk" %}
+      {% if game.rating and game.rating.overall is defined %}
+        {% set rating = game.rating.overall %}
+        {% include "components/cta-panel/cta-panel.njk" %}
+      {% endif %}
       {% set tocClass = "toc--sidebar" %}
       {% include "components/table-of-contents/table-of-contents.njk" %}
 
