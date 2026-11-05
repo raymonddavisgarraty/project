@@ -45,7 +45,13 @@ assert.deepEqual(good.entities.games[0],{type:"game",id:"sample-game",locale:"en
   title:game.title,summary:game.description,contentRevision:sha});
 for(const token of ["hidden","affiliateId","editorialNotes","rating","synthetic-editor"])
   assert(!JSON.stringify(good.entities).includes(token),"Private unapproved field: "+token);
-const clone=()=>structuredClone({...base,indexability:idx});
+const clone=()=>({
+  ...base,indexability:idx,
+  states:structuredClone(base.states),
+  games:structuredClone(base.games),
+  casinos:structuredClone(base.casinos),
+  revisionHashes:{...base.revisionHashes},
+});
 const bad=[
  ["no HTTPS origin",o=>o.siteOrigin="http://example.org"],
  ["local origin",o=>o.siteOrigin="https://localhost"],
