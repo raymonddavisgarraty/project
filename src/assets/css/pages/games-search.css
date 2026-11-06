@@ -34,7 +34,7 @@
     width: 100%;
     min-height: 52px;
     border: 1px solid var(--color-border);
-    border-radius: 999px;
+    border-radius: 12px;
     background: var(--color-bg);
     color: var(--color-text);
     font: inherit;
@@ -81,7 +81,7 @@
     min-height: 52px;
     padding: 12px 18px;
     border: 0;
-    border-radius: 999px;
+    border-radius: 12px;
     background: var(--color-primary);
     color: #ffffff;
     font-weight: 900;
@@ -197,3 +197,9 @@
     cursor: not-allowed;
     opacity: 0.75;
 }
+
+/* ReviewHub v3 catalogue controls — prototype geometry, shared with all listings. */
+.games-search__panel{border-radius:22px}
+.games-search__input,.games-search__select{font-size:.94rem;font-weight:650;background:var(--color-surface-soft)}
+.games-search__label{font-size:.85rem;font-weight:750}
+.games-search__grid{gap:16px}
