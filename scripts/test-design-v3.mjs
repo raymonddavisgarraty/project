@@ -14,6 +14,13 @@ for(const target of ["/en/games/","/en/games/page/2/","/en/games/page/3/",
  assert(routes.some(r=>r.path===target),"Missing crawlable catalogue page "+target);
 assert.equal(routes.filter(r=>r.type==="games-index-page").length,2);
 assert.equal(routes.filter(r=>r.type==="casinos-index-page").length,1);
+const deepRoutes=buildRoutes42({games:Array.from({length:120},(_,i)=>({
+ id:"deep-"+(i+1),slug:"deep-"+(i+1),
+ globalFacts:{id:"deep-"+(i+1),sourceStatus:"legacy-unverified"}
+}))});
+assert(deepRoutes.some(r=>r.path==="/en/games/page/10/"),"Page 10 must be a crawlable route");
+assert.equal(createIndexability42({routes:deepRoutes}).approvedRouteCount,0);
+
 const idx=createIndexability42({routes,audit:null,approvals:[],informationApproved:false});
 assert.equal(idx.approvedRouteCount,0,"Generated catalogue routes are never automatically indexable");
 assert(idx.routes.length===0);
