@@ -10,6 +10,12 @@ export function buildRoutes42({ games = [], casinos = [] } = {}) {
   add("/en/", "home");
   add("/en/games/", "games-index");
   add("/en/casinos/", "casinos-index");
+  // Every catalogue page has a real, stable crawlable URL. Generated routes
+  // are still QA routes, never automatic indexing/publication decisions.
+  for (let page = 2; page <= Math.ceil(games.length / 12); page++)
+    add("/en/games/page/" + page + "/", "games-index-page");
+  for (let page = 2; page <= Math.ceil(casinos.length / 12); page++)
+    add("/en/casinos/page/" + page + "/", "casinos-index-page");
   for (const game of games) {
     if (!validSlug(game.slug) || typeof game.id !== "string" || !game.id.trim())
       throw new Error("Invalid published game identity");

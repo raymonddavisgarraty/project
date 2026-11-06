@@ -3,7 +3,7 @@
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const SHA = /^[a-f0-9]{64}$/;
 const DATE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$/;
-const PAGE_TYPES = new Set(["home", "games-index", "casinos-index", "game", "casino"]);
+const PAGE_TYPES = new Set(["home", "games-index", "casinos-index", "games-index-page", "casinos-index-page", "game", "casino"]);
 const isObj = x => x !== null && typeof x === "object" && !Array.isArray(x);
 const validTime = (value, now) =>
   typeof value === "string" && DATE.test(value) &&
@@ -19,6 +19,11 @@ function validRoute(route) {
     "casinos-index": "/en/casinos/",
   };
   if (expected[route.type]) return route.path === expected[route.type];
+  if (route.type === "games-index-page" || route.type === "casinos-index-page") {
+    const prefix = route.type === "games-index-page" ? "games" : "casinos";
+    const match = route.path.match(new RegExp("^/en/" + prefix + "/page/([2-9][0-9]*)/$"));
+    return Boolean(match && Number.isSafeInteger(Number(match[1])));
+  }
   return typeof route.entityId === "string" && SLUG.test(route.entityId) &&
     route.path.startsWith("/en/" + (route.type === "game" ? "games/" : "casinos/")) &&
     route.path.split("/").filter(Boolean).length === 3;

@@ -1,12 +1,17 @@
 ---
 layout: layouts/base.njk
 lang: en
-permalink: /en/games/
+pagination:
+  data: games
+  size: 12
+  alias: pageGames
+permalink: "/en/games/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
+eleventyComputed:
+  canonical: "/en/games/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}"
 
 metaTitle: Game Listings | Verification Pending
 metaDescription: Browse game listings undergoing independent source and editorial verification.
 
-canonical: /en/games/
 
 breadcrumbs:
   - label: Home
@@ -114,10 +119,25 @@ breadcrumbs:
     </p>
 
     <div class="games-search__grid" id="games-results" data-games-grid>
-      {% for game in games %}
+      {% for game in pageGames %}
         {% include "components/game-grid-card/game-grid-card.njk" %}
       {% endfor %}
     </div>
+    {% if pagination.hrefs.length > 1 %}
+    <nav class="rh-pagination" aria-label="Game catalogue pages" data-catalogue-pagination>
+      {% if pagination.href.previous %}
+        <a class="rh-pagination__link" href="{{ pagination.href.previous }}" rel="prev">← Previous</a>
+      {% endif %}
+      {% for href in pagination.hrefs %}
+        {% if loop.index0 == 0 or loop.index0 == pagination.pageNumber or loop.index0 == pagination.pageNumber - 1 or loop.index0 == pagination.pageNumber + 1 or loop.last %}
+          <a class="rh-pagination__link{% if loop.index0 == pagination.pageNumber %} rh-pagination__link--current{% endif %}" href="{{ href }}"{% if loop.index0 == pagination.pageNumber %} aria-current="page"{% endif %}>{{ loop.index }}</a>
+        {% endif %}
+      {% endfor %}
+      {% if pagination.href.next %}
+        <a class="rh-pagination__link rh-pagination__next" href="{{ pagination.href.next }}" rel="next">More games →</a>
+      {% endif %}
+    </nav>
+    {% endif %}
   </div>
 </section>
 

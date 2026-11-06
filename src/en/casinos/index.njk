@@ -1,12 +1,17 @@
 ---
 layout: layouts/base.njk
 lang: en
-permalink: /en/casinos/
+pagination:
+  data: casinos
+  size: 12
+  alias: pageCasinos
+permalink: "/en/casinos/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
+eleventyComputed:
+  canonical: "/en/casinos/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}"
 
 metaTitle: Casino Listings | Verification Pending
 metaDescription: Browse casino listings awaiting verified operator claims and editorial decisions.
 
-canonical: /en/casinos/
 
 breadcrumbs:
   - label: Home
@@ -104,10 +109,25 @@ breadcrumbs:
     </p>
 
     <div class="casinos-search__grid" id="casinos-results" data-casinos-grid>
-      {% for casino in casinos %}
+      {% for casino in pageCasinos %}
         {% include "components/casino-card/casino-card.njk" %}
       {% endfor %}
     </div>
+    {% if pagination.hrefs.length > 1 %}
+    <nav class="rh-pagination" aria-label="Casino catalogue pages" data-catalogue-pagination>
+      {% if pagination.href.previous %}
+        <a class="rh-pagination__link" href="{{ pagination.href.previous }}" rel="prev">← Previous</a>
+      {% endif %}
+      {% for href in pagination.hrefs %}
+        {% if loop.index0 == 0 or loop.index0 == pagination.pageNumber or loop.index0 == pagination.pageNumber - 1 or loop.index0 == pagination.pageNumber + 1 or loop.last %}
+          <a class="rh-pagination__link{% if loop.index0 == pagination.pageNumber %} rh-pagination__link--current{% endif %}" href="{{ href }}"{% if loop.index0 == pagination.pageNumber %} aria-current="page"{% endif %}>{{ loop.index }}</a>
+        {% endif %}
+      {% endfor %}
+      {% if pagination.href.next %}
+        <a class="rh-pagination__link rh-pagination__next" href="{{ pagination.href.next }}" rel="next">More casinos →</a>
+      {% endif %}
+    </nav>
+    {% endif %}
   </div>
 </section>
 
