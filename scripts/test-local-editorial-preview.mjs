@@ -34,10 +34,14 @@ assert.equal(buildLocalGameDraftPreviewV1({...args,game:casino[0]}),null);
 const source=readFileSync("src/en/games/game.njk","utf8");
 const marker='include "components/local-editorial-pilot/local-editorial-pilot.njk"';
 assert(source.includes(marker),"Missing opt-in draft include");
-const elsePos=source.indexOf('{% else %}');
+const fallbackPos=source.indexOf('{# Page-specific identity is safe;');
 const markerPos=source.indexOf(marker);
-const endifPos=source.indexOf('{% endif %}',elsePos);
-assert(elsePos>=0&&markerPos>elsePos&&markerPos<endifPos,"Draft must stay in the blocked review-preview branch");
+const navigationPos=source.indexOf('{# Shared contextual navigation');
+assert(fallbackPos>=0 && markerPos>fallbackPos && navigationPos>markerPos,
+  "Draft must stay inside the blocked review-preview branch");
+assert(source.includes('{% if pilotDraft %}'),"Explicit local preview conditional is missing");
+assert(source.includes('include "components/review-preview/review-preview.njk"'),
+  "Normal safe review-preview fallback must remain");
 const markup=readFileSync("src/_includes/components/local-editorial-pilot/local-editorial-pilot.njk","utf8");
 assert(markup.includes("UNVERIFIED DRAFT"));
 assert(markup.includes("data-local-editorial-draft"));

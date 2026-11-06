@@ -21,8 +21,8 @@ function validRoute(route) {
   if (expected[route.type]) return route.path === expected[route.type];
   if (route.type === "games-index-page" || route.type === "casinos-index-page") {
     const prefix = route.type === "games-index-page" ? "games" : "casinos";
-    const match = route.path.match(new RegExp("^/en/" + prefix + "/page/([2-9][0-9]*)/$"));
-    return Boolean(match && Number.isSafeInteger(Number(match[1])));
+    const match = route.path.match(new RegExp("^/en/" + prefix + "/page/([1-9][0-9]*)/$"));
+    return Boolean(match && Number.isSafeInteger(Number(match[1])) && Number(match[1]) >= 2);
   }
   return typeof route.entityId === "string" && SLUG.test(route.entityId) &&
     route.path.startsWith("/en/" + (route.type === "game" ? "games/" : "casinos/")) &&

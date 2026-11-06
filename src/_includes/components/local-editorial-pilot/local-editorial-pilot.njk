@@ -84,7 +84,7 @@
             <h3>Official developer page</h3>
             <p>The official product description may provide demo access. We do not assume that its page can be embedded or that a third-party launch is permitted.</p>
             {% if pilotDraft.researchLinks.length %}
-              <a class="ui-button ui-button--primary" href="{{ pilotDraft.researchLinks[pilotDraft.researchLinks.length - 1] }}" target="_blank" rel="noopener noreferrer">Open developer game page ↗</a>
+              <a class="ui-button ui-button--primary" href="{{ pilotDraft.researchLinks[1] or pilotDraft.researchLinks[0] }}" target="_blank" rel="noopener noreferrer">Open developer game page ↗</a>
             {% endif %}
             <p class="rh-review__tiny">Opens an external page; it does not launch an embedded game session.</p>
           </div>
@@ -92,11 +92,11 @@
       </section>
       <section class="rh-review__section" id="features">
         <span class="rh-review__eyebrow">04 · Mechanics</span>
-        <h2>{{ pilotDraft.features.heading if pilotDraft.features else "Game features" }}</h2>
+        <h2>{% if pilotDraft.features %}{{ pilotDraft.features.heading }}{% else %}Game features{% endif %}</h2>
         {% if pilotDraft.features %}
         <div class="rh-review__features">
           {% for item in pilotDraft.features.items %}
-            <div class="rh-review__feature"><span class="rh-review__feature-num">{{ "%02d" | format(loop.index) }}</span><strong>{{ item }}</strong></div>
+            <div class="rh-review__feature"><span class="rh-review__feature-num">{{ loop.index }}</span><strong>{{ item }}</strong></div>
           {% endfor %}
         </div>
         {% endif %}
