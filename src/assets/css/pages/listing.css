@@ -31,3 +31,17 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
+/* Catalogue hero follows the original Sweet Loot page spacing. */
+.page-hero{padding-block:27px 35px;background:radial-gradient(ellipse at 20% 10%,rgba(59,130,246,.14),transparent 58%)}
+.page-hero h1{font-size:clamp(2.6rem,5vw,4.4rem);letter-spacing:-.025em}
+.page-hero p{font-size:1.05rem;max-width:62ch;line-height:1.65}
+.rh-catalogue-eyebrow{display:inline-flex;align-items:center;padding:6px 12px;margin:4px 0 12px;border-radius:999px;color:var(--color-primary-dark);background:var(--color-primary-soft);font-size:.78rem;font-weight:850}
+
+/* Search-friendly HTML pagination: crawlable links with real independent URLs. */
+.rh-pagination{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:9px;margin-top:30px}
+.rh-pagination__link{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:10px 15px;border:1px solid var(--color-border);border-radius:12px;background:var(--color-surface);color:var(--color-text);font-size:.89rem;font-weight:800;text-decoration:none}
+.rh-pagination__link:hover,.rh-pagination__link:focus-visible{border-color:var(--color-primary);color:var(--color-primary);text-decoration:none}
+.rh-pagination__link--current{border-color:var(--color-primary);background:var(--color-primary-soft);color:var(--color-primary)}
+.rh-pagination__next{background:var(--color-primary);border-color:var(--color-primary);color:#fff}
+.rh-pagination__next:hover,.rh-pagination__next:focus-visible{background:var(--color-primary-dark);color:#fff}
+.rh-pagination[hidden]{display:none!important}

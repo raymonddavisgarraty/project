@@ -28,3 +28,8 @@
 .breadcrumbs__link:focus-visible {
     text-decoration: underline;
 }
+/* Prototype's quiet breadcrumb line. */
+.breadcrumbs{margin-bottom:20px;padding-block:8px}
+.breadcrumbs__list{font-size:.82rem;gap:8px}
+.breadcrumbs__link{color:var(--color-muted)}
+.breadcrumbs__item:not(:last-child)::after{content:"›"}

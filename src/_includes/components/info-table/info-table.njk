@@ -3,7 +3,7 @@
     {% for row in rows %}
       <tr class="info-table__row">
         <th class="info-table__label" scope="row">{{ row.label }}</th>
-        <td class="info-table__value">{{ row.value }}</td>
+        <td class="info-table__value">{{ row.value }}{% if row.note %}<span class="info-table__note">{{ row.note }}</span>{% endif %}</td>
       </tr>
     {% endfor %}
   </tbody>

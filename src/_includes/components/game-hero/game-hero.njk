@@ -9,6 +9,15 @@
         <h1 class="game-hero__title">{{ game.seo.h1 }}</h1>
 
         <p class="game-hero__text">{{ game.hero.description }}</p>
+        {# Theme markers come only from this game's approved editorial module. #}
+        {% if game.featureTags and game.featureTags.length %}
+          {% set items = game.featureTags %}
+        {% else %}
+          {% set items = [{ symbol: "🎮", label: "Game guide" }, { symbol: "📖", label: "Features explained" }] %}
+        {% endif %}
+        {% set pillClass = "pill-list--inline" %}
+        {% set pillLabel = "Game theme and review sections" %}
+        {% include "components/pill-list/pill-list.njk" %}
 
         {% if game.rating and game.rating.overall is defined %}
         <div class="game-hero__rating" aria-label="Rating {{ game.rating.overall }} out of 5">
@@ -16,20 +25,6 @@
           {% include "components/icon/icon.njk" %}
           <strong>{{ game.rating.overall }} / 5</strong>
           <span>Editorial rating</span>
-        </div>
-        {% endif %}
-
-        {# No source JSON facts are displayed without field-level editorial verification.
-           Unknown, disputed or null values are omitted rather than guessed. #}
-        {% set approvedFacts = editorialFields433.gameRows(game) %}
-        {% if approvedFacts.length %}
-        <div class="game-hero__stats" aria-label="Verified game characteristics">
-          {% for fact in approvedFacts %}
-          <div>
-            <span>{{ fact.label }}</span>
-            <strong>{{ fact.value }}</strong>
-          </div>
-          {% endfor %}
         </div>
         {% endif %}
 
@@ -56,5 +51,8 @@
         {% include "components/media-cover/media-cover.njk" %}
       </div>
     </div>
+    {% set facts = visualFactsV3.game(editorialFields433.gameRows(game)) %}
+    {% set factsLabel = "Game at a glance" %}
+    {% include "components/quick-facts/quick-facts.njk" %}
   </div>
 </section>

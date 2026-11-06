@@ -20,16 +20,20 @@ eleventyComputed:
 ] %}
 {% if editorialDisplay432.casino(casino) %}
 {% include "components/casino-hero/casino-hero.njk" %}
-
-<section class="section">
+<nav class="rh-section-nav" aria-label="Casino review sections">
+  <div class="container rh-section-nav__links">
+    <a href="#overview">Overview</a><a href="#casino-info">Quick facts</a>
+    <a href="#bonus">Bonus</a><a href="#games">Games</a>
+    <a href="#payments">Payments</a><a href="#security">Security</a>
+    <a href="#rating-breakdown">Ratings</a>
+  </div>
+</nav>
+<section class="section rh-full-review">
   <div class="container detail-layout">
     <article class="detail-content">
-      {% set facts = [
-  { label: "Rating", value: casino.rating + " / 5", icon: "star" },
-  { label: "License", value: casino.license, icon: "shield" },
-  { label: "Games", value: casino.gamesCount, icon: "cards" },
-  { label: "Withdrawal", value: casino.withdrawalSpeed, icon: "clock" }
-] %}
+      {# Facts are assembled exclusively from reviewed claim rows. #}
+      {% set facts = visualFactsV3.casino(editorialFields433.casinoRows(casino)) %}
+      {% set factsLabel = "Casino at a glance" %}
 
       {% include "components/quick-facts/quick-facts.njk" %}
       {% set toc = [

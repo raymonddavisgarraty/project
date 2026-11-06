@@ -81,3 +81,10 @@
     outline: 3px solid var(--color-primary);
     outline-offset: 3px;
 }
+
+/* Casino cards reuse the same prototype panel system. */
+.casino-card{border-radius:22px}
+.casino-card__body{padding:23px;gap:12px}
+.casino-card__title{font-size:1.2rem;letter-spacing:-.02em}
+.casino-card__text{font-weight:500;line-height:1.6}
+.casino-card__eyebrow{font-size:.79rem;font-weight:750}

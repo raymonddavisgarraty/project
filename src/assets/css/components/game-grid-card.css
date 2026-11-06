@@ -71,3 +71,10 @@
     border-color: var(--color-success);
     box-shadow: 0 0 0 4px var(--color-success-soft), var(--shadow-card-hover);
 }
+/* Prototype-inspired cards, without changing field-approval guards. */
+.game-grid-card{gap:12px;padding:11px;border-radius:22px}
+.game-grid-card__media{border-radius:15px}
+.game-grid-card__content{gap:7px;padding:2px 5px 7px}
+.game-grid-card__title{font-size:1.04rem;letter-spacing:-.02em;font-weight:850}
+.game-grid-card__meta{font-size:.81rem;font-weight:650;line-height:1.55}
+.game-grid-card__placeholder{background:linear-gradient(145deg,var(--color-surface-soft),var(--color-surface))}

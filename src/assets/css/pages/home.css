@@ -110,3 +110,7 @@
 .home-seo p {
     color: var(--color-muted);
 }
+/* Shared homepage visual rhythm; retains the existing carousel and SEO text. */
+.home-section,.home-seo{background:var(--color-bg)}
+.home-seo__inner{border-radius:22px}
+.home-section__eyebrow{color:var(--color-primary);font-size:.78rem;letter-spacing:.04em;font-weight:850}

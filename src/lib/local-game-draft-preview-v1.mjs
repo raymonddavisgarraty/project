@@ -27,12 +27,45 @@ export function buildLocalGameDraftPreviewV1({game,registry,enabled=false,produc
   const questions=game.faq;
   if(!Array.isArray(questions)||questions.length>12||
      !questions.every(q=>clean(q?.question)&&clean(q?.answer)))return null;
+  // Do not project arbitrary game records or unreviewed commercial information.
+  // This pilot's separate descriptive values remain labelled as editorial draft.
+  function copyObjects(input,fields,max){
+    if(!Array.isArray(input)||input.length===0||input.length>max)return null;
+    const results=[];
+    for(const object of input){
+      if(!object||typeof object!=="object"||Array.isArray(object)||
+         Object.keys(object).some(key=>!fields.includes(key)))return null;
+      const output={};
+      for(const field of fields){
+        const val=object[field];
+        if(val===undefined){if(field==="note")continue;return null;}
+        if(!clean(val)||val.length>220)return null;
+        output[field]=val;
+      }
+      results.push(Object.freeze(output));
+    }
+    return Object.freeze(results);
+  }
+  const facts=copyObjects(game.previewFacts,["symbol","label","value","note","detail"],8);
+  const additionalSpecs=copyObjects(game.previewAdditionalSpecs,["label","value","note"],8);
+  const tags=copyObjects(game.featureTags,["symbol","label"],10);
+  const featureCards=copyObjects(game.featureCards,["symbol","title","description"],8);
+  if(!facts||!additionalSpecs||!tags||!featureCards)return null;
+  const specs=Object.freeze([
+    ...facts.map(item=>Object.freeze({label:item.label,value:item.value,note:item.detail})),
+    ...additionalSpecs.map(item=>Object.freeze({label:item.label,value:item.value,note:item.note})),
+  ]);
+  const glance=Object.freeze(facts.map(item=>Object.freeze({
+    symbol:item.symbol,label:item.label,value:item.value,note:item.note,
+  })));
+
   const refs=game.editorialSourceLeads;
   if(!Array.isArray(refs)||refs.length>5||!refs.every(url=>
     typeof url==="string"&&/^https:\/\/www\.pragmaticplay\.com\/en\/[a-z0-9/-]+\/$/.test(url)))return null;
   return Object.freeze({
     kind:"local-editorial-copy-preview-only",unverified:true,
     heading:title,intro,sections:Object.freeze(sections),
+    glance,tags,featureCards,specifications:specs,
     features:f?Object.freeze({heading:f.title,items:Object.freeze([...f.items])}):null,
     questions:Object.freeze(questions.map(q=>({question:q.question,answer:q.answer}))),
     researchLinks:Object.freeze([...refs]),

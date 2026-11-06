@@ -84,3 +84,84 @@
         top: 110px;
     }
 }
+
+/* Game Page v3 — the Sweet Loot prototype layout, adapted to real data. */
+.rh-section-nav{position:sticky;top:70px;z-index:35;background:var(--color-bg);border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border)}
+.rh-section-nav__links{display:flex;align-items:center;gap:22px;overflow-x:auto;scrollbar-width:thin;padding-block:13px;white-space:nowrap}
+.rh-section-nav a{font-size:.86rem;font-weight:750;color:var(--color-muted);text-decoration:none}
+.rh-section-nav a:hover,.rh-section-nav a:focus-visible{color:var(--color-primary)}
+.rh-full-review{padding-block:32px 80px}
+.rh-full-review .detail-layout{grid-template-columns:minmax(0,1fr) 290px;gap:24px;align-items:start}
+.rh-full-review .detail-content{padding:29px;border-radius:22px;counter-reset:review-section}
+.rh-full-review .detail-content>h2{font-size:clamp(1.35rem,2.6vw,1.85rem);margin-block:28px 14px;scroll-margin-top:153px}
+.rh-full-review .detail-content>h2::before{counter-increment:review-section;content:counter(review-section,decimal-leading-zero) " · ";color:var(--color-primary);font-size:.75em;font-weight:850}
+.rh-full-review .detail-sidebar{top:143px;gap:18px}
+.rh-review{min-width:0}
+.rh-review__hero{padding:26px 0 33px;background:radial-gradient(ellipse at 20% 10%,rgba(59,130,246,.14),transparent 58%)}
+.rh-review__hero-grid{display:grid;grid-template-columns:1.13fr .87fr;gap:22px}
+.rh-review__hero-copy,.rh-review__hero-art{border:1px solid var(--color-border);border-radius:22px;min-width:0;box-shadow:var(--shadow-card)}
+.rh-review__hero-copy{padding:34px;background:var(--color-surface)}
+.rh-review__eyebrow{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;background:var(--color-primary-soft);color:var(--color-primary-dark);font-size:.78rem;font-weight:850}
+.rh-review h1{font-size:clamp(2.6rem,5vw,4.4rem);margin:10px 0 18px}
+.rh-review__subtitle{color:var(--color-muted);font-size:1.05rem;max-width:58ch}
+.rh-review__tags{display:flex;flex-wrap:wrap;gap:8px;margin:21px 0}
+.rh-review__tag{display:inline-flex;padding:6px 11px;font-size:.8rem;font-weight:750;color:var(--color-text);border:1px solid var(--color-border);background:var(--color-surface-soft);border-radius:999px}
+.rh-review__actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:28px}
+.rh-review__hero-art{position:relative;min-height:352px;overflow:hidden;display:grid;place-items:center;background:radial-gradient(circle at 30% 24%,#5836b5,#2b1d63 42%,#111c48 78%)}
+.rh-review__hero-art img{width:100%;height:100%;max-height:480px;min-height:352px;object-fit:cover}
+.rh-review__art-text{padding:24px;color:#ffe083;font-size:clamp(2rem,4vw,3.4rem);font-weight:950;letter-spacing:-.05em;text-shadow:3px 5px #9a317a}
+.rh-review__art-caption{position:absolute;bottom:14px;right:15px;font-size:11px;border-radius:8px;background:#0009;padding:5px 9px;color:#fff}
+.rh-review__warning{margin:18px 0 0;padding:13px 16px;border:1px solid var(--color-warning);border-radius:13px;background:rgba(251,191,36,.08);font-size:.84rem;color:var(--color-text)}
+.rh-review__body{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:24px;padding-top:32px;padding-bottom:80px;align-items:start}
+.rh-review__main{display:grid;gap:24px;min-width:0}
+.rh-review__section,.rh-review__mini{min-width:0;padding:27px 29px;border:1px solid var(--color-border);border-radius:22px;background:var(--color-surface);box-shadow:var(--shadow-card)}
+.rh-review__section{scroll-margin-top:153px}
+.rh-review__section h2{font-size:clamp(1.4rem,2.5vw,2rem);margin:14px 0 15px}
+.rh-review__section h3{font-size:1.14rem;margin:20px 0 8px}
+.rh-review__section p,.rh-review__section li,.rh-review__mini p,.rh-review__mini li{color:var(--color-muted)}
+.rh-review__section ul{padding-left:19px;overflow-wrap:anywhere}
+.rh-review__section li{margin:8px 0}
+.rh-review__intro{font-size:1.03rem}
+.rh-review__sidebar{display:grid;gap:18px;position:sticky;top:143px}
+.rh-review__mini{padding:23px}
+.rh-review__mini h3{margin:0 0 14px}
+.rh-review__mini ul{margin:0;padding-left:18px}
+.rh-review__mini li{font-size:.87rem}
+.rh-review__mini a{color:var(--color-primary);text-decoration:none}
+.rh-review__mini a:hover{text-decoration:underline}
+.rh-review__tiny{font-size:.78rem;color:var(--color-muted);margin-top:14px}
+.rh-review__demo{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:16px;align-items:stretch}
+.rh-review__demo-frame{min-height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:28px;text-align:center;border-radius:17px;border:1px solid #6e60cf;background:radial-gradient(circle at 50% 20%,#503a8f,#161b40 65%);color:#fff}
+.rh-review__demo-frame p{color:#c5c6e0;font-size:.85rem}
+.rh-review__demo-symbol{font-size:3.3rem}
+.rh-review__features,.rh-review__gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.rh-review__feature{display:grid;gap:7px;padding:20px;border:1px solid var(--color-border);border-radius:14px;background:var(--color-surface-soft)}
+.rh-review__feature-num{color:var(--color-primary);font-size:.82rem;font-weight:850}
+.rh-review__gallery{grid-template-columns:repeat(3,minmax(0,1fr))}
+.rh-review__shot{min-height:150px;padding:16px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;border:1px solid var(--color-border);border-radius:15px;background:linear-gradient(145deg,#222b54,#6f3b80);color:#fff;text-align:center}
+.rh-review__shot span{font-size:1.9rem}
+.rh-review__shot small{font-size:.74rem;color:#dcd7f8}
+.rh-review__video{min-height:240px;padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:1px dashed #50607a;border-radius:15px;background:var(--color-surface-soft);text-align:center;color:var(--color-muted)}
+.rh-review__video span{font-size:3rem}
+.rh-review__video strong{color:var(--color-text)}
+.rh-review__faq details{padding:15px 0;border-bottom:1px solid var(--color-border)}
+.rh-review__faq summary{cursor:pointer;font-weight:800;color:var(--color-text)}
+.rh-review__faq p{margin:12px 0 0}
+@media(max-width:1050px){.rh-review__body,.rh-full-review .detail-layout{grid-template-columns:1fr}.rh-review__sidebar{position:static;grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:720px){.rh-section-nav{top:60px}.rh-review__hero-grid,.rh-review__demo{grid-template-columns:1fr}.rh-review__hero-copy{padding:22px}.rh-review__hero-art{min-height:315px}.rh-review__body{padding-top:18px}.rh-review__section{padding:21px}.rh-review__features,.rh-review__sidebar{grid-template-columns:1fr}.rh-review__gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.rh-review__section{scroll-margin-top:135px}}
+
+/* Icon-led mechanic cards from the Sweet Loot reference design.
+   Component is generic; values are supplied by each approved game record. */
+.rh-feature-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0}
+.rh-feature-card{padding:20px;border:1px solid var(--color-border);border-radius:14px;background:var(--color-surface-soft);min-width:0}
+.rh-feature-card__symbol{display:block;margin-bottom:9px;font-size:1.55rem;line-height:1.1}
+.rh-feature-card strong{display:block;color:var(--color-text);font-size:1rem;margin-bottom:8px}
+.rh-feature-card p{font-size:.89rem;line-height:1.6;margin:0;color:var(--color-muted)}
+@media(max-width:720px){.rh-feature-cards{grid-template-columns:1fr}}
+
+/* Short fact cards belong directly below the two-column hero, not in #stats. */
+.rh-review__hero .quick-facts{margin:15px 0 0}
+.game-hero .quick-facts{margin:17px 0 0}
+.rh-review__section#stats .info-table{width:100%;margin-top:18px}
+.rh-review__section#stats .info-table__label{min-width:165px}
+@media(max-width:720px){.rh-review__hero .quick-facts{margin-top:12px}.rh-review__section#stats .info-table__label{min-width:0}}

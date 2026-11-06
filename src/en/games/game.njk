@@ -20,8 +20,16 @@ eleventyComputed:
 ] %}
 {% if editorialDisplay432.game(game) %}
 {% include "components/game-hero/game-hero.njk" %}
+<nav class="rh-section-nav" aria-label="Game review sections">
+  <div class="container rh-section-nav__links">
+    <a href="#overview">Overview</a><a href="#game-info">Specifications</a>
+    <a href="#features">Features</a><a href="#gameplay">Gameplay</a>
+    <a href="#rtp-volatility">RTP information</a><a href="#bonus-features">Bonus features</a>
+    <a href="#faq-title">FAQ</a>
+  </div>
+</nav>
 
-<section class="section">
+<section class="section rh-full-review">
   <div class="container detail-layout">
     <article class="detail-content">
       {% set toc = [] %}
@@ -63,11 +71,8 @@ eleventyComputed:
 
       <h2 id="game-info">Game information</h2>
 
-      {# Only Stage 43.3 individually reviewed facts may enter the information table. #}
-      {% set rows = editorialFields433.gameRows(game) %}
-      {% if game.rating and game.rating.overall is defined %}
-        {% set rows = [{ label: "Rating", value: game.rating.overall + " / 5" }].concat(rows) %}
-      {% endif %}
+      {# Separate rich specifications table, using the same reviewed facts as hero. #}
+      {% set rows = visualFactsV3.gameSpecs(editorialFields433.gameRows(game)) %}
       {% if rows.length %}
         {% include "components/info-table/info-table.njk" %}
       {% else %}
@@ -86,11 +91,12 @@ eleventyComputed:
 
       {% if game.sections.features and game.sections.features.items and game.sections.features.items.length %}
         <h2 id="features">{{ game.sections.features.title }}</h2>
-        <ul>
-          {% for item in game.sections.features.items %}
-            <li>{{ item }}</li>
-          {% endfor %}
-        </ul>
+        {% if game.featureCards and game.featureCards.length %}
+          {% set featureCards = game.featureCards %}
+          {% include "components/feature-cards/feature-cards.njk" %}
+        {% else %}
+          <ul>{% for item in game.sections.features.items %}<li>{{ item }}</li>{% endfor %}</ul>
+        {% endif %}
       {% endif %}
 
       {% if game.sections.gameplay and game.sections.gameplay.text %}
@@ -151,11 +157,12 @@ eleventyComputed:
 {% set previewSnapshot = reviewPreview443.forGame(game) %}
 {% set previewCatalogUrl = "/en/games/" %}
 {% set previewCatalogText = "Browse games catalogue" %}
-{% include "components/review-preview/review-preview.njk" %}
-{# Opt-in, non-production local inspection of the original editorial draft. #}
+{# Opt-in local design preview replaces, not duplicates, the pending shell. #}
 {% set pilotDraft = localEditorialPilot.forGame(game) %}
 {% if pilotDraft %}
 {% include "components/local-editorial-pilot/local-editorial-pilot.njk" %}
+{% else %}
+{% include "components/review-preview/review-preview.njk" %}
 {% endif %}
 {% endif %}
 

@@ -9,6 +9,16 @@
         <h1 class="casino-hero__title">{{ casino.title }} Review</h1>
 
         <p class="casino-hero__text">{{ casino.description }}</p>
+        {# Section topics, not unsupported factual claims or promotional offers. #}
+        {% set items = [
+          { symbol: "🎰", label: "Games" },
+          { symbol: "💳", label: "Payments" },
+          { symbol: "🛡️", label: "Security" },
+          { symbol: "📖", label: "Casino guide" }
+        ] %}
+        {% set pillClass = "pill-list--inline" %}
+        {% set pillLabel = "Casino guide sections" %}
+        {% include "components/pill-list/pill-list.njk" %}
 
         <div class="casino-hero__rating" aria-label="Rating {{ casino.rating }} out of 5">
           {% set name = "star" %}
