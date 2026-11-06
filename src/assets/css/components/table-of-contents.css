@@ -44,3 +44,8 @@
         display: none;
     }
 }
+/* Small, quiet sidebar navigation, as in the prototype. */
+.toc{padding:23px;border-radius:22px}
+.toc__title{font-size:1.14rem;margin-bottom:14px}
+.toc__list{gap:8px}
+.toc__list a{font-weight:700;font-size:.87rem}

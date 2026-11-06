@@ -1,36 +1,168 @@
-{# Opt-in local editorial copy display. Never a verified source, score or publication. #}
-<section class="section" id="editorial-pilot-draft" data-local-editorial-draft="sweet-bonanza">
-  <div class="container">
-    <article class="detail-content" aria-labelledby="editorial-pilot-title">
-      <p><strong>Local editorial preview — UNVERIFIED DRAFT</strong></p>
-      <p>This copy is for editorial review only. It has not passed full source, edition, rights or market verification. It is not a published recommendation, a game-rating or a promotion.</p>
-      <h2 id="editorial-pilot-title">{{ pilotDraft.heading }}</h2>
-      <p>{{ pilotDraft.intro }}</p>
-      {% for block in pilotDraft.sections %}
-        <h3>{{ block.heading }}</h3>
-        <p>{{ block.body }}</p>
-      {% endfor %}
-      {% if pilotDraft.features %}
-        <h3>{{ pilotDraft.features.heading }}</h3>
+{# Design v3: original Sweet Loot prototype adapted to the existing local EN game draft.
+   This component is rendered only when EDITORIAL_PREVIEW=1 outside production.
+   Developer links are research leads, not authorized game-launch/iframe links. #}
+<section class="rh-review" data-local-editorial-draft="sweet-bonanza" aria-label="Unverified local game draft">
+  <div class="rh-review__hero">
+    <div class="container">
+      {% include "components/breadcrumbs/breadcrumbs.njk" %}
+      <div class="rh-review__hero-grid">
+        <div class="rh-review__hero-copy">
+          <span class="rh-review__eyebrow">🎮 Original game · Editorial draft</span>
+          <h1>{{ pilotDraft.heading }}</h1>
+          <p class="rh-review__subtitle">{{ pilotDraft.intro }}</p>
+          <div class="rh-review__tags">
+            <span class="rh-review__tag">Game information</span>
+            <span class="rh-review__tag">Mechanics explained</span>
+            <span class="rh-review__tag">No ratings or offers</span>
+          </div>
+          <div class="rh-review__actions">
+            <a href="#overview" class="ui-button ui-button--primary">Read guide</a>
+            <a href="#demo" class="ui-button ui-button--secondary">Demo information</a>
+          </div>
+        </div>
+        <div class="rh-review__hero-art" aria-label="Illustrative game image area">
+          {% if game.media and game.media.cover and game.media.cover.src %}
+            <img src="{{ game.media.cover.src }}" alt="{{ game.media.cover.alt }}" width="{{ game.media.cover.width }}" height="{{ game.media.cover.height }}" loading="eager">
+          {% else %}
+            <div class="rh-review__art-text">{{ game.hero.title }}</div>
+          {% endif %}
+          <span class="rh-review__art-caption">Local artwork preview</span>
+        </div>
+      </div>
+      <p class="rh-review__warning"><strong>UNVERIFIED DRAFT:</strong> This preview is not published. Game details, media rights and availability are under editorial review.</p>
+    </div>
+  </div>
+
+  <nav class="rh-section-nav" aria-label="Game review sections">
+    <div class="container rh-section-nav__links">
+      <a href="#overview">Overview</a>
+      <a href="#stats">Quick facts</a>
+      <a href="#demo">Demo</a>
+      <a href="#features">Features</a>
+      <a href="#media">Screenshots</a>
+      <a href="#video">Video</a>
+      <a href="#analysis">Analysis</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  </nav>
+
+  <div class="container rh-review__body">
+    <div class="rh-review__main">
+      <section class="rh-review__section" id="overview">
+        <span class="rh-review__eyebrow">01 · Overview</span>
+        <h2>{{ pilotDraft.heading }}</h2>
+        <p class="rh-review__intro">{{ pilotDraft.intro }}</p>
+        {% for block in pilotDraft.sections %}
+          {% if loop.first %}
+            <h3>{{ block.heading }}</h3>
+            <p>{{ block.body }}</p>
+          {% endif %}
+        {% endfor %}
+      </section>
+      <section class="rh-review__section" id="stats">
+        <span class="rh-review__eyebrow">02 · Specifications</span>
+        <h2>Game information</h2>
+        {% set checkedFacts = editorialFields433.gameRows(game) %}
+        {% if checkedFacts.length %}
+          {% set rows = checkedFacts %}
+          {% include "components/info-table/info-table.njk" %}
+        {% else %}
+          <p>Exact numerical characteristics are not approved for this version yet. The original developer description and game rules are listed for further reference.</p>
+        {% endif %}
+      </section>
+      <section class="rh-review__section" id="demo">
+        <span class="rh-review__eyebrow">03 · Demo game</span>
+        <h2>Can I try the game for free?</h2>
+        <div class="rh-review__demo">
+          <div class="rh-review__demo-frame">
+            <div aria-hidden="true" class="rh-review__demo-symbol">🎰</div>
+            <strong>Playable demo area</strong>
+            <p>An actual playable game can appear here only with a licensed, embeddable launch URL.</p>
+            <span class="rh-review__tag">Embed not enabled</span>
+          </div>
+          <div>
+            <h3>Official developer page</h3>
+            <p>The official product description may provide demo access. We do not assume that its page can be embedded or that a third-party launch is permitted.</p>
+            {% if pilotDraft.researchLinks.length %}
+              <a class="ui-button ui-button--primary" href="{{ pilotDraft.researchLinks[pilotDraft.researchLinks.length - 1] }}" target="_blank" rel="noopener noreferrer">Open developer game page ↗</a>
+            {% endif %}
+            <p class="rh-review__tiny">Opens an external page; it does not launch an embedded game session.</p>
+          </div>
+        </div>
+      </section>
+      <section class="rh-review__section" id="features">
+        <span class="rh-review__eyebrow">04 · Mechanics</span>
+        <h2>{{ pilotDraft.features.heading if pilotDraft.features else "Game features" }}</h2>
+        {% if pilotDraft.features %}
+        <div class="rh-review__features">
+          {% for item in pilotDraft.features.items %}
+            <div class="rh-review__feature"><span class="rh-review__feature-num">{{ "%02d" | format(loop.index) }}</span><strong>{{ item }}</strong></div>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </section>
+      <section class="rh-review__section" id="media">
+        <span class="rh-review__eyebrow">05 · Media</span>
+        <h2>Screenshots and images</h2>
+        <p>Game screenshots can be added here when original or permitted image assets are available.</p>
+        <div class="rh-review__gallery">
+          <div class="rh-review__shot"><span>▧</span><strong>Base game</strong><small>IMAGE SLOT 01</small></div>
+          <div class="rh-review__shot"><span>✦</span><strong>Bonus mode</strong><small>IMAGE SLOT 02</small></div>
+          <div class="rh-review__shot"><span>▤</span><strong>Paytable</strong><small>IMAGE SLOT 03</small></div>
+        </div>
+      </section>
+      <section class="rh-review__section" id="video">
+        <span class="rh-review__eyebrow">06 · Video</span>
+        <h2>Gameplay walkthrough</h2>
+        <div class="rh-review__video"><span aria-hidden="true">▶</span><strong>Video area</strong><p>When available, a permitted gameplay video can be loaded after user interaction.</p></div>
+      </section>
+      <section class="rh-review__section" id="analysis">
+        <span class="rh-review__eyebrow">07 · Editorial analysis</span>
+        <h2>How the game works</h2>
+        {% for block in pilotDraft.sections %}
+          {% if not loop.first %}
+            <h3>{{ block.heading }}</h3>
+            <p>{{ block.body }}</p>
+          {% endif %}
+        {% endfor %}
+        <p class="rh-review__tiny">Descriptions are based on the original game's producer page; no gameplay test or mathematical configuration is implied.</p>
+      </section>
+      <section class="rh-review__section" id="faq">
+        <span class="rh-review__eyebrow">08 · Questions and answers</span>
+        <h2>Frequently asked questions</h2>
+        <div class="rh-review__faq">
+          {% for item in pilotDraft.questions %}
+            <details {% if loop.first %}open{% endif %}>
+              <summary>{{ item.question }}</summary>
+              <p>{{ item.answer }}</p>
+            </details>
+          {% endfor %}
+        </div>
+      </section>
+      <section class="rh-review__section" id="references">
+        <span class="rh-review__eyebrow">09 · References</span>
+        <h2>Developer information</h2>
+        <p>These are developer research leads, not rights or publication approvals.</p>
+        <ul>{% for href in pilotDraft.researchLinks %}<li><a href="{{ href }}" rel="noopener noreferrer" target="_blank">{{ href }}</a></li>{% endfor %}</ul>
+      </section>
+    </div>
+    <aside class="rh-review__sidebar" aria-label="Review navigation and status">
+      <div class="rh-review__mini">
+        <h3>On this page</h3>
         <ul>
-          {% for item in pilotDraft.features.items %}<li>{{ item }}</li>{% endfor %}
+          <li><a href="#overview">Overview</a></li><li><a href="#stats">Quick facts</a></li>
+          <li><a href="#demo">Demo game</a></li><li><a href="#features">Features</a></li>
+          <li><a href="#media">Screenshots</a></li><li><a href="#video">Video</a></li>
+          <li><a href="#analysis">Game analysis</a></li><li><a href="#faq">FAQ</a></li>
         </ul>
-      {% endif %}
-      {% if pilotDraft.questions.length %}
-        <h3>FAQ — draft answers</h3>
-        {% for item in pilotDraft.questions %}
-          <h4>{{ item.question }}</h4>
-          <p>{{ item.answer }}</p>
-        {% endfor %}
-      {% endif %}
-      <h3>Developer references for editorial verification</h3>
-      <p>Research leads, not approved evidence for a particular game's mathematical configuration.</p>
-      <ul>
-        {% for href in pilotDraft.researchLinks %}
-          <li><a href="{{ href }}" rel="noopener noreferrer">{{ href }}</a></li>
-        {% endfor %}
-      </ul>
-      <p><strong>No RTP percentage, editorial rating, casino bonus or affiliate link is approved by this draft.</strong></p>
-    </article>
+      </div>
+      <div class="rh-review__mini">
+        <h3>Review information</h3>
+        <p><strong>Content:</strong> informational game guide</p>
+        <p><strong>Status:</strong> unverified local preview</p>
+        <p><strong>Commercial links:</strong> none</p>
+        <p class="rh-review__tiny">This is not an independently conducted gameplay test.</p>
+      </div>
+    </aside>
   </div>
 </section>

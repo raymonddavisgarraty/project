@@ -120,3 +120,9 @@
         align-items: center;
     }
 }
+/* Prototype style for an approved full game hero. */
+.game-hero{padding-block:26px 33px;background:radial-gradient(ellipse at 20% 10%,rgba(59,130,246,.14),transparent 58%)}
+.game-hero__card{padding:34px;border-radius:22px;background:var(--color-surface);gap:22px}
+.game-hero__title{font-size:clamp(2.6rem,5vw,4.4rem);line-height:1.1}
+.game-hero__text{font-weight:500;line-height:1.65}
+.game-hero__eyebrow{font-size:.78rem;font-weight:850}

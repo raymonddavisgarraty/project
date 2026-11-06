@@ -120,3 +120,8 @@
         align-items: center;
     }
 }
+/* Shared prototype geometry for approved casino pages. */
+.casino-hero{padding-block:26px 33px;background:radial-gradient(ellipse at 20% 10%,rgba(59,130,246,.14),transparent 58%)}
+.casino-hero__card{padding:34px;border-radius:22px;background:var(--color-surface);gap:22px}
+.casino-hero__title{font-size:clamp(2.6rem,5vw,4.4rem);line-height:1.1}
+.casino-hero__text{font-weight:500;line-height:1.65}

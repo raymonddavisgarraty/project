@@ -344,3 +344,17 @@
 @media (prefers-reduced-motion: reduce) {
   .review-preview__action { transition: none; }
 }
+
+
+/* Shared pre-publication page follows the same prototype's card/header geometry. */
+.review-preview__hero{padding:26px 0 33px;background:radial-gradient(ellipse at 20% 10%,rgba(59,130,246,.14),transparent 58%)}
+.review-preview__hero-grid{grid-template-columns:1.13fr .87fr;gap:22px}
+.review-preview__intro{padding:34px;border:1px solid var(--color-border);border-radius:22px;background:var(--color-surface);box-shadow:var(--shadow-card)}
+.review-preview__title{font-size:clamp(2.6rem,5vw,4.4rem)}
+.review-preview__status{border-radius:22px}
+.review-preview__layout{padding-top:32px;grid-template-columns:minmax(0,1fr) 290px;gap:24px}
+.review-preview__section{border-radius:22px;padding:27px 29px;scroll-margin-top:153px}
+.review-preview__sidebar{position:sticky;top:143px}
+.review-preview__toc,.review-preview__aside-note{border-radius:22px}
+@media(max-width:1050px){.review-preview__layout{grid-template-columns:1fr}.review-preview__sidebar{position:static}}
+@media(max-width:720px){.review-preview__intro,.review-preview__section{padding:21px}.review-preview__hero-grid{grid-template-columns:1fr}}
