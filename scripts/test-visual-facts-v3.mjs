@@ -64,3 +64,11 @@ const casinos=text("src/en/casinos/casino.njk");
 assert(casinos.includes("visualFactsV3.casino(editorialFields433.casinoRows(casino))"));
 assert(!casinos.includes('label: "Rating", value: casino.rating + " / 5", icon: "star"'));
 console.log("Visual Facts v3 tests OK (six fact cards, thematic tags, mechanisms, guarded game and casino facts).");
+
+for(const path of [
+ "src/_includes/components/game-hero/game-hero.njk",
+ "src/_includes/components/casino-hero/casino-hero.njk"
+]){
+ const text=readFileSync(path,"utf8");
+ assert(text.includes('include "components/pill-list/pill-list.njk"'),"Missing hero feature chips: "+path);
+}
