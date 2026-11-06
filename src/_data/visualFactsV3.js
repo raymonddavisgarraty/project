@@ -44,8 +44,10 @@ export const gameSpecs=rows=>Object.freeze(
   (Array.isArray(rows)?rows:[])
     .filter(row=>row?.reviewStatus==="claim-verified" &&
       typeof row.field==="string" && Object.hasOwn(GAME_NOTES,row.field) &&
-      typeof row.label==="string" && typeof row.value==="string" && row.value.trim() &&
-      !/[<>]/.test(row.value))
-    .map(row=>Object.freeze({label:row.label,value:row.value,note:GAME_NOTES[row.field]}))
+      Object.hasOwn(GAME,row.field) &&
+      typeof row.value==="string" && row.value.trim() && !/[<>]/.test(row.value))
+    .map(row=>Object.freeze({
+      label:GAME[row.field][1],value:row.value,note:GAME_NOTES[row.field],
+    }))
 );
 export default Object.freeze({game,casino,gameSpecs});
