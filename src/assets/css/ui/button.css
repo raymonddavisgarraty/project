@@ -60,3 +60,5 @@
     background: var(--color-surface);
     color: var(--color-text);
 }
+/* Prototype button geometry. */
+.ui-button{min-height:47px;padding:12px 19px;border-radius:12px;font-weight:800}
