@@ -1,0 +1,36 @@
+name: Eleventy integration and editorial guards
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Build and regression tests (Node 22)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Install Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install project dependencies
+        run: npm ci
+      - name: Catch JavaScript syntax errors
+        run: node --check scripts/test-design-v3.mjs
+      - name: Build and integration tests
+        run: npm run verify:integration
+      - name: Verify local editorial preview boundaries
+        run: npm run test:local-editorial-preview
+      - name: Verify pilot editorial copy
+        run: npm run test:pilot-copy
+      - name: Verify draft/published state
+        run: npm run check:content-workflow
+      - name: Verify outbound catalogue stays unpublished
+        run: npm run check:published-catalogue
