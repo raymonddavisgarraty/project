@@ -31,12 +31,9 @@ eleventyComputed:
 <section class="section rh-full-review">
   <div class="container detail-layout">
     <article class="detail-content">
-      {% set facts = [
-  { label: "Rating", value: casino.rating + " / 5", icon: "star" },
-  { label: "License", value: casino.license, icon: "shield" },
-  { label: "Games", value: casino.gamesCount, icon: "cards" },
-  { label: "Withdrawal", value: casino.withdrawalSpeed, icon: "clock" }
-] %}
+      {# Facts are assembled exclusively from reviewed claim rows. #}
+      {% set facts = visualFactsV3.casino(editorialFields433.casinoRows(casino)) %}
+      {% set factsLabel = "Casino at a glance" %}
 
       {% include "components/quick-facts/quick-facts.njk" %}
       {% set toc = [

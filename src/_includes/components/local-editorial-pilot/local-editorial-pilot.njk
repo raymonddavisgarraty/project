@@ -10,11 +10,10 @@
           <span class="rh-review__eyebrow">🎮 Original game · Editorial draft</span>
           <h1>{{ pilotDraft.heading }}</h1>
           <p class="rh-review__subtitle">{{ pilotDraft.intro }}</p>
-          <div class="rh-review__tags">
-            <span class="rh-review__tag">Game information</span>
-            <span class="rh-review__tag">Mechanics explained</span>
-            <span class="rh-review__tag">No ratings or offers</span>
-          </div>
+          {% set items = pilotDraft.tags %}
+          {% set pillClass = "pill-list--inline" %}
+          {% set pillLabel = "Game theme and feature tags" %}
+          {% include "components/pill-list/pill-list.njk" %}
           <div class="rh-review__actions">
             <a href="#overview" class="ui-button ui-button--primary">Read guide</a>
             <a href="#demo" class="ui-button ui-button--secondary">Demo information</a>
@@ -62,13 +61,11 @@
       <section class="rh-review__section" id="stats">
         <span class="rh-review__eyebrow">02 · Specifications</span>
         <h2>Game information</h2>
-        {% set checkedFacts = editorialFields433.gameRows(game) %}
-        {% if checkedFacts.length %}
-          {% set rows = checkedFacts %}
-          {% include "components/info-table/info-table.njk" %}
-        {% else %}
-          <p>Exact numerical characteristics are not approved for this version yet. The original developer description and game rules are listed for further reference.</p>
-        {% endif %}
+        <p class="rh-review__tiny">Values below reflect the game's developer description and are <strong>draft information</strong>, not a verified version-specific mathematical configuration.</p>
+        {% set facts = pilotDraft.glance %}
+        {% set factsLabel = "Game at a glance — local research preview" %}
+        {% include "components/quick-facts/quick-facts.njk" %}
+        <p class="rh-review__tiny">Exact RTP and maximum-win values are intentionally not included in this pilot.</p>
       </section>
       <section class="rh-review__section" id="demo">
         <span class="rh-review__eyebrow">03 · Demo game</span>
@@ -93,13 +90,8 @@
       <section class="rh-review__section" id="features">
         <span class="rh-review__eyebrow">04 · Mechanics</span>
         <h2>{% if pilotDraft.features %}{{ pilotDraft.features.heading }}{% else %}Game features{% endif %}</h2>
-        {% if pilotDraft.features %}
-        <div class="rh-review__features">
-          {% for item in pilotDraft.features.items %}
-            <div class="rh-review__feature"><span class="rh-review__feature-num">{{ loop.index }}</span><strong>{{ item }}</strong></div>
-          {% endfor %}
-        </div>
-        {% endif %}
+        {% set featureCards = pilotDraft.featureCards %}
+        {% include "components/feature-cards/feature-cards.njk" %}
       </section>
       <section class="rh-review__section" id="media">
         <span class="rh-review__eyebrow">05 · Media</span>

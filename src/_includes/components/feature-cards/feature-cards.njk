@@ -1,0 +1,15 @@
+{# Feature cards are sourced from this entity's own editorial data.
+   No fallback to other games, invented mechanics or unreviewed endorsements. #}
+{% if featureCards and featureCards.length %}
+<div class="rh-feature-cards" aria-label="Game features and mechanics">
+  {% for feature in featureCards %}
+    {% if feature.title and feature.description %}
+    <div class="rh-feature-card">
+      {% if feature.symbol %}<span class="rh-feature-card__symbol" aria-hidden="true">{{ feature.symbol }}</span>{% endif %}
+      <strong>{{ feature.title }}</strong>
+      <p>{{ feature.description }}</p>
+    </div>
+    {% endif %}
+  {% endfor %}
+</div>
+{% endif %}

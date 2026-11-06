@@ -28,3 +28,8 @@
     color: var(--color-muted);
     font-weight: 850;
 }
+/* Prototype tag chips, reusing pill-list without its heading when inline. */
+.pill-list--inline{display:block;border:0;box-shadow:none;padding:0;margin:20px 0;background:transparent}
+.pill-list--inline .pill-list__items{gap:8px}
+.pill-list--inline .pill-list__item{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border:1px solid var(--color-border);border-radius:999px;background:var(--color-surface-soft);color:var(--color-text);font-size:.8rem;font-weight:750;line-height:1.4}
+.pill-list__symbol{font-size:1rem}

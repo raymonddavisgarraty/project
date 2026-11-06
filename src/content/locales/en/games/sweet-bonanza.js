@@ -27,6 +27,47 @@ export default {
     },
   },
 
+  // These descriptive values are first-party research leads only.
+  // They are displayed in a labelled, non-production local editorial preview.
+  // Never confuse the original Sweet Bonanza with Sweet Loot or Sweet Bonanza 1000.
+  previewFacts: [
+    { symbol: "🎮", label: "Game provider", value: "Pragmatic Play", note: "Developer page · draft" },
+    { symbol: "🍬", label: "Theme", value: "Candy & fruit", note: "Original game" },
+    { symbol: "🎰", label: "Base layout", value: "6 × 5", note: "Producer description" },
+    { symbol: "✨", label: "Win mechanic", value: "8+ matches", note: "Pays anywhere" },
+    { symbol: "🌀", label: "Cascade", value: "Tumbling wins", note: "Symbol replacement" },
+    { symbol: "🎟️", label: "Free spins", value: "10 initial", note: "In-game feature" },
+  ],
+  featureTags: [
+    { symbol: "🍬", label: "Candy & fruit" },
+    { symbol: "🌀", label: "Tumbling wins" },
+    { symbol: "✨", label: "Multipliers" },
+    { symbol: "🎟️", label: "Free spins" },
+    { symbol: "📖", label: "Information-only" },
+  ],
+  featureCards: [
+    {
+      symbol: "🌀",
+      title: "Tumbling wins",
+      description: "After a qualifying win, matching symbols disappear and new ones enter the grid, allowing another evaluation.",
+    },
+    {
+      symbol: "✨",
+      title: "Matching-symbol wins",
+      description: "The original game uses groups of at least eight matching symbols anywhere on the grid rather than fixed paylines.",
+    },
+    {
+      symbol: "🎟️",
+      title: "Free spins",
+      description: "Scatter symbols trigger an in-game bonus with ten initial free spins, as described by the developer.",
+    },
+    {
+      symbol: "⚡",
+      title: "Bonus multipliers",
+      description: "Multiplier symbols are described for the free-spins feature; they are not a casino promotion or guaranteed payout.",
+    },
+  ],
+
   // No rating until we have a transparent, reviewed methodology.
   rating: null,
 

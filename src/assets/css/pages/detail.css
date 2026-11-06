@@ -149,3 +149,12 @@
 .rh-review__faq p{margin:12px 0 0}
 @media(max-width:1050px){.rh-review__body,.rh-full-review .detail-layout{grid-template-columns:1fr}.rh-review__sidebar{position:static;grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:720px){.rh-section-nav{top:60px}.rh-review__hero-grid,.rh-review__demo{grid-template-columns:1fr}.rh-review__hero-copy{padding:22px}.rh-review__hero-art{min-height:315px}.rh-review__body{padding-top:18px}.rh-review__section{padding:21px}.rh-review__features,.rh-review__sidebar{grid-template-columns:1fr}.rh-review__gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.rh-review__section{scroll-margin-top:135px}}
+
+/* Icon-led mechanic cards from the Sweet Loot reference design.
+   Component is generic; values are supplied by each approved game record. */
+.rh-feature-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0}
+.rh-feature-card{padding:20px;border:1px solid var(--color-border);border-radius:14px;background:var(--color-surface-soft);min-width:0}
+.rh-feature-card__symbol{display:block;margin-bottom:9px;font-size:1.55rem;line-height:1.1}
+.rh-feature-card strong{display:block;color:var(--color-text);font-size:1rem;margin-bottom:8px}
+.rh-feature-card p{font-size:.89rem;line-height:1.6;margin:0;color:var(--color-muted)}
+@media(max-width:720px){.rh-feature-cards{grid-template-columns:1fr}}

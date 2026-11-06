@@ -71,13 +71,11 @@ eleventyComputed:
 
       <h2 id="game-info">Game information</h2>
 
-      {# Only Stage 43.3 individually reviewed facts may enter the information table. #}
-      {% set rows = editorialFields433.gameRows(game) %}
-      {% if game.rating and game.rating.overall is defined %}
-        {% set rows = [{ label: "Rating", value: game.rating.overall + " / 5" }].concat(rows) %}
-      {% endif %}
-      {% if rows.length %}
-        {% include "components/info-table/info-table.njk" %}
+      {# Stage 43.3 provides claim-reviewed rows; visual cards cannot add facts. #}
+      {% set facts = visualFactsV3.game(editorialFields433.gameRows(game)) %}
+      {% set factsLabel = "Game at a glance" %}
+      {% if facts.length %}
+        {% include "components/quick-facts/quick-facts.njk" %}
       {% else %}
         <p>Edition-specific numerical details have not been independently verified.</p>
       {% endif %}
@@ -94,11 +92,12 @@ eleventyComputed:
 
       {% if game.sections.features and game.sections.features.items and game.sections.features.items.length %}
         <h2 id="features">{{ game.sections.features.title }}</h2>
-        <ul>
-          {% for item in game.sections.features.items %}
-            <li>{{ item }}</li>
-          {% endfor %}
-        </ul>
+        {% if game.featureCards and game.featureCards.length %}
+          {% set featureCards = game.featureCards %}
+          {% include "components/feature-cards/feature-cards.njk" %}
+        {% else %}
+          <ul>{% for item in game.sections.features.items %}<li>{{ item }}</li>{% endfor %}</ul>
+        {% endif %}
       {% endif %}
 
       {% if game.sections.gameplay and game.sections.gameplay.text %}

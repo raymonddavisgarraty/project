@@ -1,15 +1,24 @@
-<section class="quick-facts" aria-label="Quick facts">
+{# Existing facts component, extended for the Sweet Loot card design.
+   Receives normalized editorial facts only: label, value, optional note/symbol/icon.
+   Never reads raw game/casino data itself. #}
+{% if facts and facts.length %}
+<section class="quick-facts" aria-label="{{ factsLabel or 'Game at a glance' }}">
   {% for item in facts %}
+    {% if item.label and item.value %}
     <div class="quick-facts__item">
-      {% if item.icon %}
-        <span class="quick-facts__icon">
+      {% if item.symbol %}
+        <span class="quick-facts__symbol" aria-hidden="true">{{ item.symbol }}</span>
+      {% elif item.icon %}
+        <span class="quick-facts__icon" aria-hidden="true">
           {% set name = item.icon %}
           {% include "components/icon/icon.njk" %}
         </span>
       {% endif %}
-
-      <span class="quick-facts__label">{{ item.label }}</span>
+      <small class="quick-facts__label">{{ item.label }}</small>
       <strong class="quick-facts__value">{{ item.value }}</strong>
+      {% if item.note %}<span class="quick-facts__note">{{ item.note }}</span>{% endif %}
     </div>
+    {% endif %}
   {% endfor %}
 </section>
+{% endif %}

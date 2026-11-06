@@ -1,9 +1,15 @@
-<section class="pill-list" aria-labelledby="{{ titleId }}">
-  <h2 class="pill-list__title" id="{{ titleId }}">{{ title }}</h2>
-
+{# Backward-compatible pills: plain strings or {symbol,label} objects.
+   titleId remains optional to support inline game feature chips. #}
+{% if items and items.length %}
+<section class="pill-list{% if pillClass %} {{ pillClass }}{% endif %}"{% if titleId %} aria-labelledby="{{ titleId }}"{% else %} aria-label="{{ pillLabel or 'Game features' }}"{% endif %}>
+  {% if titleId and title %}<h2 class="pill-list__title" id="{{ titleId }}">{{ title }}</h2>{% endif %}
   <div class="pill-list__items">
     {% for item in items %}
-      <span class="pill-list__item">{{ item }}</span>
+      <span class="pill-list__item">
+        {% if item.symbol %}<span aria-hidden="true" class="pill-list__symbol">{{ item.symbol }}</span>{% endif %}
+        {% if item.label %}{{ item.label }}{% else %}{{ item }}{% endif %}
+      </span>
     {% endfor %}
   </div>
 </section>
+{% endif %}
