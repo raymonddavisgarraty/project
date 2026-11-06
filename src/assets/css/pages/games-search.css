@@ -203,3 +203,14 @@
 .games-search__input,.games-search__select{font-size:.94rem;font-weight:650;background:var(--color-surface-soft)}
 .games-search__label{font-size:.85rem;font-weight:750}
 .games-search__grid{gap:16px}
+
+/* Cross-page search loads only after the visitor types, keeping SSR pages fast. */
+.rh-global-results{margin-top:24px;padding:22px;border:1px solid var(--color-border);border-radius:22px;background:var(--color-surface);box-shadow:var(--shadow-card)}
+.rh-global-results[hidden],.rh-global-results__more[hidden],.games-search [data-games-grid][hidden]{display:none!important}
+.rh-global-results h2{font-size:1.35rem;margin-bottom:15px}
+.rh-global-results__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.rh-global-game-card{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:70px;padding:16px;border:1px solid var(--color-border);border-radius:14px;background:var(--color-surface-soft);color:var(--color-text);font-weight:800;text-decoration:none}
+.rh-global-game-card:hover,.rh-global-game-card:focus-visible{border-color:var(--color-primary);color:var(--color-primary);text-decoration:none}
+.rh-global-game-card::after{content:"↗";color:var(--color-primary);font-size:.95rem}
+.rh-global-results__more{display:block;width:100%;margin-top:18px;padding:12px 18px;min-height:46px;border:1px solid var(--color-border);border-radius:12px;background:var(--color-primary);color:#fff;font:inherit;font-weight:800;cursor:pointer}
+@media(max-width:620px){.rh-global-results__grid{grid-template-columns:1fr}}

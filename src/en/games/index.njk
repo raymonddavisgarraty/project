@@ -123,6 +123,12 @@ breadcrumbs:
         {% include "components/game-grid-card/game-grid-card.njk" %}
       {% endfor %}
     </div>
+    {# JS enhancement: cross-page title search; paginated SSR list remains crawlable. #}
+    <section class="rh-global-results" data-global-game-results hidden aria-label="Full catalogue search results">
+      <h2>Search results across all games</h2>
+      <div class="rh-global-results__grid" data-global-game-list></div>
+      <button class="rh-global-results__more" type="button" data-global-game-more hidden>Show more results</button>
+    </section>
     {% if pagination.hrefs.length > 1 %}
     <nav class="rh-pagination" aria-label="Game catalogue pages" data-catalogue-pagination>
       {% if pagination.href.previous %}
@@ -143,3 +149,4 @@ breadcrumbs:
 
 <script src="/assets/js/pages/catalog-search442.js" defer></script>
 <script src="/assets/js/pages/games-search.js" defer></script>
+<script src="/assets/js/pages/global-game-search-v3.js" defer></script>
