@@ -12,6 +12,9 @@ assert(draft,"Expected opt-in local draft");
 assert.equal(draft.unverified,true);
 assert.equal(draft.heading,game.seo.h1);
 assert(draft.sections.length>=3,"Review sections missing");
+assert.equal(draft.glance.length,6);
+assert(draft.specifications.length>draft.glance.length);
+assert(draft.specifications.every(r=>r.label&&r.value&&r.note));
 assert(draft.questions.length>=3,"FAQ missing");
 assert(draft.researchLinks.length>=1);
 for(const k of ["publicationApproved","indexabilityApproved","publicExportApproved"])

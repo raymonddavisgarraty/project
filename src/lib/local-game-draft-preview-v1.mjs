@@ -39,17 +39,25 @@ export function buildLocalGameDraftPreviewV1({game,registry,enabled=false,produc
       for(const field of fields){
         const val=object[field];
         if(val===undefined){if(field==="note")continue;return null;}
-        if(!clean(val)||val.length>150)return null;
+        if(!clean(val)||val.length>220)return null;
         output[field]=val;
       }
       results.push(Object.freeze(output));
     }
     return Object.freeze(results);
   }
-  const facts=copyObjects(game.previewFacts,["symbol","label","value","note"],8);
+  const facts=copyObjects(game.previewFacts,["symbol","label","value","note","detail"],8);
+  const additionalSpecs=copyObjects(game.previewAdditionalSpecs,["label","value","note"],8);
   const tags=copyObjects(game.featureTags,["symbol","label"],10);
   const featureCards=copyObjects(game.featureCards,["symbol","title","description"],8);
-  if(!facts||!tags||!featureCards)return null;
+  if(!facts||!additionalSpecs||!tags||!featureCards)return null;
+  const specs=Object.freeze([
+    ...facts.map(item=>Object.freeze({label:item.label,value:item.value,note:item.detail})),
+    ...additionalSpecs.map(item=>Object.freeze({label:item.label,value:item.value,note:item.note})),
+  ]);
+  const glance=Object.freeze(facts.map(item=>Object.freeze({
+    symbol:item.symbol,label:item.label,value:item.value,note:item.note,
+  })));
 
   const refs=game.editorialSourceLeads;
   if(!Array.isArray(refs)||refs.length>5||!refs.every(url=>
@@ -57,7 +65,7 @@ export function buildLocalGameDraftPreviewV1({game,registry,enabled=false,produc
   return Object.freeze({
     kind:"local-editorial-copy-preview-only",unverified:true,
     heading:title,intro,sections:Object.freeze(sections),
-    glance:facts,tags,featureCards,
+    glance,tags,featureCards,specifications:specs,
     features:f?Object.freeze({heading:f.title,items:Object.freeze([...f.items])}):null,
     questions:Object.freeze(questions.map(q=>({question:q.question,answer:q.answer}))),
     researchLinks:Object.freeze([...refs]),

@@ -31,12 +31,19 @@ export default {
   // They are displayed in a labelled, non-production local editorial preview.
   // Never confuse the original Sweet Bonanza with Sweet Loot or Sweet Bonanza 1000.
   previewFacts: [
-    { symbol: "🎮", label: "Game provider", value: "Pragmatic Play", note: "Developer page · draft" },
-    { symbol: "🍬", label: "Theme", value: "Candy & fruit", note: "Original game" },
-    { symbol: "🎰", label: "Base layout", value: "6 × 5", note: "Producer description" },
-    { symbol: "✨", label: "Win mechanic", value: "8+ matches", note: "Pays anywhere" },
-    { symbol: "🌀", label: "Cascade", value: "Tumbling wins", note: "Symbol replacement" },
-    { symbol: "🎟️", label: "Free spins", value: "10 initial", note: "In-game feature" },
+    { symbol: "🎮", label: "Game provider", value: "Pragmatic Play", note: "Developer page · draft", detail: "Pragmatic Play developed the original Sweet Bonanza game." },
+    { symbol: "🍬", label: "Theme", value: "Candy & fruit", note: "Original game", detail: "The original game uses a candy-and-fruit theme, not the pirate theme of Sweet Loot." },
+    { symbol: "🎰", label: "Base layout", value: "6 × 5", note: "Producer description", detail: "The original game uses a six-column, five-row base display." },
+    { symbol: "✨", label: "Win mechanic", value: "8+ matches", note: "Pays anywhere", detail: "At least eight matching symbols can form a win anywhere on the grid." },
+    { symbol: "🌀", label: "Cascade", value: "Tumbling wins", note: "Symbol replacement", detail: "Matched symbols disappear after wins and new symbols enter the grid." },
+    { symbol: "🎟️", label: "Free spins", value: "10 initial", note: "In-game feature", detail: "The scatter-triggered free-spins feature starts with ten spins." },
+  ],
+  // Additional details enrich the table without inventing mathematical facts.
+  previewAdditionalSpecs: [
+    { label: "Original release", value: "2019", note: "The year of the developer's announcement of the original game." },
+    { label: "Bonus multipliers", value: "2×–100×", note: "Multiplier symbols described for the in-game free-spins bonus." },
+    { label: "Declared RTP", value: "Configuration-dependent", note: "A precise operator-specific RTP is not established by this local draft." },
+    { label: "Maximum win", value: "Not specified", note: "Different reported figures require the applicable game edition to be identified." },
   ],
   featureTags: [
     { symbol: "🍬", label: "Candy & fruit" },

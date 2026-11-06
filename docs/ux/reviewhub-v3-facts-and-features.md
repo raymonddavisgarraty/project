@@ -17,3 +17,7 @@ The existing `pill-list.njk` now accepts either strings (backward compatibility)
 Run `npm run test:visual-facts-v3`, `npm run verify:integration` and, after checkout, `EDITORIAL_PREVIEW=1 npm run dev` (PowerShell: `$env:EDITORIAL_PREVIEW='1'`). The source remains noindex and the main production gate is untouched.
 
 This change provides UI slots and data shapes. Actual image uploads, video, full media gallery and authorised playable demo integration are a separate task. Do not ship local preview output to the public site.
+
+## Hero facts and separate detailed Specifications
+
+As in Sweet Loot, six compact `Game at a glance` cards now follow `hero-grid` directly, before the status line and secondary sticky navigation. They are **not** repeated in the content body. Section `02 · Specifications` instead contains a detailed `info-table.njk` with longer explanatory notes and additional structured, game-specific rows. The pilot shares each of the six values between the two representations without copying one game's facts to another. Full published game pages use the Stage 43.3 field-reviewed rows for both hero summaries and detailed table. Sweet Bonanza's exact RTP/max win remain withheld. All draft content remains non-production only.

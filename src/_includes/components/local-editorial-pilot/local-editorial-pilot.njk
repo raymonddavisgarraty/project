@@ -28,6 +28,10 @@
           <span class="rh-review__art-caption">Local artwork preview</span>
         </div>
       </div>
+      {# Game at a glance: a concise six-card strip directly below hero-grid. #}
+      {% set facts = pilotDraft.glance %}
+      {% set factsLabel = "Game at a glance — local research preview" %}
+      {% include "components/quick-facts/quick-facts.njk" %}
       <p class="rh-review__warning"><strong>UNVERIFIED DRAFT:</strong> This preview is not published. Game details, media rights and availability are under editorial review.</p>
     </div>
   </div>
@@ -35,7 +39,7 @@
   <nav class="rh-section-nav" aria-label="Game review sections">
     <div class="container rh-section-nav__links">
       <a href="#overview">Overview</a>
-      <a href="#stats">Quick facts</a>
+      <a href="#stats">Specifications</a>
       <a href="#demo">Demo</a>
       <a href="#features">Features</a>
       <a href="#media">Screenshots</a>
@@ -60,12 +64,10 @@
       </section>
       <section class="rh-review__section" id="stats">
         <span class="rh-review__eyebrow">02 · Specifications</span>
-        <h2>Game information</h2>
-        <p class="rh-review__tiny">Values below reflect the game's developer description and are <strong>draft information</strong>, not a verified version-specific mathematical configuration.</p>
-        {% set facts = pilotDraft.glance %}
-        {% set factsLabel = "Game at a glance — local research preview" %}
-        {% include "components/quick-facts/quick-facts.njk" %}
-        <p class="rh-review__tiny">Exact RTP and maximum-win values are intentionally not included in this pilot.</p>
+        <h2>{{ game.hero.title }}: key game information</h2>
+        {% set rows = pilotDraft.specifications %}
+        {% include "components/info-table/info-table.njk" %}
+        <p class="rh-review__tiny">Game information from developer research leads. Exact mathematical configurations may vary by operator; no precise RTP or maximum win is claimed for this pilot.</p>
       </section>
       <section class="rh-review__section" id="demo">
         <span class="rh-review__eyebrow">03 · Demo game</span>
@@ -142,7 +144,7 @@
       <div class="rh-review__mini">
         <h3>On this page</h3>
         <ul>
-          <li><a href="#overview">Overview</a></li><li><a href="#stats">Quick facts</a></li>
+          <li><a href="#overview">Overview</a></li><li><a href="#stats">Specifications</a></li>
           <li><a href="#demo">Demo game</a></li><li><a href="#features">Features</a></li>
           <li><a href="#media">Screenshots</a></li><li><a href="#video">Video</a></li>
           <li><a href="#analysis">Game analysis</a></li><li><a href="#faq">FAQ</a></li>

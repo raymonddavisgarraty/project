@@ -158,3 +158,10 @@
 .rh-feature-card strong{display:block;color:var(--color-text);font-size:1rem;margin-bottom:8px}
 .rh-feature-card p{font-size:.89rem;line-height:1.6;margin:0;color:var(--color-muted)}
 @media(max-width:720px){.rh-feature-cards{grid-template-columns:1fr}}
+
+/* Short fact cards belong directly below the two-column hero, not in #stats. */
+.rh-review__hero .quick-facts{margin:15px 0 0}
+.game-hero .quick-facts{margin:17px 0 0}
+.rh-review__section#stats .info-table{width:100%;margin-top:18px}
+.rh-review__section#stats .info-table__label{min-width:165px}
+@media(max-width:720px){.rh-review__hero .quick-facts{margin-top:12px}.rh-review__section#stats .info-table__label{min-width:0}}

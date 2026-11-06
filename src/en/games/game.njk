@@ -22,7 +22,7 @@ eleventyComputed:
 {% include "components/game-hero/game-hero.njk" %}
 <nav class="rh-section-nav" aria-label="Game review sections">
   <div class="container rh-section-nav__links">
-    <a href="#overview">Overview</a><a href="#game-info">Quick facts</a>
+    <a href="#overview">Overview</a><a href="#game-info">Specifications</a>
     <a href="#features">Features</a><a href="#gameplay">Gameplay</a>
     <a href="#rtp-volatility">RTP information</a><a href="#bonus-features">Bonus features</a>
     <a href="#faq-title">FAQ</a>
@@ -71,11 +71,10 @@ eleventyComputed:
 
       <h2 id="game-info">Game information</h2>
 
-      {# Stage 43.3 provides claim-reviewed rows; visual cards cannot add facts. #}
-      {% set facts = visualFactsV3.game(editorialFields433.gameRows(game)) %}
-      {% set factsLabel = "Game at a glance" %}
-      {% if facts.length %}
-        {% include "components/quick-facts/quick-facts.njk" %}
+      {# Separate rich specifications table, using the same reviewed facts as hero. #}
+      {% set rows = visualFactsV3.gameSpecs(editorialFields433.gameRows(game)) %}
+      {% if rows.length %}
+        {% include "components/info-table/info-table.njk" %}
       {% else %}
         <p>Edition-specific numerical details have not been independently verified.</p>
       {% endif %}

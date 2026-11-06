@@ -30,4 +30,22 @@ function build(rows,mapping){
 }
 export const game=rows=>build(rows,GAME);
 export const casino=rows=>build(rows,CASINO);
-export default Object.freeze({game,casino});
+const GAME_NOTES=Object.freeze({
+  providerName:"Developer of the selected game.",
+  releaseYear:"Year of the original game release.",
+  reels:"Number of reels or columns; this does not describe every row.",
+  paylineType:"How winning symbol combinations are evaluated.",
+  volatility:"Payout variation, not a prediction for an individual session.",
+  rtp:"Theoretical long-run value; operator configurations may differ.",
+  maxWinMultiplier:"Potential payout multiplier, not a guaranteed win.",
+  paylines:"Paylines for the applicable game version.",
+});
+export const gameSpecs=rows=>Object.freeze(
+  (Array.isArray(rows)?rows:[])
+    .filter(row=>row?.reviewStatus==="claim-verified" &&
+      typeof row.field==="string" && Object.hasOwn(GAME_NOTES,row.field) &&
+      typeof row.label==="string" && typeof row.value==="string" && row.value.trim() &&
+      !/[<>]/.test(row.value))
+    .map(row=>Object.freeze({label:row.label,value:row.value,note:GAME_NOTES[row.field]}))
+);
+export default Object.freeze({game,casino,gameSpecs});

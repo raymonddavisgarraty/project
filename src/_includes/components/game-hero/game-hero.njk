@@ -28,20 +28,6 @@
         </div>
         {% endif %}
 
-        {# No source JSON facts are displayed without field-level editorial verification.
-           Unknown, disputed or null values are omitted rather than guessed. #}
-        {% set approvedFacts = editorialFields433.gameRows(game) %}
-        {% if approvedFacts.length %}
-        <div class="game-hero__stats" aria-label="Verified game characteristics">
-          {% for fact in approvedFacts %}
-          <div>
-            <span>{{ fact.label }}</span>
-            <strong>{{ fact.value }}</strong>
-          </div>
-          {% endfor %}
-        </div>
-        {% endif %}
-
         <div class="game-hero__actions">
           {% set offer = commercial.forGame(game) %}
           {% if offer %}
@@ -65,5 +51,8 @@
         {% include "components/media-cover/media-cover.njk" %}
       </div>
     </div>
+    {% set facts = visualFactsV3.game(editorialFields433.gameRows(game)) %}
+    {% set factsLabel = "Game at a glance" %}
+    {% include "components/quick-facts/quick-facts.njk" %}
   </div>
 </section>
