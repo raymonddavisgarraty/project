@@ -31,7 +31,7 @@ for(const [name,code,alias] of [["game",index,"pageGames"],["casino",casinoIndex
  assert(code.includes("size: 12"),name+" page size must be bounded");
  assert(code.includes("alias: "+alias),name+" must iterate paginated entities");
  assert(code.includes("pagination.href.next"),"Must provide real HTML next page link");
- assert(code.includes("aria-current=\\"page\\""),"Active page link requires accessible state");
+ assert(code.includes('aria-current="page"'),"Active page link requires accessible state");
  assert(code.includes("eleventyComputed:"),"Canonical should be computed for each page");
 }
 const header=read("src/_includes/components/site-header/site-header.njk");
