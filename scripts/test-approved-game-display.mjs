@@ -13,7 +13,10 @@ for(const [name,text] of [["hero",hero],["page",page]]){
  assert(!/game\.facts\.(provider|rtp|volatility|reels|paylines|maxWin|hitFrequency|releaseYear)/.test(text),
   name+" must not display raw unapproved game facts");
 }
-assert(hero.includes("{% if approvedFacts.length %}"));
+assert(hero.includes("visualFactsV3.game(editorialFields433.gameRows(game))"),"Hero must display individually approved facts");
+assert(hero.includes('include "components/quick-facts/quick-facts.njk"'),"Concise facts are directly below the approved game hero");
+assert(!hero.includes('class="game-hero__stats"'),"Remove old in-hero fact list");
+assert(page.includes("visualFactsV3.gameSpecs(editorialFields433.gameRows(game))"),"Detailed information table must use the same approved facts");
 assert(page.includes("{% if rows.length %}"));
 assert(card.includes("editorialFields433.gameFieldVerified(game, 'rtp')"));
 assert(card.includes("editorialFields433.gameFieldVerified(game, 'volatility')"));
